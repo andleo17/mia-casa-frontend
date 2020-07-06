@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default class VerticalMenuItem extends Component {
-	render() {
-		return (
-			<NavLink
-				className={`item-mnu-vertical ${
-					this.props.seleccionado && 'item-mnu-selected'
-				}`}
-				to={`${this.props.ruta}`}
-				onClick={this.props.click}>
-				<i className={this.props.icono}></i>
-				<span>{this.props.titulo}</span>
-			</NavLink>
-		);
-	}
+export default function VerticalMenuItem({
+	ruta,
+	titulo,
+	icono,
+	seleccionado,
+	click,
+}) {
+	return (
+		<NavLink
+			className={`item-mnu-vertical ${
+				seleccionado && 'item-mnu-selected'
+			}`}
+			to={`${ruta}`}
+			onClick={click}>
+			<i className={icono}></i>
+			<span>{titulo}</span>
+		</NavLink>
+	);
 }

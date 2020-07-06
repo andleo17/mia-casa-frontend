@@ -2,10 +2,10 @@ import React from 'react';
 import VerticalMenu from '../components/Menu/VerticalMenu';
 import { Switch, Route } from 'react-router-dom';
 import Reclamo from './Reclamo';
-import Venta from './Venta/Venta';
 import Mesa from './Mesa';
 import Producto from './Producto';
 import Pago from './Pago';
+import Venta from './Venta';
 
 function App() {
 	return (
