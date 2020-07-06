@@ -3,6 +3,9 @@ import VerticalMenu from '../components/Menu/VerticalMenu';
 import { Switch, Route } from 'react-router-dom';
 import Reclamo from './Reclamo';
 import Venta from './Venta/Venta';
+import Mesa from './Mesa';
+import Producto from './Producto';
+import Pago from './Pago';
 
 function App() {
 	return (
@@ -17,6 +20,9 @@ function App() {
 					/>
 					<Route exact path='/venta' component={Venta} />
 					<Route exact path='/reclamo' component={Reclamo} />
+					<Route exact path='/mesa' component={Mesa} />
+					<Route exact path='/producto' component={Producto} />
+					<Route exact path='/pago' component={Pago} />
 				</Switch>
 			</div>
 		</div>
