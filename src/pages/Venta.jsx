@@ -43,7 +43,7 @@ export default function Venta() {
 					</NavLink>
 				</div>
 			</div>
-			<div className='row mt-4 overflow-auto'>
+			<div className='row overflow-auto'>
 				{data.listarMesa.map((m) => (
 					<MesaPedidoItem key={m.id} mesa={m} />
 				))}

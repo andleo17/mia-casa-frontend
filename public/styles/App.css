@@ -223,9 +223,32 @@ body {
 }
 
 .mesa-pedido {
-	margin-bottom: 20px;
+	padding: 15px;
 }
 
 .mesa-pedido > .card {
 	min-height: 12em;
+	border-radius: 25px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.48);
+	transition: all 0.3s ease-in-out;
+}
+
+.mesa-pedido .libre {
+	background-color: #64bd74;
+}
+
+.mesa-pedido .libre .card-body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 50px;
+	font-weight: 500;
+}
+
+.mesa-pedido .pendiente {
+	background-color: #f7c532;
+}
+
+.mesa-pedido .ocupado {
+	background-color: #f46e5b;
 }

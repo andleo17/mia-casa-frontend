@@ -5,15 +5,15 @@ export default function MesaPedidoItem({ mesa }) {
 
 	const hallarColor = () => {
 		if (!ocupado) {
-			return 'bg-success';
+			return 'libre';
 		} else {
 			const pedidosCompletos = mesa.pedidoActual.productos.every(
 				(p) => p.entregado
 			);
 			if (pedidosCompletos) {
-				return 'bg-danger';
+				return 'ocupado';
 			} else {
-				return 'bg-warning';
+				return 'pendiente';
 			}
 		}
 	};
@@ -23,15 +23,16 @@ export default function MesaPedidoItem({ mesa }) {
 			<div className={`card text-white ${hallarColor()}`}>
 				<div className='card-body'>
 					<span className='card-title font-weight-bold'>{`Mesa ${mesa.numero}`}</span>
-					<ul>
-						{mesa.pedidoActual &&
-							mesa.pedidoActual.productos.map((p) => (
+					{mesa.pedidoActual && (
+						<ul>
+							{mesa.pedidoActual.productos.map((p) => (
 								<li
 									key={
 										p.producto.id
 									}>{`${p.cantidad} ${p.producto.nombre}`}</li>
 							))}
-					</ul>
+						</ul>
+					)}
 				</div>
 			</div>
 		</div>
