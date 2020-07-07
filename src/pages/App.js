@@ -6,6 +6,8 @@ import Mesa from './Mesa';
 import Producto from './Producto';
 import Pago from './Pago';
 import Venta from './Venta';
+import Main from './Main';
+import Login from './Login';
 
 function App() {
 	return (
@@ -13,11 +15,8 @@ function App() {
 			<div className='row'>
 				<VerticalMenu />
 				<Switch>
-					<Route
-						exact
-						path='/'
-						component={() => <h1>Bienvenido</h1>}
-					/>
+					<Route exact path='/' component={Main} />
+					<Route exact path='/login' component={Login} />
 					<Route exact path='/venta' component={Venta} />
 					<Route exact path='/reclamo' component={Reclamo} />
 					<Route exact path='/mesa' component={Mesa} />
