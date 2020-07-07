@@ -27,13 +27,13 @@ export default function ListaMesa() {
 
 	return (
 		<div className='col'>
-			<div className='card h-100'>
+			<div className='card h-100 border-0'>
 				<div className='card-body'>
 					<h5 className='card-title'>Listado de Mesas</h5>
-					<div className='input-group'>
+					<div className=' input-group '>
 						<input
 							type='search'
-							className='form-control'
+							className='form-control col-lg-10 '
 							placeholder='Buscar...'
 							aria-label='Busque una mesa'
 						/>

@@ -3,7 +3,7 @@ import React from 'react';
 export default function FrmMesa() {
 	return (
 		<div className='col'>
-			<div className='card h-100'>
+			<div className='card border-0'>
 				<div className='card-body'>
 					<h5 className='card-title'>Datos de la mesa</h5>
 					<form className='bg-light p-3'>
@@ -33,6 +33,12 @@ export default function FrmMesa() {
 								</label>
 							</div>
 						</div>
+						<div className='text-center'>
+							<button className='btn btn-shift' type='button'>
+								Registrar
+							</button>
+						</div>
+
 					</form>
 				</div>
 			</div>
