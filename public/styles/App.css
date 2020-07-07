@@ -46,10 +46,9 @@ body {
 }
 
 .mnu-vertical {
-	position: fixed;
 	background-color: #ee814a;
 	border-radius: 0 0 0 20px;
-	height: 100%;
+	width: 6em;
 	padding: 10px 0 20px 0;
 }
 
@@ -99,6 +98,13 @@ body {
 .btn-item-header {
 	border-right: 1px solid #555353;
 	color: #ee814a;
+}
+
+.contenido {
+	padding: 25px;
+	height: calc(100vh - 68.95px);
+	overflow-y: auto;
+	flex: 1 1 auto;
 }
 
 /* --------- imagen  ------------- */
@@ -214,4 +220,12 @@ body {
 
 .imgNivel {
 	filter: drop-shadow(5px 5px 0.5px rgba(46, 30, 46, 0.589));
+}
+
+.mesa-pedido {
+	margin-bottom: 20px;
+}
+
+.mesa-pedido > .card {
+	min-height: 12em;
 }
