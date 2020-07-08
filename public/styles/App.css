@@ -222,27 +222,37 @@ body {
 	filter: drop-shadow(5px 5px 0.5px rgba(46, 30, 46, 0.589));
 }
 
-.listaBorde{
-	border:  0; 
+.listaBorde {
+	border: 0;
 	border-radius: 5px;
 	-webkit-filter: drop-shadow(1px 1px 1px rgba(51, 51, 51, 0.521));
 	filter: drop-shadow(1px 1px 1px rgba(51, 51, 51, 0.664));
 }
 
-.listaBorde:hover{
+.listaBorde:hover {
 	transform: translateY(-1px);
 	box-shadow: 1px 1px 2px rgba(153, 153, 153, 0.705);
 }
 
 .mesa-pedido {
-	padding: 15px;
+	padding: 15px 30px !important;
 }
 
-.mesa-pedido > .card {
-	min-height: 12em;
+.mesa-pedido .card {
+	min-height: 14em;
 	border-radius: 25px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.48);
 	transition: all 0.3s ease-in-out;
+	font-size: 1.1em;
+}
+
+.mesa-pedido .card-title {
+	font-size: 1.5em;
+}
+
+.mesa-pedido .card:hover {
+	text-decoration: none;
+	box-shadow: 0 0 10px black;
 }
 
 .mesa-pedido .libre {
@@ -253,7 +263,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 50px;
+	font-size: 3em;
 	font-weight: 500;
 }
 
@@ -267,4 +277,50 @@ body {
 
 .damesa{
 	border-radius: 20px;
+}
+
+.login {
+	height: -webkit-fill-available;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.login-img {
+	background-color: #e4e4e4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.login-form form {
+	width: 25rem;
+}
+
+.login-form .input-group-text {
+	color: #d73f28;
+}
+
+.login-form button {
+	background-color: #d73f28;
+	color: white;
+	font-weight: 500;
+}
+
+.login-form .invalid-feedback {
+	text-align: start;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: -webkit-fill-available;
 }

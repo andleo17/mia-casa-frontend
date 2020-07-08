@@ -1,7 +1,6 @@
 import React from 'react';
 import ListaMesa from '../components/Mesa/ListaMesa';
 import FrmMesa from '../components/Mesa/FrmMesa';
-import '../INTERFACES HTML/assets/css/bustra.css'
 export default function Mesa() {
 	return (
 		<div className='col'>
