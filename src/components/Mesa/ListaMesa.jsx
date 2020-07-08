@@ -26,7 +26,7 @@ export default function ListaMesa() {
 		);
 
 	return (
-		<div className='col'>
+		<div className='col-lg-6'>
 			<div className='card h-100 border-0'>
 				<div className='card-body'>
 					<h5 className='card-title'>Listado de Mesas</h5>

@@ -264,3 +264,7 @@ body {
 .mesa-pedido .ocupado {
 	background-color: #f46e5b;
 }
+
+.damesa{
+	border-radius: 20px;
+}
