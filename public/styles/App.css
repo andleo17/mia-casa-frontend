@@ -264,3 +264,42 @@ body {
 .mesa-pedido .ocupado {
 	background-color: #f46e5b;
 }
+
+.login {
+	height: -webkit-fill-available;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.login-img {
+	background-color: #e4e4e4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.login-form form {
+	width: 25rem;
+}
+
+.login-form .input-group-text {
+	color: #d73f28;
+}
+
+.login-form button {
+	background-color: #d73f28;
+	color: white;
+	font-weight: 500;
+}
+
+.login-form .invalid-feedback {
+	text-align: start;
+}
