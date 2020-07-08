@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function MesaPedidoItem({ mesa }) {
-	const [ocupado, setOcupado] = useState(0);
+	const [estado, setEstado] = useState('libre');
 
 	useEffect(() => {
 		if (mesa.pedidoActual) {
@@ -9,25 +10,20 @@ export default function MesaPedidoItem({ mesa }) {
 				(p) => p.entregado
 			);
 			if (pedidosCompletos) {
-				setOcupado(2);
+				setEstado('ocupado');
 			} else {
-				setOcupado(1);
+				setEstado('pendiente');
 			}
 		} else {
-			setOcupado(0);
+			setEstado('libre');
 		}
 	}, [mesa.pedidoActual]);
 
 	return (
 		<div className='col-4 mesa-pedido'>
-			<div
-				className={`card text-white ${
-					ocupado === 0
-						? 'libre'
-						: ocupado === 1
-						? 'pendiente'
-						: 'ocupado'
-				}`}>
+			<NavLink
+				className={`card text-white ${estado}`}
+				to={`/mesa/${mesa.id}`}>
 				<div className='card-body'>
 					<span className='card-title font-weight-bold'>
 						Mesa {mesa.numero}
@@ -43,7 +39,7 @@ export default function MesaPedidoItem({ mesa }) {
 						</ul>
 					)}
 				</div>
-			</div>
+			</NavLink>
 		</div>
 	);
 }

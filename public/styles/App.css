@@ -235,14 +235,19 @@ body {
 }
 
 .mesa-pedido {
-	padding: 15px;
+	padding: 15px 30px !important;
 }
 
-.mesa-pedido > .card {
-	min-height: 12em;
+.mesa-pedido .card {
+	min-height: 15em;
 	border-radius: 25px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.48);
 	transition: all 0.3s ease-in-out;
+}
+
+.mesa-pedido .card:hover {
+	text-decoration: none;
+	box-shadow: 0 0 10px black;
 }
 
 .mesa-pedido .libre {

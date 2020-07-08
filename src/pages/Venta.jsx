@@ -40,15 +40,13 @@ export default function Venta() {
 
 	return (
 		<Fragment>
-			<div className='row'>
+			<div className='d-flex justify-content-between align-items-center'>
 				<h1>Seleccione una mesa</h1>
-				<div className='ml-auto'>
-					<NavLink className='btn btn-primary' to='/mesa'>
-						Administrar
-					</NavLink>
-				</div>
+				<NavLink className='btn btn-primary' to='/mesa'>
+					Administrar
+				</NavLink>
 			</div>
-			<div className='row overflow-auto'>
+			<div className='row overflow-auto mx-5'>
 				{mesas.map((m) => (
 					<MesaPedidoItem key={m.id} mesa={m} />
 				))}
