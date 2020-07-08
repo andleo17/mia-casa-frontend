@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import ListadoPagos from '../components/Pago/ListaPago'
 import ListadoPedidos from '../components/Pago/ListaPedido'
-import NuevoPago from '../components/Pago/NuevoPago';
+import NuevoPago from '../components/Pago/FrmNuevoPago'
 
 export default function Pago() {
 	return (
