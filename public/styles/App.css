@@ -303,3 +303,10 @@ body {
 .login-form .invalid-feedback {
 	text-align: start;
 }
+
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: -webkit-fill-available;
+}

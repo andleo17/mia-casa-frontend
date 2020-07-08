@@ -1,34 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 
-class Clock extends Component {
+export default function Clock() {
+	const [time, setTime] = useState(new Date());
 
-    constructor(props) {
-        super(props);
-        this.state = { date: new Date() };
-    }
+	const tick = () => {
+		setTime(new Date());
+	};
 
-    componentDidMount() {
-        this.timerID = setInterval(
-        () => this.tick(),
-        1000
-        );
-    }
+	useEffect(() => {
+		const timerID = setInterval(tick, 1000);
+		return () => {
+			clearInterval(timerID);
+		};
+	});
 
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
-
-    tick() {
-        this.setState({
-        date: new Date()
-        });
-    }
-    render() {
-        return (
-            <h1>{this.state.date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })}</h1>
-        );
-    }
-
+	return <h1 className='display-3'>{moment(time).format('hh:mm:ss a')}</h1>;
 }
-
-export default Clock;
