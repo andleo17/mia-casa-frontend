@@ -29,14 +29,35 @@ export default function MesaPedidoItem({ mesa }) {
 						Mesa {mesa.numero}
 					</span>
 					{mesa.pedidoActual && (
-						<ul>
-							{mesa.pedidoActual.productos.map((p) => (
-								<li
-									key={
-										p.producto.id
-									}>{`${p.cantidad} ${p.producto.nombre}`}</li>
-							))}
-						</ul>
+						<table className='table table-sm mt-3'>
+							<thead>
+								<tr>
+									<th>Cantidad</th>
+									<th>Producto</th>
+									<th>Precio</th>
+								</tr>
+							</thead>
+							<tbody>
+								{mesa.pedidoActual.productos.map((p) => (
+									<tr key={p.producto.id}>
+										<td>{p.cantidad}</td>
+										<td>{p.producto.nombre}</td>
+										<td>{p.precio}</td>
+									</tr>
+								))}
+								<tr>
+									<td colSpan='2'>Total</td>
+									<td>
+										{mesa.pedidoActual.productos.reduce(
+											(p1, p2) =>
+												(
+													p1.precio + p2.precio
+												).toString()
+										)}
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					)}
 				</div>
 			</NavLink>
