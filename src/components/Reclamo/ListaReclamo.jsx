@@ -37,7 +37,7 @@ export default function ListaReclamo(){
     return (
         <div class='card' style={{ width: '100%' }}>
 			<div class='card-body'>
-				<h5 class='card-title'>Listado de Reclamos</h5>
+				<h5 class='card-title'>Lista de Reclamos</h5>
 				<div class='input-group mb-3 pl-4'>
 					<input
 						type='search'
