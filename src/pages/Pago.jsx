@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 import ListadoPagos from '../components/Pago/ListaPago'
 import ListadoPedidos from '../components/Pago/ListaPedido'
 import NuevoPago from '../components/Pago/NuevoPago';
-import { gql } from 'apollo-boost';
-
 
 export default function Pago() {
 	return (
