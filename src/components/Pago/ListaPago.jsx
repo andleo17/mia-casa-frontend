@@ -4,7 +4,7 @@ import { gql } from 'apollo-boost';
 import ItemPago from './ItemPago';
 import money from '../../assets/money.png';
 
-const QUERY_LISTAR_PAGO = gql`
+export const QUERY_LISTAR_PAGO = gql`
 	query ListarPago {
 		listarPago {
 			id

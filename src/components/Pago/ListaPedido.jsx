@@ -4,7 +4,7 @@ import { gql } from 'apollo-boost';
 import ItemPedido from './ItemPedido';
 import dish from '../../assets/dish.png';
 
-const QUERY_LISTAR_PEDIDO = gql`
+export const QUERY_LISTAR_PEDIDO = gql`
     query ListarPedido {
         listarPedido{
             id
