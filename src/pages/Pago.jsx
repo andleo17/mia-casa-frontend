@@ -3,7 +3,6 @@ import ItemPedido from '../components/Pago/ItemPedido';
 import ItemPago from '../components/Pago/ItemPago';
 import NuevoPago from '../components/Pago/NuevoPago';
 import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
 
 const QUERY_LISTAR_PAGO = gql`
 	query ListarPago {
