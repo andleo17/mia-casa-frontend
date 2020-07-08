@@ -45,14 +45,12 @@ export default function MesaPedidoItem({ mesa }) {
 										<td>{p.precio}</td>
 									</tr>
 								))}
-								<tr>
+								<tr className='font-weight-bold'>
 									<td colSpan='2'>Total</td>
 									<td>
 										{mesa.pedidoActual.productos.reduce(
-											(p1, p2) =>
-												(
-													p1.precio + p2.precio
-												).toString()
+											(sum, p) => sum + p.precio,
+											0
 										)}
 									</td>
 								</tr>
