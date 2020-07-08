@@ -276,6 +276,10 @@ body {
 	background-color: #f46e5b;
 }
 
+.damesa{
+	border-radius: 20px;
+}
+
 .login {
 	height: -webkit-fill-available;
 	display: flex;

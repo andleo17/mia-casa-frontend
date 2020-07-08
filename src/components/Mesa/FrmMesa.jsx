@@ -2,11 +2,11 @@ import React from 'react';
 
 export default function FrmMesa() {
 	return (
-		<div className='col'>
-			<div className='card border-0'>
+		<div className='col-lg-6'>
+			<div className='card border-0 '>
 				<div className='card-body'>
 					<h5 className='card-title'>Datos de la mesa</h5>
-					<form className='bg-light p-3'>
+					<form className='bg-light p-3 damesa'>
 						<div className='form-group'>
 							<label htmlFor='txtNumero'>Número:</label>
 							<input

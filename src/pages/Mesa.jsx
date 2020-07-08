@@ -5,12 +5,9 @@ export default function Mesa() {
 	return (
 		<div className='col'>
 			<div className='row p-3'>
-				<div className='col-lg-6'>
-					<ListaMesa />
-				</div>
-				<div className='col-lg-6'>
-					<FrmMesa />
-				</div>
+				<ListaMesa />
+			
+				<FrmMesa />
 			</div>
 		</div>
 	);
