@@ -46,10 +46,9 @@ body {
 }
 
 .mnu-vertical {
-	position: fixed;
 	background-color: #ee814a;
 	border-radius: 0 0 0 20px;
-	height: 100%;
+	width: 6em;
 	padding: 10px 0 20px 0;
 }
 
@@ -99,6 +98,13 @@ body {
 .btn-item-header {
 	border-right: 1px solid #555353;
 	color: #ee814a;
+}
+
+.contenido {
+	padding: 25px;
+	height: calc(100vh - 68.95px);
+	overflow-y: auto;
+	flex: 1 1 auto;
 }
 
 /* --------- imagen  ------------- */
@@ -214,4 +220,47 @@ body {
 
 .imgNivel {
 	filter: drop-shadow(5px 5px 0.5px rgba(46, 30, 46, 0.589));
+}
+
+.listaBorde{
+	border:  0; 
+	border-radius: 5px;
+	-webkit-filter: drop-shadow(1px 1px 1px rgba(51, 51, 51, 0.521));
+	filter: drop-shadow(1px 1px 1px rgba(51, 51, 51, 0.664));
+}
+
+.listaBorde:hover{
+	transform: translateY(-1px);
+	box-shadow: 1px 1px 2px rgba(153, 153, 153, 0.705);
+}
+
+.mesa-pedido {
+	padding: 15px;
+}
+
+.mesa-pedido > .card {
+	min-height: 12em;
+	border-radius: 25px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.48);
+	transition: all 0.3s ease-in-out;
+}
+
+.mesa-pedido .libre {
+	background-color: #64bd74;
+}
+
+.mesa-pedido .libre .card-body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 50px;
+	font-weight: 500;
+}
+
+.mesa-pedido .pendiente {
+	background-color: #f7c532;
+}
+
+.mesa-pedido .ocupado {
+	background-color: #f46e5b;
 }
