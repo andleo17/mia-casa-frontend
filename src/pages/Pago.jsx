@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import ItemPedido from '../components/Pago/ItemPedido';
 import ItemPago from '../components/Pago/ItemPago';
 import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
 
 const QUERY_LISTAR_PAGO = gql`
 	query ListarPago {
