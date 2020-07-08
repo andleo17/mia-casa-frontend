@@ -53,42 +53,42 @@ export default function ListaPago(){
         );
     
         return(
-            <div className='card mb-3' style={{ width: '100%' }}>
+            <div className='card' style={{ width: '100%' }}>
                 <div className='card-body'>
-                    <h5 className='card-title'>Listado de Pedidos</h5>
+                    <h5 className='card-title'>Listado de Pagos</h5>
                     <div className='input-group mb-3 pl-4'>
                         <input
                             type='search'
                             className='form-control'
                             placeholder='Buscar...'
-                            aria-label='Busque un pedido...'
+                            aria-label='Busque un pago'
                         />
+                        <div className='input-group-append'>
+                            <button className='btn btn-shift' type='button'>
+                                <i className='fa fa-plus'></i> Agregar
+                            </button>
+                        </div>
                     </div>
 
                     <div
                         className='pl-4'
                         style={{
-                            height: '17.4rem',
+                            height: '40rem',
                             overflowY: 'auto',
                         }}>
-                        
-                        {data.listarPedido.map(
-                                (pedido) => {
+                        {data.listarPago.map(
+                                (pago) => {
                                     return (
-                                        <ItemPedido
+                                        <ItemPago
                                             url=''
-                                            numero={
-                                                pedido.mesa
-                                                    .numero
-                                            }
-                                            monto={pedido.monto}
-                                            id={pedido.id}
+                                            numero={pago.numero}
+                                            monto={pago.monto}
+                                            id={pago.id}
                                         />
                                     );
                                 }
                             )
                         }
-                            
                     </div>
                 </div>
             </div>
