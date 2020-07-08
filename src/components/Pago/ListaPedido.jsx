@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ItemPedido from './ItemPedido';
+import dish from '../../assets/dish.png';
 
 const QUERY_LISTAR_PEDIDO = gql`
     query ListarPedido {
@@ -65,10 +66,9 @@ export default function ListaPedido(){
                                 (pedido) => {
                                     return (
                                         <ItemPedido
-                                            url=''
+                                            url={dish}
                                             numero={
-                                                pedido.mesa
-                                                    .numero
+                                                pedido.mesa.numero
                                             }
                                             monto={pedido.monto}
                                             id={pedido.id}

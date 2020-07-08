@@ -14,12 +14,12 @@ export default class ItemListado extends Component {
 							/>
 						</div>
 						<div className='col-6'>
-							<h4>Mesa N°{this.props.nombre}</h4>
+							<h4>Mesa N°{this.props.numero}</h4>
 							<span>s/ {this.props.monto}</span>
 							<br />
 						</div>
 						<div className='col-4 col-btn align-self-end'>
-							<button className='btn btn-danger btn-accion btn-circle'>
+							<button className='btn btn-warning btn-accion btn-circle'>
 								<i className='fa fa-credit-card'></i>
 							</button>
 						</div>

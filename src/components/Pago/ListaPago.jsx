@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ItemPago from './ItemPago';
+import money from '../../assets/money.png';
 
 const QUERY_LISTAR_PAGO = gql`
 	query ListarPago {
@@ -80,7 +81,7 @@ export default function ListaPago(){
                                 (pago) => {
                                     return (
                                         <ItemPago
-                                            url=''
+                                            url={money}
                                             numero={pago.numero}
                                             monto={pago.monto}
                                             id={pago.id}
