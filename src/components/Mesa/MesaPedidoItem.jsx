@@ -20,10 +20,10 @@ export default function MesaPedidoItem({ mesa }) {
 	}, [mesa.pedidoActual]);
 
 	return (
-		<div className='col-4 mesa-pedido'>
+		<div className='col-xl-4 col-lg-6 col-md-12 mesa-pedido'>
 			<NavLink
 				className={`card text-white ${estado}`}
-				to={`/mesa/${mesa.id}`}>
+				to={`/venta/mesa/${mesa.id}`}>
 				<div className='card-body'>
 					<span className='card-title font-weight-bold'>
 						Mesa {mesa.numero}

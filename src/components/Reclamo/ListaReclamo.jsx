@@ -1,41 +1,41 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ItemReclamo from './ItemReclamo';
 
 const QUERY_LISTAR_RECLAMO = gql`
-    query ListarReclamos {
-        listarReclamo {
-            id
-            motivo
-            detallePedido{
-                pedido {
-                    id
-                    mesa {
-                        id
-                        numero          
-                    }        
-                    productos {
-                        precio  
-                        producto{
-                            id
-                            nombre                                                      
-                        }
-                    }
-                }      
-            }
-        }
-    }
+	query ListarReclamos {
+		listarReclamo {
+			id
+			motivo
+			detallePedido {
+				pedido {
+					id
+					mesa {
+						id
+						numero
+					}
+					productos {
+						precio
+						producto {
+							id
+							nombre
+						}
+					}
+				}
+			}
+		}
+	}
 `;
 
-export default function ListaReclamo(){
-    const {loading , error, data} = useQuery(QUERY_LISTAR_RECLAMO);
+export default function ListaReclamo() {
+	const { loading, error, data } = useQuery(QUERY_LISTAR_RECLAMO);
 
-    if (loading) return <h1>Cargando... </h1>;
-    if (error) return <h1>Error al mostrar datos....</h1>;
+	if (loading) return <h1>Cargando... </h1>;
+	if (error) return <h1>Error al mostrar datos....</h1>;
 
-    return (
-        <div class='card' style={{ width: '100%' }}>
+	return (
+		<div class='card' style={{ width: '100%' }}>
 			<div class='card-body'>
 				<h5 class='card-title'>Lista de Reclamos</h5>
 				<div class='input-group mb-3 pl-4'>
@@ -58,19 +58,17 @@ export default function ListaReclamo(){
 						height: '30rem',
 						overflowY: 'auto',
 					}}>
-                    {data.listarReclamo.map(
-                        (reclamo) => {
-                            return (
-                                <ItemReclamo
-                                    url=''
-                                    numero={reclamo.numero}
-                                    id={reclamo.id}
-                                />
-                            );
-                        }
-                    )}							
+					{data.listarReclamo.map((reclamo) => {
+						return (
+							<ItemReclamo
+								url=''
+								numero={reclamo.numero}
+								id={reclamo.id}
+							/>
+						);
+					})}
 				</div>
 			</div>
 		</div>
-    )
+	);
 }

@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import ListadoReclamo from '../components/Reclamo/ListaReclamo'
-import ListadoPedidos from '../components/Reclamo/ListaPedido'
-import NuevoReclamo  from '../components/Reclamo/NuevoReclamo';
+import React, { Component } from 'react';
+import ListadoReclamo from '../components/Reclamo/ListaReclamo';
+import ListadoPedidos from '../components/Reclamo/ListaPedido';
+import NuevoReclamo from '../components/Reclamo/NuevoReclamo';
 export default class Reclamo extends Component {
 	render() {
 		return (
@@ -13,7 +13,7 @@ export default class Reclamo extends Component {
 				<div className='col-lg-6 col-xl-6'>
 					<ListadoReclamo />
 				</div>
-		</div>
+			</div>
 		);
 	}
 }

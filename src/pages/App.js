@@ -24,6 +24,16 @@ function App() {
 							<Route exact path='/' component={Main} />
 
 							<Route exact path='/venta' component={Venta} />
+							<Route
+								exact
+								path='/venta/mesa/:id'
+								component={(props) => (
+									<h1>
+										Aquí iría la info de la mesa{' '}
+										{props.match.params.id}
+									</h1>
+								)}
+							/>
 							<Route exact path='/reclamo' component={Reclamo} />
 							<Route exact path='/mesa' component={Mesa} />
 							<Route
