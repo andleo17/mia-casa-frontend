@@ -1,9 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { gql } from 'apollo-boost';
+import { useLazyQuery } from '@apollo/react-hooks';
+import { Redirect } from 'react-router';
+
+
+export const LOGIN_QUERY = gql`
+	query LoginQuery($usuario: String!, $clave: String!) {
+		login(usuario: $usuario, clave: $clave) {
+			token
+			personal {
+				id
+				nombres
+				apellidos
+			}
+		}
+	}
+`;
+
 
 export default function FrmLogin() {
+
 	const { register, handleSubmit, errors } = useForm();
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = () => login({ variables: { usuario, clave } });
+
+	const [usuario, setUsuario] = useState('');
+	const [clave, setClave] = useState('');
+
+	const [login, { loading, data, error }] = useLazyQuery(LOGIN_QUERY);
+
+	if (loading) return <h1>Cargando...</h1>;
+
+	if (data) {
+		localStorage.setItem('user', JSON.stringify(data.login));
+		localStorage.setItem('auth-token', data.login.token)
+		return <Redirect to='/' />;
+	}
+
+	if (error){
+		alert(error.message)
+	}
 
 	return (
 		<div className='col login-form'>
@@ -22,6 +58,8 @@ export default function FrmLogin() {
 							className={`form-control ${
 								errors.username && 'is-invalid'
 							}`}
+							value={usuario}
+							onChange={(e) => setUsuario(e.target.value)}
 							placeholder='Username'
 							ref={register({
 								required: {
@@ -48,6 +86,8 @@ export default function FrmLogin() {
 							className={`form-control ${
 								errors.username && 'is-invalid'
 							}`}
+							value={clave}
+							onChange={(e) => setClave(e.target.value)}
 							placeholder='Password'
 							ref={register({
 								required: {
