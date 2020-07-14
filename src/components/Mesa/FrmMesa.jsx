@@ -2,6 +2,7 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import {QUERY_LISTAR_MESA} from './ListaMesa'
+import { useForm } from 'react-hook-form';
 
 const REGISTRAR_MESA = gql`
 	mutation RegistrarMesa($numero: Int!) {
@@ -13,19 +14,21 @@ const REGISTRAR_MESA = gql`
 `;
 
 const MODIFICAR_MESA = gql`
-	mutation ModificarMesa($numero: Int!) {
-		modificarMesa(numero: $numero) {
-			numero
-			estado
-		}
+	mutation ModificarMesa($id: ID!,$numero: Int, $estado: Boolean) {
+			modificarMesa(id: $id, numero: $numero, estado: $estado) {
+				numero
+				estado
+			}
 	}
 `;
 
 
 export default function FrmMesa(props) {
 	const { item, update } = props;
-
-	// const mutation = item.id
+	const { register, handleSubmit, errors } = useForm();
+  	const onSubmit = data => console.log(errors);
+	
+	  // const mutation = item.id
 	// 	? MODIFICAR_MESA
 	// 	: REGISTRAR_MESA;
 	// const [execute] = useMutation(mutation);
@@ -35,23 +38,25 @@ export default function FrmMesa(props) {
 			<div className='card border-0 '>
 				<div className='card-body'>
 					<h5 className='card-title'>Datos de la mesa</h5>
-					<form className='bg-light p-3 damesa'>
+					<form className='bg-light p-3 damesa'  onSubmit={handleSubmit(onSubmit)}>
 						<div className='form-group'>
 							<label htmlFor='txtNumero'>Número:</label>
 							<input
-								type='text'
+								type='number'
 								name='numero'
 								id='txtNumero'
-								// value={item.numero}
-								// onChange={(e) =>
-								// 	update({
-								// 		...item,
-								// 		numero: e.target.value,
-								// 	})
-								// }
+								ref={register({ required: true })}
+								value={item.numero}
+								onChange={(e) =>
+									update({
+										...item,
+										numero: e.target.value,
+									})
+								}
 								placeholder='Ingrese el número de mesa...'
 								className='form-control'
 							/>
+							{errors.numero && <p className='mt-1 ml-1' style={{ color: 'red' }}>Debe ingresar un número</p>}
 						</div>
 						<div className='form-group'>
 							<label htmlFor='chkEstado'>Estado:</label>
@@ -61,6 +66,14 @@ export default function FrmMesa(props) {
 									type='checkbox'
 									name='estado'
 									id='chkEstado'
+									ref={register}
+									checked={item.estado}
+									onChange={(e) =>
+										update({
+											...item,
+											estado: e.target.checked,
+										})
+									}
 								/>
 								<label
 									className='form-check-label'
@@ -70,18 +83,13 @@ export default function FrmMesa(props) {
 							</div>
 						</div>
 						<div className='text-center'>
-							<button className='btn btn-shift' type='button'
+							<button className='btn btn-shift' type='submit'
 							// onClick={() =>
-							// 	execute({
+							// 	modificar({
 							// 		variables: {
-							// 			input: {
-							// 				date: document.getElementById(
-							// 					'txtNumero'
-							// 				).value,
-							// 				state: document.getElementById(
-							// 					'chkEstado'
-							// 				).checked,
-							// 			},
+							// 				id: parseInt(item.id),
+							// 				numero: document.getElementById('txtNumero').value,
+							// 				estado: document.getElementById('chkEstado').checked,
 							// 		},
 							// 		refetchQueries: [
 							// 			{ query: QUERY_LISTAR_MESA },
@@ -89,7 +97,7 @@ export default function FrmMesa(props) {
 							// 	})
 							// }
 							>
-								Registrar
+								{item.id ? 'Modificar' : 'Registrar'}
 							</button>
 						</div>
 

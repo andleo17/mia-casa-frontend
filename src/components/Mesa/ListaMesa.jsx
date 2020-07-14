@@ -15,9 +15,9 @@ export const QUERY_LISTAR_MESA = gql`
 
 
 
-export default function ListaMesa() {
+export default function ListaMesa(props) {
 	const { loading, error, data } = useQuery(QUERY_LISTAR_MESA);
-	const [selectedItem, setSelectedItem] = useState(initialState);
+	const { update, initial } = props;
 	if (loading) return <h1>Cargando...</h1>;
 	if (error)
 		return (
@@ -39,7 +39,7 @@ export default function ListaMesa() {
 							placeholder='Buscar...'
 							aria-label='Busque una mesa'
 						/>
-						<button className='btn btn-shift' type='button'>
+						<button className='btn btn-shift' type='button' onClick={()=>{update(initial)}}>
 							<i className='fa fa-plus' />
 							<span className='ml-2'>Agregar</span>
 						</button>
@@ -48,11 +48,10 @@ export default function ListaMesa() {
 						{data.listarMesa.map((mesa) => {
 							return (
 								<MesaItem
-									showData={() => setSelectedItem(mesa)}
-									item={selectedItem} update={setSelectedItem}
-									key={mesa.id}
 									url='https://static.vecteezy.com/system/resources/previews/000/265/671/non_2x/cartoon-wood-table-vector.jpg'
 									mesa={mesa}
+									showData= {()=>update(mesa)}
+									key={mesa.id}
 								/>
 							);
 						})}
