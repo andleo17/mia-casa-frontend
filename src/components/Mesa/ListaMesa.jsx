@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import MesaItem from './MesaItem';
 
-const QUERY_LISTAR_MESA = gql`
+export const QUERY_LISTAR_MESA = gql`
 	query ListarMesa {
 		listarMesa {
 			id
@@ -13,9 +13,11 @@ const QUERY_LISTAR_MESA = gql`
 	}
 `;
 
+
+
 export default function ListaMesa() {
 	const { loading, error, data } = useQuery(QUERY_LISTAR_MESA);
-
+	const [selectedItem, setSelectedItem] = useState(initialState);
 	if (loading) return <h1>Cargando...</h1>;
 	if (error)
 		return (
@@ -46,6 +48,8 @@ export default function ListaMesa() {
 						{data.listarMesa.map((mesa) => {
 							return (
 								<MesaItem
+									showData={() => setSelectedItem(mesa)}
+									item={selectedItem} update={setSelectedItem}
 									key={mesa.id}
 									url='https://static.vecteezy.com/system/resources/previews/000/265/671/non_2x/cartoon-wood-table-vector.jpg'
 									mesa={mesa}
