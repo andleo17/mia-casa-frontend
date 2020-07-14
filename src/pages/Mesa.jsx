@@ -9,7 +9,9 @@ export default function Mesa() {
 			<div className='row p-3'>
 				<ListaMesa />
 			
-				<FrmMesa />
+				<FrmMesa 
+			
+				/>
 			</div>
 		</div>
 	);
