@@ -1,6 +1,8 @@
 import React from 'react';
 import ListaMesa from '../components/Mesa/ListaMesa';
 import FrmMesa from '../components/Mesa/FrmMesa';
+
+//Faltan comentarios
 export default function Mesa() {
 	return (
 		<div className='col'>
