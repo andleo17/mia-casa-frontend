@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
-// import {QUERY_LISTAR_PEDIDO } from '../Pago/ListaPedido';
+ import {QUERY_LISTAR_PEDIDO } from '../Pago/ListaPedido';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
@@ -13,7 +13,7 @@ const MUTATION_REGISTRAR_PAGO = gql`
 
 export default function FrmNuevoPago() {
 	const { register, handleSubmit } = useForm();
-	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO);
+	const [registrarPago, { data }] = useMutation(MUTATION_REGISTRAR_PAGO);
 	const onSubmit = () =>
 		registrarPago({
 			variables: {
@@ -24,7 +24,7 @@ export default function FrmNuevoPago() {
 			refetchQueries: [
 				{
 					query: QUERY_LISTAR_PAGO,
-					// agregar otro refecht
+					query: QUERY_LISTAR_PEDIDO
 				},
 			],
 		});
@@ -53,7 +53,7 @@ export default function FrmNuevoPago() {
 											ref={register({
 												required: {
 													value: true,
-												},
+												}
 											})}
 										/>
 									</div>
@@ -69,7 +69,7 @@ export default function FrmNuevoPago() {
 											ref={register({
 												required: {
 													value: true,
-												},
+												}
 											})}>
 											<option value='1'>Efectivo</option>
 											<option value='2'>Tarjeta</option>
@@ -87,7 +87,7 @@ export default function FrmNuevoPago() {
 											ref={register({
 												required: {
 													value: true,
-												},
+												}
 											})}
 										/>
 									</div>

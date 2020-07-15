@@ -5,29 +5,21 @@ import ItemPedido from './ItemPedido';
 import dish from '../../assets/dish.png';
 
 export const QUERY_LISTAR_PEDIDO = gql`
-    query ListarPedido {
-        listarPedido{
+query ListarPedido {
+    listarPedido{
+        id
+        mesa{
             id
-            fecha
-            personal{
-                id
-                nombres
-                apellidos
-            }
-            mesa{
-                id
-                numero
-            }
+            numero
+          pedidoActual{
             productos{
-                precio
-                cantidad
-                producto{
-                    id
-                    nombre
-                }
+              precio
             }
+          }
         }
+        
     }
+}
 `;
 
 export default function ListaPedido(){
@@ -70,7 +62,10 @@ export default function ListaPedido(){
                                             numero={
                                                 pedido.mesa.numero
                                             }
-                                            monto={pedido.monto}
+                                            monto={pedido.mesa.pedidoActual.productos.reduce(
+                                                (sum, p) => sum + p.precio,
+                                                0
+                                            )}
                                             id={pedido.id}
                                         />
                                     );
