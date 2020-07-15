@@ -7,27 +7,31 @@ import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
-		registrarPago(monto: $monto, tipoPago: $tipoPago, pedido: $pedido)
+		registrarPago(monto: $monto, tipoPago: $tipoPago, pedido: $pedido){
+            id
+        }
 	}
 `;
 
 export default function FrmNuevoPago() {
 	const { register, handleSubmit } = useForm();
 	const [registrarPago, { data }] = useMutation(MUTATION_REGISTRAR_PAGO);
-	const onSubmit = () =>
-		registrarPago({
-			variables: {
-				monto: document.getElementById('txtMonto').value,
-				tipoPago: document.getElementById('cboTipo').value,
-				pedido: document.getElementById('txtPedido').value,
+    const onSubmit = (data) =>{
+        console.log(data)
+        registrarPago({
+            variables: {
+                monto: parseFloat(data.txtMonto) , 
+				tipoPago: data.cboTipo,
+				pedido: data.txtPedido,
 			},
 			refetchQueries: [
-				{
-					query: QUERY_LISTAR_PAGO,
-					query: QUERY_LISTAR_PEDIDO
+                {
+                    query: [QUERY_LISTAR_PAGO, QUERY_LISTAR_PEDIDO]
 				},
 			],
-		});
+        });
+        
+    }
 
 	return (
 		<div className='card mb-3' style={{ width: '100%' }}>

@@ -11,13 +11,10 @@ query ListarPedido {
         mesa{
             id
             numero
-          pedidoActual{
-            productos{
-              precio
-            }
-          }
         }
-        
+        productos{
+          precio
+        }
     }
 }
 `;
@@ -62,7 +59,7 @@ export default function ListaPedido(){
                                             numero={
                                                 pedido.mesa.numero
                                             }
-                                            monto={pedido.mesa.pedidoActual.productos.reduce(
+                                            monto={pedido.productos.reduce(
                                                 (sum, p) => sum + p.precio,
                                                 0
                                             )}
