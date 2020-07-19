@@ -15,6 +15,7 @@ const ELIMINAR_MESA = gql`
 export default function MesaItem({ mesa, url, showData,  props }) {
 	
 	
+
 	const [eliminarMesa] = useMutation(ELIMINAR_MESA);
 
 	return (
@@ -33,7 +34,11 @@ export default function MesaItem({ mesa, url, showData,  props }) {
 							<button
 								type='button'
 								className=' btn border-0 rounded-circle p-2'
-								onClick={showData}
+								onClick={
+									()=>{
+										showData()
+									}
+								}
 								style={{ background: '#BFE6E0', width:'50px' }}>
 								<i className='fa fa-pen m-0' />
 							</button>
