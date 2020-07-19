@@ -18,14 +18,13 @@ const REGISTRAR_MESA = gql`
 `;
 
 const MODIFICAR_MESA = gql`
-	mutation ModificarMesa($id: ID!,$numero: Int, $estado: Boolean) {
-			modificarMesa(id: $id, numero: $numero, estado: $estado) {
-				numero
-				estado
-			}
+	mutation ModificarMesa($id: ID!, $numero: Int, $estado: Boolean) {
+		modificarMesa(id: $id, numero: $numero, estado: $estado) {
+			numero
+			estado
+		}
 	}
 `;
-
 
 export default function FrmMesa(props) {
 	const { item, update, initial } = props;
@@ -80,7 +79,9 @@ export default function FrmMesa(props) {
 			<div className='card border-0 '>
 				<div className='card-body'>
 					<h5 className='card-title'>Datos de la mesa</h5>
-					<form className='bg-light p-3 damesa'  onSubmit={handleSubmit(onSubmit)}>
+					<form
+						className='bg-light p-3 damesa'
+						onSubmit={handleSubmit(onSubmit)}>
 						<div className='form-group'>
 							<label htmlFor='txtNumero'>Número:</label>
 							<input
@@ -135,7 +136,6 @@ export default function FrmMesa(props) {
 								{item.id ? 'Modificar' : 'Registrar'}
 							</button>
 						</div>
-
 					</form>
 				</div>
 			</div>

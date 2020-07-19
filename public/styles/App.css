@@ -46,6 +46,8 @@ body {
 }
 
 .mnu-vertical {
+	display: flex;
+	flex-direction: column;
 	background-color: #ee814a;
 	border-radius: 0 0 0 20px;
 	width: 6em;
@@ -57,8 +59,10 @@ body {
 	flex-direction: column;
 	padding: 20px;
 	border-radius: 20px 0 0 20px;
-	text-align: center;
+	align-items: center;
 	color: white;
+	border: none;
+	background: none;
 }
 
 .item-mnu-vertical i {
@@ -276,7 +280,7 @@ body {
 	background-color: #f46e5b;
 }
 
-.damesa{
+.damesa {
 	border-radius: 20px;
 }
 
@@ -324,4 +328,16 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	height: -webkit-fill-available;
+}
+
+hr.vertical {
+	border: none;
+	border-left: 1px solid hsla(200, 10%, 50%, 100);
+	width: 2px;
+	margin: 0;
+}
+
+.navbar-menu {
+	display: flex;
+	align-items: center;
 }
