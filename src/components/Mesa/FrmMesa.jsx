@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import {QUERY_LISTAR_MESA} from './ListaMesa'
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const REGISTRAR_MESA = gql`
 	mutation RegistrarMesa($numero: Int!) {
@@ -26,12 +27,31 @@ const MODIFICAR_MESA = gql`
 export default function FrmMesa(props) {
 	const { item, update } = props;
 	const { register, handleSubmit, errors } = useForm();
-  	const onSubmit = data => console.log(errors);
+	const mutation = item.id
+	 	? MODIFICAR_MESA
+	 	: REGISTRAR_MESA;
+		const [execute] = useMutation(mutation);
+  	const onSubmit = data => {
+		console.log(data);
+		execute({
+					variables: {
+							id: parseInt(item.id),
+							numero: parseInt(document.getElementById('txtNumero').value),
+							estado: document.getElementById('chkEstado').checked,
+					},
+					refetchQueries: [
+						{ query: QUERY_LISTAR_MESA },
+					
+					],
+		})
+		Swal.fire(
+			'Good job!',
+			'You clicked the button!',
+			'success'
+		  )
+	  };
 	
-	  // const mutation = item.id
-	// 	? MODIFICAR_MESA
-	// 	: REGISTRAR_MESA;
-	// const [execute] = useMutation(mutation);
+	 
 
 	return (
 		<div className='col-lg-6'>
