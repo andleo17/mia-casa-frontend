@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { gql } from 'apollo-boost';
 import { useLazyQuery } from '@apollo/react-hooks';
-import { Redirect } from 'react-router';
-
+import { useHistory } from 'react-router';
+import { useEffect } from 'react';
 
 export const LOGIN_QUERY = gql`
 	query LoginQuery($usuario: String!, $clave: String!) {
@@ -18,28 +18,25 @@ export const LOGIN_QUERY = gql`
 	}
 `;
 
-
 export default function FrmLogin() {
+	const { register, handleSubmit, setError, clearErrors, errors } = useForm();
+	const [login, { data, error }] = useLazyQuery(LOGIN_QUERY);
+	const history = useHistory();
 
-	const { register, handleSubmit, errors } = useForm();
-	const onSubmit = () => login({ variables: { usuario, clave } });
+	const onSubmit = ({ usuario, clave }) => {
+		login({ variables: { usuario, clave } });
+	};
 
-	const [usuario, setUsuario] = useState('');
-	const [clave, setClave] = useState('');
-
-	const [login, { loading, data, error }] = useLazyQuery(LOGIN_QUERY);
-
-	if (loading) return <h1>Cargando...</h1>;
-
-	if (data) {
-		localStorage.setItem('user', JSON.stringify(data.login));
-		localStorage.setItem('auth-token', data.login.token)
-		return <Redirect to='/' />;
-	}
-
-	if (error){
-		alert(error.message)
-	}
+	useEffect(() => {
+		if (data) {
+			localStorage.setItem(
+				'personal',
+				JSON.stringify(data.login.personal)
+			);
+			localStorage.setItem('auth-token', data.login.token);
+			history.push('/');
+		}
+	});
 
 	return (
 		<div className='col login-form'>
@@ -54,13 +51,11 @@ export default function FrmLogin() {
 						</div>
 						<input
 							type='text'
-							name='username'
+							name='usuario'
 							className={`form-control ${
-								errors.username && 'is-invalid'
+								errors.usuario && 'is-invalid'
 							}`}
-							value={usuario}
-							onChange={(e) => setUsuario(e.target.value)}
-							placeholder='Username'
+							placeholder='Nombre de usuario'
 							ref={register({
 								required: {
 									value: true,
@@ -68,9 +63,9 @@ export default function FrmLogin() {
 								},
 							})}
 						/>
-						{errors.username && (
+						{errors.usuario && (
 							<div className='invalid-feedback'>
-								{errors.username.message}
+								{errors.usuario.message}
 							</div>
 						)}
 					</div>
@@ -82,13 +77,11 @@ export default function FrmLogin() {
 						</div>
 						<input
 							type='password'
-							name='password'
+							name='clave'
 							className={`form-control ${
-								errors.username && 'is-invalid'
+								errors.clave && 'is-invalid'
 							}`}
-							value={clave}
-							onChange={(e) => setClave(e.target.value)}
-							placeholder='Password'
+							placeholder='Contraseña'
 							ref={register({
 								required: {
 									value: true,
@@ -96,12 +89,17 @@ export default function FrmLogin() {
 								},
 							})}
 						/>
-						{errors.password && (
+						{errors.clave && (
 							<div className='invalid-feedback'>
-								{errors.password.message}
+								{errors.clave.message}
 							</div>
 						)}
 					</div>
+					{error && (
+						<div className='alert alert-danger mt-3'>
+							{error.graphQLErrors[0].message}
+						</div>
+					)}
 				</div>
 				<button className='btn' type='submit'>
 					Iniciar Sesión
