@@ -1,5 +1,6 @@
 import React from 'react';
 import VerticalMenuItem from './VerticalMenuItem';
+import LogoutButton from './LogoutButton';
 
 export default function VerticalMenu() {
 	return (
@@ -25,6 +26,7 @@ export default function VerticalMenu() {
 				titulo='Personal'
 				icono='fa fa-user-cog'
 			/>
+			<LogoutButton />
 		</div>
 	);
 }
