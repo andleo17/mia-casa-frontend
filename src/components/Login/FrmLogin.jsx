@@ -19,7 +19,7 @@ export const LOGIN_QUERY = gql`
 `;
 
 export default function FrmLogin() {
-	const { register, handleSubmit, setError, clearErrors, errors } = useForm();
+	const { register, handleSubmit, errors } = useForm();
 	const [login, { data, error }] = useLazyQuery(LOGIN_QUERY);
 	const history = useHistory();
 

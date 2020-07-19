@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import FrmLogin from '../components/Login/FrmLogin';
 import logo from '../assets/logoRestaurante.png';
 import { Redirect } from 'react-router';
@@ -13,8 +13,7 @@ export default function Login() {
 				<FrmLogin />
 			</div>
 		);
-	}else{
+	} else {
 		return <Redirect to='/' />;
 	}
-	
 }
