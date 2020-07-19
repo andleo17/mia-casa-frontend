@@ -24,6 +24,7 @@ export default function Mesa() {
 					item={selectedItem} 
 					key={selectedItem.id}
 					update={setSelectedItem}
+					initial = {initialState}
 				/>
 			</div>
 		</div>

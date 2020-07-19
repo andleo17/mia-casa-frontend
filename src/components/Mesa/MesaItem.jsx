@@ -12,11 +12,21 @@ const ELIMINAR_MESA = gql`
 	}
 `;
 
+const MODIFICAR_MESA = gql`
+	mutation ModificarMesa($id: ID!,$numero: Int, $estado: Boolean) {
+			modificarMesa(id: $id, numero: $numero, estado: $estado) {
+				numero
+				estado
+			}
+	}
+`;
+
 export default function MesaItem({ mesa, url, showData,  props }) {
 	
 	
 
 	const [eliminarMesa] = useMutation(ELIMINAR_MESA);
+	const [darBajaMesa] = useMutation(MODIFICAR_MESA);
 
 	return (
 		<div className='card border-0 mb-3 listaBorde'>
@@ -42,7 +52,18 @@ export default function MesaItem({ mesa, url, showData,  props }) {
 								style={{ background: '#BFE6E0', width:'50px' }}>
 								<i className='fa fa-pen m-0' />
 							</button>
-							<button className=' btn border-0  rounded-circle p-2' style={{ background: '#BFE6E0', width:'50px'  }}>
+							<button className=' btn border-0  rounded-circle p-2' style={{ background: '#BFE6E0', width:'50px'  }}
+								onClick={() =>
+									darBajaMesa({
+										variables: { id: parseInt(mesa.id), estado: false, numero: parseInt(mesa.numero) },
+										refetchQueries: [
+											{
+												query: QUERY_LISTAR_MESA,
+											},
+										],
+									})
+								}
+							>
 								<i className='fa fa-ban' />
 							</button>
 							<button className='btn border-0 rounded-circle p-2' style={{ background: '#BFE6E0', width:'50px'  }}
