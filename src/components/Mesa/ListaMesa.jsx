@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import MesaItem from './MesaItem';
-
+import plato from '../../assets/pedido.png';
 export const QUERY_LISTAR_MESA = gql`
 	query ListarMesa {
 		listarMesa {
@@ -48,7 +48,7 @@ export default function ListaMesa(props) {
 						{data.listarMesa.map((mesa) => {
 							return (
 								<MesaItem
-									url='https://static.vecteezy.com/system/resources/previews/000/265/671/non_2x/cartoon-wood-table-vector.jpg'
+									url={plato}
 									mesa={mesa}
 									showData= {()=>update(mesa)}
 									key={mesa.id}

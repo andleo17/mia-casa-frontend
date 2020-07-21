@@ -10,6 +10,7 @@ export const initialState = {
 	id: '',
 	numero: ''
 };
+
 export default function Mesa() {
 	const [selectedItem, setSelectedItem] = useState(initialState);
 	return (

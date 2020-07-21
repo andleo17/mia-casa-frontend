@@ -23,8 +23,6 @@ const MODIFICAR_MESA = gql`
 
 export default function MesaItem({ mesa, url, showData,  props }) {
 	
-	
-
 	const [eliminarMesa] = useMutation(ELIMINAR_MESA);
 	const [darBajaMesa] = useMutation(MODIFICAR_MESA);
 
