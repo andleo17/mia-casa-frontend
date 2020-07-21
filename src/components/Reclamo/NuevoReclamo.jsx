@@ -46,16 +46,16 @@ export default function NuevoReclamo(props){
     const onSubmit = data => {
 		
 		execute({
-					// variables: {
-					// 		id: parseInt(item.id),
-					// 		motivo: document.getElementById('txtMotivo').value,
-                    //         pedido: parseInt(document.getElementById('txtPedido').value),
-                    //         producto: parseInt(document.getElementById('txtProducto').value),
-					// },
-					// refetchQueries: [
-					// 	{ query: QUERY_LISTAR_RECLAMO },
+					variables: {
+							id: parseInt(item.id),
+							motivo: document.getElementById('txtMotivo').value,
+                            pedido: parseInt(document.getElementById('txtPedido').value),
+                            producto: parseInt(document.getElementById('txtProducto').value),
+					},
+					refetchQueries: [
+						{ query: QUERY_LISTAR_RECLAMO },
 					
-					// ],
+					],
 		})
 	};
     return (
