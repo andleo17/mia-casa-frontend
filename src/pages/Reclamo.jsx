@@ -1,19 +1,72 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import ListadoReclamo from '../components/Reclamo/ListaReclamo';
 import ListadoPedidos from '../components/Reclamo/ListaPedido';
 import NuevoReclamo from '../components/Reclamo/NuevoReclamo';
-export default class Reclamo extends Component {
-	render() {
-		return (
-			<div className='col-11 row mt-3 mb-3'>
-				<div className='col-lg-6 col-xl-6'>
-					<NuevoReclamo />
-					<ListadoPedidos />
-				</div>
-				<div className='col-lg-6 col-xl-6'>
-					<ListadoReclamo />
-				</div>
+
+export const initialState = {
+	__typename: 'Reclamo',
+	id: '',
+	motivo: '',
+	detallePedido: {
+		__typename: 'DetallePedido',
+		producto:{
+			__typename: 'Producto',
+			id: '',
+			nombre:'',
+		},
+		pedido: {
+			__typename: 'Pedido',
+			id: '',
+			mesa: {
+				__typename: 'Mesa',
+				id: '',
+				numero: '',
+			},
+			productos: [{
+				__typename: 'DetallePedido',
+				precio: '',
+				producto: {
+					__typename: 'Procucto',
+					id: '',
+					nombre: '',
+				},
+			}],
+		},
+	},
+};
+
+export const initialReclamo = {
+	__typename: 'Reclamo',
+	estado: '',
+	id: '',
+	numero: ''
+};
+
+export default function Reclamo(){
+
+	const [selectedItem, setSelectedItem] = useState(initialState);
+	console.log(selectedItem);
+	return (
+		<div className='col-11 row mt-3 mb-3'>
+			<div className='col-lg-6 col-xl-6'>
+				<NuevoReclamo
+					item={selectedItem} 
+					key={selectedItem.id}
+					update={setSelectedItem}
+					initial = {initialState}
+				/>
+				<ListadoPedidos
+					update={setSelectedItem}
+					initial={initialState}
+				/>
 			</div>
-		);
-	}
+			<div className='col-lg-6 col-xl-6'>
+				<ListadoReclamo 
+					update={setSelectedItem}
+					initial={initialState}
+				/>
+			</div>
+		</div>
+	);
 }
+

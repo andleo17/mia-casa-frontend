@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import MesaItem from './MesaItem';
-
+import plato from '../../assets/pedido.png';
 export const QUERY_LISTAR_MESA = gql`
 	query ListarMesa {
 		listarMesa {
@@ -12,8 +12,6 @@ export const QUERY_LISTAR_MESA = gql`
 		}
 	}
 `;
-
-
 
 export default function ListaMesa(props) {
 	const { loading, error, data } = useQuery(QUERY_LISTAR_MESA);
@@ -39,7 +37,12 @@ export default function ListaMesa(props) {
 							placeholder='Buscar...'
 							aria-label='Busque una mesa'
 						/>
-						<button className='btn btn-shift' type='button' onClick={()=>{update(initial)}}>
+						<button
+							className='btn btn-shift'
+							type='button'
+							onClick={() => {
+								update(initial);
+							}}>
 							<i className='fa fa-plus' />
 							<span className='ml-2'>Agregar</span>
 						</button>
@@ -48,9 +51,9 @@ export default function ListaMesa(props) {
 						{data.listarMesa.map((mesa) => {
 							return (
 								<MesaItem
-									url='https://static.vecteezy.com/system/resources/previews/000/265/671/non_2x/cartoon-wood-table-vector.jpg'
+									url={plato}
 									mesa={mesa}
-									showData= {()=>update(mesa)}
+									showData={() => update(mesa)}
 									key={mesa.id}
 								/>
 							);

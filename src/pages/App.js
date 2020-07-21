@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import VerticalMenu from '../components/Menu/VerticalMenu';
-import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 
 import Reclamo from './Reclamo';
 import Mesa from './Mesa';

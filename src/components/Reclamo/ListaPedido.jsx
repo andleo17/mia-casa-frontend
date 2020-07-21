@@ -29,8 +29,9 @@ const QUERY_LISTAR_PEDIDO = gql`
     }
 `;
 
-export default function ListaPedido(){
+export default function ListaPedido(props){
     const { loading, error, data } = useQuery(QUERY_LISTAR_PEDIDO);
+    const { update, initial } = props;
 
     if (loading) return <h1>Cargando...</h1>;
 	if (error)
@@ -45,14 +46,14 @@ export default function ListaPedido(){
             <div className='card mb-3' style={{ width: '100%' }}>
                 <div className='card-body'>
                     <h5 className='card-title'>Listado de Pedidos</h5>
-                    <div className='input-group mb-3 pl-4'>
+                    {/* <div className='input-group mb-3 pl-4'>
                         <input
                             type='search'
                             className='form-control'
                             placeholder='Buscar...'
                             aria-label='Busque un pedido...'
                         />
-                    </div>
+                    </div> */}
 
                     <div
                         className='pl-4'
@@ -66,12 +67,35 @@ export default function ListaPedido(){
                                     return (
                                         <ItemPedido
                                             url=''
-                                            numero={
-                                                pedido.mesa
-                                                    .numero
-                                            }
-                                            monto={pedido.monto}
-                                            id={pedido.id}
+                                            pedido={pedido}
+                                            showData= {()=>update(
+                                                {
+                                                    __typename: 'Reclamo',
+                                                    id: '',
+                                                    motivo: '',
+                                                    detallePedido: {
+                                                        __typename: 'DetallePedido',
+                                                        producto:{
+                                                            __typename: 'Producto',
+                                                            id: '',
+                                                            nombre:'',
+                                                        },
+                                                        pedido: {
+                                                            __typename: 'Pedido',
+                                                            id: pedido.id,
+                                                            mesa: {
+                                                                __typename: 'Mesa',
+                                                                id: '',
+                                                                numero: '',
+                                                            },
+                                                            productos: pedido.productos,
+                                                        },
+                                                    },
+                                                }
+
+                                            )}
+                                            key={pedido.id}
+                                            initial={initial}
                                         />
                                     );
                                 }
