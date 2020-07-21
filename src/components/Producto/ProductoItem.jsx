@@ -41,7 +41,7 @@ export default function ProductoItem({ producto, url, showData,  props }) {
 				<div className='row'>
 					<div className='col-xl-2 col-lg-2'>
 						<img
-							src={url}
+							src={process.env.PUBLIC_URL + "source/producto/" + producto.imagen}
 							className='img-fluid'
 							alt='producto'
 						/>

@@ -8,8 +8,14 @@ export const initialState = {
     descripcion: '',
     cantidad: '',
     precio: '',
-    imagen: '',
-    tipoProducto: '',
+	imagen: 'dish.png',
+	estado: true,
+	tipoProducto: {id: 0},
+	receta: [{
+		insumo: {id: 0},
+		cantidad: 0,
+		unidad: ''
+	}]
 };
 
 export default function Producto(){

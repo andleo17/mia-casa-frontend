@@ -43,6 +43,7 @@ const MODIFICAR_PRODUCTO = gql`
 			precio: $precio
 			imagen: $imagen
 			tipoProducto: $tipoProducto
+            receta: []
 		){
 			id
 			estado
@@ -93,7 +94,7 @@ export default function FrmProducto(props) {
                 cantidad: parseInt(document.getElementById('txtCantidad').value),
                 precio: parseFloat(document.getElementById('txtPrecio').value),
                 imagen: document.getElementById('txtImagen').value,
-                tipoProducto: document.getElementById('cboTipoProducto').value,
+                tipoProducto: {id: document.getElementById('cboTipoProducto').value},
                 estado: document.getElementById('chkEstado').checked,
             },
             refetchQueries: [
@@ -113,8 +114,21 @@ export default function FrmProducto(props) {
                         
                         <div className="row">
                             <div className="col-lg-5 col-xl-5">
-                                <input type="file" className="btn" name="txtImagen" id="txtImagen" />
-                                <img src="https://img2.freepng.es/20190608/bwj/kisspng-side-dish-portable-network-graphics-meal-food-meal-png-transparent-images-png-all-5cfbf9ae8ac524.8458123615600173265684.jpg" className="img-fluid img-circle" alt="IMG" />
+                                <label htmlFor="txtImagen" style={{'position':'absolute', 'borderRadius':'50%'}} className="btn btn-shift"><i className="fa fa-pen"></i></label>
+                                <input
+                                    type="file"
+                                    name="txtImagen"
+                                    id="txtImagen"
+                                    onChange={(e) =>
+                                        update({
+                                            ...item,
+                                            imagen: e.target.value,
+                                        })
+                                    }
+                                    className="btn" 
+                                    style={{'width':'0px', 'height':'0px', 'visibility':'hidden', 'position':'absolute'}}
+                                />
+                                <img src={process.env.PUBLIC_URL + "source/producto/" + item.imagen} className="img-fluid img-circle" alt="IMG" />
                             </div>
 
                             <div className="col-lg-7 col-xl-7">
@@ -124,7 +138,7 @@ export default function FrmProducto(props) {
                                         name="cboTipoProducto"
                                         id="cboTipoProducto"
                                         ref={register({ required: true })}
-                                        value={item.tipoProducto}
+                                        value={item.tipoProducto.id}
                                         onChange={(e) =>
                                             update({
                                                 ...item,
@@ -256,6 +270,7 @@ export default function FrmProducto(props) {
                                     </div>
                                 </div>
                             </div>
+                            
 						
                         </div>
 
@@ -264,6 +279,7 @@ export default function FrmProducto(props) {
 								{item.id ? 'Modificar' : 'Registrar'}
 							</button>
 						</div>
+
 					</form>
 				</div>
 			</div>

@@ -56,7 +56,7 @@ export default function ListaProducto(props) {
 						{data.listarProducto.map((producto) => {
 							return (
 								<ProductoItem
-									url='https://static.vecteezy.com/system/resources/previews/000/265/671/non_2x/cartoon-wood-table-vector.jpg'
+									url={producto.imagen}
 									producto={producto}
 									showData= {()=>update(producto)}
 									key={producto.id}
