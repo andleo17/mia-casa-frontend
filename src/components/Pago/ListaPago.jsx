@@ -64,11 +64,7 @@ export default function ListaPago(){
                             placeholder='Buscar...'
                             aria-label='Busque un pago'
                         />
-                        <div className='input-group-append'>
-                            <button className='btn btn-shift' type='button'>
-                                <i className='fa fa-plus'></i> Agregar
-                            </button>
-                        </div>
+                        
                     </div>
 
                     <div
