@@ -3,35 +3,34 @@ import { useForm } from 'react-hook-form';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
- import {QUERY_LISTAR_PEDIDO } from '../Pago/ListaPedido';
+import { QUERY_LISTAR_PEDIDO } from '../Pago/ListaPedido';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
-		registrarPago(monto: $monto, tipoPago: $tipoPago, pedido: $pedido){
-            id
-        }
+		registrarPago(monto: $monto, tipoPago: $tipoPago, pedido: $pedido) {
+			id
+		}
 	}
 `;
 
 export default function FrmNuevoPago() {
 	const { register, handleSubmit } = useForm();
-	const [registrarPago, { data }] = useMutation(MUTATION_REGISTRAR_PAGO);
-    const onSubmit = (data) =>{
-        console.log(data)
-        registrarPago({
-            variables: {
-                monto: parseFloat(data.txtMonto) , 
+	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO);
+	const onSubmit = (data) => {
+		console.log(data);
+		registrarPago({
+			variables: {
+				monto: parseFloat(data.txtMonto),
 				tipoPago: data.cboTipo,
 				pedido: data.txtPedido,
 			},
 			refetchQueries: [
-                {
-                    query: [QUERY_LISTAR_PAGO, QUERY_LISTAR_PEDIDO]
+				{
+					query: [QUERY_LISTAR_PAGO, QUERY_LISTAR_PEDIDO],
 				},
 			],
-        });
-        
-    }
+		});
+	};
 
 	return (
 		<div className='card mb-3' style={{ width: '100%' }}>
@@ -57,7 +56,7 @@ export default function FrmNuevoPago() {
 											ref={register({
 												required: {
 													value: true,
-												}
+												},
 											})}
 										/>
 									</div>
@@ -73,7 +72,7 @@ export default function FrmNuevoPago() {
 											ref={register({
 												required: {
 													value: true,
-												}
+												},
 											})}>
 											<option value='1'>Efectivo</option>
 											<option value='2'>Tarjeta</option>
@@ -91,7 +90,7 @@ export default function FrmNuevoPago() {
 											ref={register({
 												required: {
 													value: true,
-												}
+												},
 											})}
 										/>
 									</div>
