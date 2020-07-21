@@ -22,7 +22,7 @@ export default class ItemPago extends Component {
 							<button className='btn btn-primary btn-accion btn-circle'>
 								<i className='fa fa-search'></i>
 							</button>
-							<button className='btn btn-danger btn-accion btn-circle'>
+							<button className='btn btn-danger btn-accion btn-circle' >
 								<i className='fa fa-trash'></i>
 							</button>
 						</div>

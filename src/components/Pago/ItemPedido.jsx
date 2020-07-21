@@ -20,7 +20,7 @@ export default class ItemListado extends Component {
 						</div>
 						<div className='col-4 col-btn align-self-end'>
 							<button className='btn btn-warning btn-accion btn-circle'>
-								<i className='fa fa-credit-card'></i>
+								<i className='fa fa-credit-card'></i> Pagar
 							</button>
 						</div>
 					</div>
