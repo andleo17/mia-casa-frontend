@@ -61,7 +61,7 @@ export default function NuevoReclamo(props){
     return (
         <div class=' ' style={{ width: '100%' }}>
             {/* <div class='card-body'> */}
-                <h5 class='card-title  m-2'>Nuevo reclamo</h5>
+                <h2 class='card-title font-weight-bold m-2'>Nuevo reclamo</h2>
                 <form action="" clasName="className=' damesa'" onSubmit={handleSubmit(onSubmit)}>
                     <div
                         class='reclamof mb-4 bg-light'
