@@ -52,7 +52,11 @@ export default function ListaReclamo(props) {
 					/>
 						<button className='btnColor d-flex align-items-center border-0 justify-content-center
 							text-decoration-none'
-							type='button'>
+							type='button'
+							onClick={() => {
+								update(initial);
+							}}
+							>
 							<span  className='' >  <i className='fa fa-plus m-1' /> Agregar</span>
 						</button>
 				</div>
