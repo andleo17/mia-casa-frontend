@@ -23,7 +23,7 @@ export default class ItemListado extends Component {
 							<button className='btn btn-warning btn-accion btn-circle' onClick={
 									this.props.setData
 								}>
-								<i className='fa fa-credit-card'></i> Pagar
+								<i className='fa fa-credit-card'></i>
 							</button>
 						</div>
 					</div>
