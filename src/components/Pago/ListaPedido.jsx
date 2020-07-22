@@ -19,9 +19,9 @@ query ListarPedido {
 }
 `;
 
-export default function ListaPedido()  {
+export default function ListaPedido(props)  {
     const { loading, error, data } = useQuery(QUERY_LISTAR_PEDIDO);
-    
+    const { setPayData, initialState } = props;
     // this.state = {monto: 0, numeropago: ""};   
 
     if (loading) return <h1>Cargando...</h1>;
@@ -66,14 +66,15 @@ export default function ListaPedido()  {
                                                 0
                                             )}
                                             id={pedido.id}
-                                            setData={ () =>{
-
-                                                // monto: pedido.productos.reduce(
-                                                //     (sum, p) => sum + p.precio,
-                                                //     0
-                                                // ), 
-                                                // numeropago: pedido.mesa.numero
-                                              }
+                                            setData={ () => setPayData(
+                                                {
+                                                    numero:pedido.mesa.numero,
+                                                    monto:pedido.productos.reduce(
+                                                        (sum, p) => sum + p.precio,
+                                                        0
+                                                    )
+                                                }
+                                            )
                                             }
                                         />
                                     );

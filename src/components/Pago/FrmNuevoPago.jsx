@@ -4,6 +4,7 @@ import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
 import { QUERY_LISTAR_PEDIDO } from '../Pago/ListaPedido';
+import ItemListado from './ItemPedido';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
@@ -13,7 +14,8 @@ const MUTATION_REGISTRAR_PAGO = gql`
 	}
 `;
 
-export default function FrmNuevoPago() {
+export default function FrmNuevoPago(props) {
+	const { item, setPayData} = props;
 	const { register, handleSubmit } = useForm();
 	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO);
 	const onSubmit = (data) => {
@@ -44,12 +46,13 @@ export default function FrmNuevoPago() {
 							<div className='row'>
 								<div className='col-lg-6 col-xl-6'>
 									<div className='form-group'>
-										<label for='txtMonto'>
+										<label >
 											Monto a pagar:
 										</label>
 										<input
 											type='number'
-											enable='false'
+											disabled
+											value={item.monto}
 											name='txtMonto'
 											id='txtMonto'
 											className='form-control'
@@ -61,7 +64,7 @@ export default function FrmNuevoPago() {
 										/>
 									</div>
 									<div className='form-group'>
-										<label for='cboTipo'>
+										<label htmlFor='cboTipo'>
 											Tipo de pago:
 										</label>
 										<select
@@ -81,10 +84,12 @@ export default function FrmNuevoPago() {
 								</div>
 								<div className='col-lg-6 col-xl-6'>
 									<div className='form-group'>
-										<label for='txtPedido'>Pedido:</label>
+										<label htmlFor='txtPedido'>Pedido:</label>
 										<input
 											type='number'
 											name='txtPedido'
+											disabled
+											value={item.numero}
 											id='txtPedido'
 											className='form-control'
 											ref={register({
