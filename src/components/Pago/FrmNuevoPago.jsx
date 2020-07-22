@@ -13,7 +13,7 @@ const MUTATION_REGISTRAR_PAGO = gql`
 `;
 
 export default function FrmNuevoPago(props) {
-	const { item, setPayData} = props;
+	const { item, setPayData } = props;
 	const { register, handleSubmit } = useForm();
 	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO);
 	const onSubmit = (data) => {
@@ -24,11 +24,7 @@ export default function FrmNuevoPago(props) {
 				tipoPago: data.cboTipo,
 				pedido: data.txtPedido,
 			},
-			refetchQueries: [
-				{
-					query: [QUERY_LISTAR_PAGO],
-				},
-			],
+			refetchQueries: [{ query: QUERY_LISTAR_PAGO }],
 		});
 	};
 
@@ -44,9 +40,7 @@ export default function FrmNuevoPago(props) {
 							<div className='row'>
 								<div className='col-lg-6 col-xl-6'>
 									<div className='form-group'>
-										<label >
-											Monto a pagar:
-										</label>
+										<label>Monto a pagar:</label>
 										<input
 											type='number'
 											disabled
@@ -82,7 +76,9 @@ export default function FrmNuevoPago(props) {
 								</div>
 								<div className='col-lg-6 col-xl-6'>
 									<div className='form-group'>
-										<label htmlFor='txtPedido'>Pedido:</label>
+										<label htmlFor='txtPedido'>
+											Pedido:
+										</label>
 										<input
 											type='number'
 											name='txtPedido'
