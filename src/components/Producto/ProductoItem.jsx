@@ -12,16 +12,11 @@ const ELIMINAR_PRODUCTO = gql`
 	}
 `;
 
-const MODIFICAR_PRODUCTO = gql`
-	mutation ModificarProducto($id: ID!,$nombre: String, $descripcion: String, $cantidad: Int, $precio:Float, $imagen: String, $tipoProducto: ID!) {
+const DAR_BAJA_PRODUCTO = gql`
+	mutation ModificarProducto($id: ID!) {
 		modificarProducto(
 			id: $id
-			nombre: $nombre
-			descripcion: $descripcion
-			cantidad: $cantidad
-			precio: $precio
-			imagen: $imagen
-			tipoProducto: $tipoProducto
+			estado: false
 		){
 			id
 			estado
@@ -33,7 +28,7 @@ const MODIFICAR_PRODUCTO = gql`
 export default function ProductoItem({ producto, url, showData,  props }) {
 
 	const [eliminarProducto] = useMutation(ELIMINAR_PRODUCTO);
-	const [darBajaProducto] = useMutation(MODIFICAR_PRODUCTO);
+	const [darBajaProducto] = useMutation(DAR_BAJA_PRODUCTO);
 
 	return (
 		<div className='card mb-3'>
