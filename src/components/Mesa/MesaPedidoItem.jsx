@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function MesaPedidoItem({ mesa }) {
 	const [estado, setEstado] = useState('libre');
@@ -47,12 +48,7 @@ export default function MesaPedidoItem({ mesa }) {
 								))}
 								<tr className='font-weight-bold'>
 									<td colSpan='2'>Total</td>
-									<td>
-										{mesa.pedidoActual.productos.reduce(
-											(sum, p) => sum + p.precio,
-											0
-										)}
-									</td>
+									<td>{mesa.pedidoActual.monto}</td>
 								</tr>
 							</tbody>
 						</table>

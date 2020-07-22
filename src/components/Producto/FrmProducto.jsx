@@ -84,6 +84,26 @@ export default function FrmProducto(props) {
 
 	const onSubmit = (data) => {
 		setFlag(true);
+
+		var formData = new FormData();
+		formData.append("archivo", document.getElementById('txtImagen').files[0]);
+
+		var content = '<a id="a"><b id="b">hey!</b></a>';
+		var blob = new Blob([content], { type: "text/xml"});
+
+		formData.append("webmasterfile", blob);
+
+		var request = new XMLHttpRequest();
+		request.open("POST", process.env.PUBLIC_URL + 'source/' + "submitFile.php");
+		request.onload = function(ev) {
+			if (request.status == 200) {
+			  	console.log(ev);
+			} else {
+				console.log(ev);
+			}
+		}
+		request.send(formData);
+
 		execute({
 			variables: {
 				id: parseInt(item.id),
@@ -107,7 +127,8 @@ export default function FrmProducto(props) {
 					<h5 className='card-title'>Datos del Producto</h5>
 					<form
 						className='bg-light p-3 damesa'
-						onSubmit={handleSubmit(onSubmit)}>
+						onSubmit={handleSubmit(onSubmit)}
+						encType="multipart/form-data">
 						<div className='row'>
 							<div className='col-lg-5 col-xl-5'>
 								<label
@@ -123,11 +144,21 @@ export default function FrmProducto(props) {
 									type='file'
 									name='txtImagen'
 									id='txtImagen'
-									onChange={(e) =>
+									onChange={(e) =>{
 										update({
 											...item,
-											imagen: e.target.value,
-										})
+											imagen: e.target.files[0].name,
+										});
+
+										var archivo = document.getElementById("txtImagen").files[0];
+										var reader = new FileReader();
+										if (archivo) {
+											reader.readAsDataURL(archivo);
+											reader.onloadend = function () {
+												document.getElementById("img").src = reader.result;
+											}
+										}
+									}
 									}
 									className='btn'
 									style={{
@@ -136,15 +167,13 @@ export default function FrmProducto(props) {
 										visibility: 'hidden',
 										position: 'absolute',
 									}}
+									accept=".jpg, .jpeg, .png"
 								/>
 								<img
-									src={
-										process.env.PUBLIC_URL +
-										'source/producto/' +
-										item.imagen
-									}
+									src={process.env.PUBLIC_URL + 'source/producto/' + item.imagen}
 									className='img-fluid img-circle'
 									alt='IMG'
+									id='img'
 								/>
 							</div>
 
@@ -321,7 +350,6 @@ export default function FrmProducto(props) {
 								</div>
 							</div>
 						</div>
-
 						<div className='text-center'>
 							<button className='btn btn-shift' type='submit'>
 								{item.id ? 'Modificar' : 'Registrar'}
