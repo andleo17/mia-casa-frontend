@@ -2,7 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { QUERY_LISTAR_RECLAMO } from './ListaReclamo';
+import Swal from 'sweetalert2';
 
 const REGISTRAR_RECLAMO = gql`
 	mutation RegistrarReclamo($motivo: String!, $pedido: ID!, $producto: ID!) {
@@ -34,8 +37,8 @@ const MODIFICAR_RECLAMO = gql`
 `;
 
 export default function NuevoReclamo(props){
-    const { item, update} = props;
-
+    const { item, update, initial} = props;
+    const [flag, setFlag] = useState(false);
     const { register, handleSubmit, errors } = useForm();
 
     const mutation = item.id
@@ -43,8 +46,31 @@ export default function NuevoReclamo(props){
 	 	: REGISTRAR_RECLAMO;
 		const [execute, { data: datos, called }] = useMutation(mutation);
 
+    useEffect(() => {
+		if(flag){
+			if(datos && datos.modificarReclamo) {
+				Swal.fire(
+					'Reclamo modificado correctamente',
+					'',
+					'success'
+				)
+				update(initial);
+				setFlag(false)
+			}
+			if(datos && datos.registrarReclamo) {
+				Swal.fire(
+					'Reclamo registrado correctamente',
+					'',
+					'success'
+				)
+				update(initial);
+				setFlag(false)
+			}
+		}
+		;
+	});
+    
     const onSubmit = data => {
-		
 		execute({
 					variables: {
 							id: parseInt(item.id),
@@ -56,7 +82,9 @@ export default function NuevoReclamo(props){
 						{ query: QUERY_LISTAR_RECLAMO },
 					
 					],
-		})
+        })
+        setFlag(true);
+        // update(initial)
 	};
     return (
         <div class=' ' style={{ width: '100%' }}>
@@ -74,28 +102,37 @@ export default function NuevoReclamo(props){
                                         </label>
                                         <input
                                             type='text'
-                                            name='txtPedido'
+                                            name='pedido'
                                             id='txtPedido'
-                                            // placeholder='Seleccione el pedido...'
+                                            placeholder='Seleccione el pedido...'
                                             class='form-control '
+                                            ref={register({ required: true})}
                                             value={item.detallePedido.pedido.id}
                                             onChange={(e) =>
                                                 update({
                                                     ...item,
-                                                    id: e.target.value,
+                                                    detallePedido:{
+                                                        pedido:{
+                                                            id: e.target.value,
+                                                        },
+                                                    },
                                                 })
                                             }
                                             disabled
                                         />
+                                        {/* {errors.pedido && errors.pedido.type === 'required' && 
+                                            (<p className='mt-1 ml-1' style={{ color: 'red' }}>Debe seleccionar un pedido</p>)
+                                        }  */}
                                     </div>
                                     <div class=' col-lg-6'>
                                         <label for='txtProducto'>
                                             Producto:
                                         </label>
                                         <select
-                                            name=''
+                                            name='producto'
                                             id='txtProducto'
                                             class='btn border-dark form-control'
+                                            ref={register({ required: true})}
                                             // className='form-control btn btn-outline-sistema '
                                             style={{ width: '100%' }}
                                             value={item.detallePedido.producto.id}
@@ -127,9 +164,10 @@ export default function NuevoReclamo(props){
                                             Motivo:
                                         </label> <br/>
                                         <textarea
-                                            name='txtMotivo'
+                                            name='motivo'
                                             id='txtMotivo'
-                                            placeholder='Ingrese el pedido...'
+                                            placeholder='Ingrese el motivo...'
+                                            ref={register({ required: true})}
                                             value= {item.motivo}
                                             class='form-control col-12 border-bottom'
                                             onChange={(e) =>
@@ -139,12 +177,15 @@ export default function NuevoReclamo(props){
                                                 })
                                             }
                                         >     
-                                        </textarea>     
+                                        </textarea>
+                                        {errors.motivo && errors.motivo.type === 'required' && 
+                                            (<p className='mt-1 ml-1' style={{ color: 'red' }}>Debe ingresar el motivo y/o seleccionar pedido</p>)
+                                        }     
                                     </div>
                                 </div>
                             <div class='row justify-content-end pr-3'>
                                 <button class=' btnColor d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'>
-                                    Registrar
+                                    {item.id ? 'Modificar' : 'Registrar'}
                                 </button>
                             </div>
                         </div>
