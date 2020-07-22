@@ -1,7 +1,29 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
-import { QUERY_LISTAR_PRODUCTO } from '../Producto/ListaProducto';
-import ProductoPedidoItem from './ProductoPedidoItem';
+import { gql } from 'apollo-boost';
+import Carta from './Carta';
+
+export const QUERY_LISTAR_PRODUCTO = gql`
+	query ListarProducto {
+		listarTipoProducto {
+			id
+			nombre
+			productos {
+				id
+				nombre
+				descripcion
+				cantidad
+				precio
+				imagen
+				estado
+				tipoProducto {
+					id
+					nombre
+				}
+			}
+		}
+	}
+`;
 
 export default function ListaProductoPedido() {
 	const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTO);
@@ -21,11 +43,10 @@ export default function ListaProductoPedido() {
 						/>
 					</div>
 					<div className='mt-3'>
-						{data.listarProducto.map((producto) => {
+						{data.listarTipoProducto.map((cat) => {
 							return (
-								<ProductoPedidoItem
-									producto={producto}
-									key={producto.id}
+								<Carta 
+									categoria={cat}
 								/>
 							);
 						})}
