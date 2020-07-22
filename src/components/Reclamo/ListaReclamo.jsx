@@ -3,12 +3,16 @@ import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ItemReclamo from './ItemReclamo';
 
-const QUERY_LISTAR_RECLAMO = gql`
+export const QUERY_LISTAR_RECLAMO = gql`
 	query ListarReclamos {
 		listarReclamo {
 			id
 			motivo
 			detallePedido {
+				producto{
+					id
+					nombre
+				}
 				pedido {
 					id
 					mesa {
@@ -28,8 +32,9 @@ const QUERY_LISTAR_RECLAMO = gql`
 	}
 `;
 
-export default function ListaReclamo() {
+export default function ListaReclamo(props) {
 	const { loading, error, data } = useQuery(QUERY_LISTAR_RECLAMO);
+	const { update, initial } = props;
 
 	if (loading) return <h1>Cargando... </h1>;
 	if (error) return <h1>Error al mostrar datos....</h1>;
@@ -61,9 +66,9 @@ export default function ListaReclamo() {
 					{data.listarReclamo.map((reclamo) => {
 						return (
 							<ItemReclamo
-								url=''
-								numero={reclamo.numero}
-								id={reclamo.id}
+								reclamo={reclamo}
+								showData= {()=>update(reclamo)}
+								key={reclamo.id}
 							/>
 						);
 					})}
