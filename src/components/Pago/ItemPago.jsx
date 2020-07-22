@@ -13,7 +13,7 @@ const MUTATION_ELIMINAR_PAGO = gql`
 `;
 
 export default function ItemPago(props) {
-	const { numero, monto, url, serie, fecha, tipo, idpedido, mesa } = props;
+	const { numero, monto, url, serie, fecha, tipo, idpedido, mesa, id } = props;
 	const [eliminarPago] = useMutation(MUTATION_ELIMINAR_PAGO);
 
 	return (
@@ -28,14 +28,14 @@ export default function ItemPago(props) {
 						/>
 					</div>
 					<div className='col-6'>
-						<h4>Pago {numero}</h4>
+						<h4>Pago {id}</h4>
 						<span>Monto: {monto}</span>
 						<br />
 					</div>
 					<div className='col-4 col-btn align-self-end'>
 						<button className='btn btn-primary btn-accion btn-circle' onClick={() =>
 								Swal.fire({
-									title: '<strong> Pago ' + numero + ' </strong>',
+									title: '<strong> Pago ' + id + ' </strong>',
 									html:
 									  '<ul> <li>  <b>Numero de serie:</b> ' + serie + '</li>'  +
 									  ' <li> <b>Pedido numero:</b> ' + idpedido + '</li>'  + 
@@ -54,7 +54,7 @@ export default function ItemPago(props) {
 						</button>
 						<button className='btn btn-danger btn-accion btn-circle' onClick={() =>
 								eliminarPago({
-									variables: { id: parseInt(numero) },
+									variables: { id: parseInt(id) },
 									refetchQueries: [
 										{
 											query: QUERY_LISTAR_PAGO,
