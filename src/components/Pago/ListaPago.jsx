@@ -77,6 +77,11 @@ export default function ListaPago(){
                                 (pago) => {
                                     return (
                                         <ItemPago
+											serie={pago.serie}
+											fecha={pago.fecha}
+											tipo={pago.tipoPago.nombre}
+											idpedido={pago.pedido.id}
+											mesa={pago.pedido.mesa.id}
                                             url={money}
                                             numero={pago.numero}
                                             monto={pago.monto}
