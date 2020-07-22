@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ProductoItem from './ProductoItem';
@@ -13,15 +13,13 @@ export const QUERY_LISTAR_PRODUCTO = gql`
 			precio
 			imagen
 			estado
-			tipoProducto{
+			tipoProducto {
 				id
 				nombre
 			}
 		}
 	}
 `;
-
-
 
 export default function ListaProducto(props) {
 	const { loading, error, data } = useQuery(QUERY_LISTAR_PRODUCTO);
@@ -47,7 +45,12 @@ export default function ListaProducto(props) {
 							placeholder='Buscar...'
 							aria-label='Busque un producto'
 						/>
-						<button className='btn btn-shift' type='button' onClick={()=>{update(initial)}}>
+						<button
+							className='btn btn-shift'
+							type='button'
+							onClick={() => {
+								update(initial);
+							}}>
 							<i className='fa fa-plus' />
 							<span className='ml-2'>Agregar</span>
 						</button>
@@ -58,7 +61,7 @@ export default function ListaProducto(props) {
 								<ProductoItem
 									url={producto.imagen}
 									producto={producto}
-									showData= {()=>update(producto)}
+									showData={() => update(producto)}
 									key={producto.id}
 								/>
 							);

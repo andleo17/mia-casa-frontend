@@ -13,6 +13,7 @@ const QUERY_LISTAR_MESA = gql`
 			pedidoActual {
 				id
 				estado
+				monto
 				productos {
 					cantidad
 					precio

@@ -12,6 +12,7 @@ import Login from './Login';
 import Navbar from '../components/Menu/Navbar';
 import { gql } from 'apollo-boost';
 import { useQuery } from 'react-apollo';
+import Pedido from './Pedido';
 
 const QUERY_USUARIO_ACTUAL = gql`
 	query UsuarioActual {
@@ -52,12 +53,7 @@ function App() {
 							<Route
 								exact
 								path='/venta/mesa/:id'
-								component={(props) => (
-									<h1>
-										Aquí iría la info de la mesa{' '}
-										{props.match.params.id}
-									</h1>
-								)}
+								component={(props) => <Pedido />}
 							/>
 							<Route exact path='/reclamo' component={Reclamo} />
 							<Route exact path='/mesa' component={Mesa} />
