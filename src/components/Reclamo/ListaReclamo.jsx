@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ItemReclamo from './ItemReclamo';
 
 export const QUERY_LISTAR_RECLAMO = gql`
-	query ListarReclamos {
-		listarReclamo {
+	query ListarReclamos($filtro: String) {
+		listarReclamo(filtro: $filtro) {
 			id
 			motivo
 			detallePedido {
@@ -33,8 +33,17 @@ export const QUERY_LISTAR_RECLAMO = gql`
 `;
 
 export default function ListaReclamo(props) {
-	const { loading, error, data } = useQuery(QUERY_LISTAR_RECLAMO);
+	const [filtro, setFiltro] = useState(undefined);
+	const { loading, error, data, refetch } = useQuery(QUERY_LISTAR_RECLAMO,
+		{
+			variables: {
+				filtro: filtro
+			},
+			pollInterval: 500,
+		}
+	);
 	const { update, initial } = props;
+	
 
 	if (loading) return <h1>Cargando... </h1>;
 	if (error) return <h1>Error al mostrar datos....</h1>;
@@ -46,9 +55,33 @@ export default function ListaReclamo(props) {
 				<div className='input-group d-flex justify-content-around flex-wrap '>
 					<input
 						type='search'
+						id='txtbuscar'
 						className=' form-control col-lg-8 '
 						placeholder='Buscar...'
 						aria-label='Busque un reclamo'
+						defaultValue={filtro}
+						onChange={(e) => {
+								if (e.target.value === '') {
+										setFiltro(undefined);
+										refetch();
+								}
+							}}
+						onKeyDown={(e) => {
+									if (e.keyCode === 13 && !e.shiftKey) {
+										e.preventDefault();
+										if (e.target.value === '') {
+											setFiltro(undefined);
+											refetch();
+										} else {
+											setFiltro(
+												document.getElementById(
+													'txtbuscar'
+												).value
+											);
+											refetch();
+										}
+									}
+							}}
 					/>
 						<button className='btnColor d-flex align-items-center border-0 justify-content-center
 							text-decoration-none'
