@@ -122,7 +122,6 @@ export default function FrmMesa(props) {
 											estado: e.target.checked,
 										})
 									}
-									
 								/>
 								<label
 									className='form-check-label'
@@ -131,8 +130,9 @@ export default function FrmMesa(props) {
 								</label>
 							</div>
 						</div>
-						<div className='text-center'>
-							<button className='btn btn-shift' type='submit'>
+						<div className='d-flex justify-content-around flex-wrap'>
+							<button className='btnColor d-flex align-items-center border-0 justify-content-center
+							text-decoration-none' type='submit'>
 								{item.id ? 'Modificar' : 'Registrar'}
 							</button>
 						</div>

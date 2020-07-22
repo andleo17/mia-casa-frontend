@@ -30,21 +30,22 @@ export default function ListaMesa(props) {
 			<div className='card h-100 border-0'>
 				<div className='card-body'>
 					<h5 className='card-title'>Listado de Mesas</h5>
-					<div className=' input-group '>
+					<div className=' input-group d-flex justify-content-around flex-wrap'>
 						<input
 							type='search'
-							className='form-control col-lg-10 '
+							className='form-control col-lg-8'
 							placeholder='Buscar...'
 							aria-label='Busque una mesa'
 						/>
 						<button
-							className='btn btn-shift'
+							className='btnColor d-flex align-items-center border-0 justify-content-center
+							text-decoration-none'
 							type='button'
 							onClick={() => {
 								update(initial);
 							}}>
-							<i className='fa fa-plus' />
-							<span className='ml-2'>Agregar</span>
+							
+							<span  className='' >  <i className='fa fa-plus m-1' /> Agregar</span>
 						</button>
 					</div>
 					<div className='mt-3'>

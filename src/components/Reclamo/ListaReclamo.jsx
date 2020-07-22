@@ -40,25 +40,25 @@ export default function ListaReclamo(props) {
 	if (error) return <h1>Error al mostrar datos....</h1>;
 
 	return (
-		<div class='card' style={{ width: '100%' }}>
-			<div class='card-body'>
-				<h5 class='card-title'>Lista de Reclamos</h5>
-				<div class='input-group mb-3 pl-4'>
+		<div className='card-body bg-light reclamof' style={{ width: '100%' }}>
+			{/* <div class='card-body'> */}
+				<h5 className='card-title d-flex justify-content-around flex-wrap'> Lista de Reclamos </h5>
+				<div className='input-group d-flex justify-content-around flex-wrap '>
 					<input
 						type='search'
-						class='form-control'
+						className=' form-control col-lg-8 '
 						placeholder='Buscar...'
 						aria-label='Busque un reclamo'
 					/>
-					<div class='input-group-append'>
-						<button class='btn btn-shift' type='button'>
-							<i class='fa fa-plus'></i> Agregar
+						<button className='btnColor d-flex align-items-center border-0 justify-content-center
+							text-decoration-none'
+							type='button'>
+							<span  className='' >  <i className='fa fa-plus m-1' /> Agregar</span>
 						</button>
-					</div>
 				</div>
 
 				<div
-					class='pl-4'
+					className='mt-3'
 					style={{
 						height: '30rem',
 						overflowY: 'auto',
@@ -74,6 +74,6 @@ export default function ListaReclamo(props) {
 					})}
 				</div>
 			</div>
-		</div>
+		// </div>
 	);
 }
