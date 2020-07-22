@@ -3,8 +3,6 @@ import { useForm } from 'react-hook-form';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
-import { QUERY_LISTAR_PEDIDO } from '../Pago/ListaPedido';
-import ItemListado from './ItemPedido';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
@@ -28,7 +26,7 @@ export default function FrmNuevoPago(props) {
 			},
 			refetchQueries: [
 				{
-					query: [QUERY_LISTAR_PAGO, QUERY_LISTAR_PEDIDO],
+					query: [QUERY_LISTAR_PAGO],
 				},
 			],
 		});
