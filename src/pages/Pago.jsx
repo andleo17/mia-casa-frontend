@@ -4,10 +4,16 @@ import ListadoPedidos from '../components/Pago/ListaPedido'
 import NuevoPago from '../components/Pago/FrmNuevoPago'
 
 export default function Pago() {
+	// this.state = {monto: null, pedido: ''};
+
+	// handlePayData = (valuePayData) => {
+	// 	this.state({monto: valuePayData.monto , pedido: valuePayData.nombre})
+	// }
+
 	return (
 		<div className='col-11 row mt-3 mb-3'>
 			<div className='col-lg-6 col-xl-6'>
-				<NuevoPago />
+				<NuevoPago  />
 				<ListadoPedidos />
 			</div>
 			<div className='col-lg-6 col-xl-6'>

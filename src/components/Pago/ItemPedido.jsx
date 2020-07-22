@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 export default class ItemListado extends Component {
+	
+	setData(event) {
+		event.preventDefault();
+	
+	  }
+
 	render() {
 		return (
 			<div className='card mb-3'>
@@ -19,7 +25,7 @@ export default class ItemListado extends Component {
 							<br />
 						</div>
 						<div className='col-4 col-btn align-self-end'>
-							<button className='btn btn-warning btn-accion btn-circle'>
+							<button className='btn btn-warning btn-accion btn-circle' onClick={() => this.props.setData}>
 								<i className='fa fa-credit-card'></i> Pagar
 							</button>
 						</div>
