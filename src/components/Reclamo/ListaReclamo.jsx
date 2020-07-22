@@ -43,7 +43,7 @@ export default function ListaReclamo(props) {
 		<div className='card-body bg-light reclamof' style={{ width: '100%' }}>
 			{/* <div class='card-body'> */}
 				<h5 className='card-title d-flex justify-content-around flex-wrap'> Lista de Reclamos </h5>
-				<div className='input-group d-flex justify-content-around flex-wrap m-3'>
+				<div className='input-group d-flex justify-content-around flex-wrap '>
 					<input
 						type='search'
 						className=' form-control col-lg-8 '
@@ -58,7 +58,7 @@ export default function ListaReclamo(props) {
 				</div>
 
 				<div
-					className='pl-4'
+					className='mt-3'
 					style={{
 						height: '30rem',
 						overflowY: 'auto',

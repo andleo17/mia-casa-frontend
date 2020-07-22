@@ -48,7 +48,7 @@ export default function Reclamo(){
 	console.log(selectedItem);
 	return (
 		<div className=' row mt-3 mb-3'>
-			<div className='col-lg-6 '>
+			<div className='col-lg-7 '>
 				<NuevoReclamo
 					item={selectedItem} 
 					key={selectedItem.id}
@@ -60,7 +60,7 @@ export default function Reclamo(){
 					initial={initialState}
 				/>
 			</div>
-			<div className='col-lg-6'>
+			<div className='col-lg-5'>
 				<ListadoReclamo 
 					update={setSelectedItem}
 					initial={initialState}
