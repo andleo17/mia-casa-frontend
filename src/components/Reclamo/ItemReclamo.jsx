@@ -29,9 +29,9 @@ export default function ItemReclamo({reclamo, showData, props}){
 						/>
 					</div>
 					<div class='col-6'>
-						<h4>Reclamo N° {reclamo.id}</h4>
-						<h6>Pedido {reclamo.detallePedido.pedido.id}</h6>
-						<label>Producto: {reclamo.detallePedido.producto.nombre}</label>
+						<label className='colorLetra font-weight-bold'>Reclamo N° {reclamo.id}</label> <br/>
+						<label>Pedido: {reclamo.detallePedido.pedido.id}</label>
+						<label className='colorLetra2'>Producto: {reclamo.detallePedido.producto.nombre}</label>
 					</div>
 					<div class='col-4 col-btn align-self-center'>
 						<button
@@ -43,7 +43,7 @@ export default function ItemReclamo({reclamo, showData, props}){
 							style={{ background: '#BFE6E0', width:'43px' }}>
 							<i className='fa fa-pen m-0' />
 						</button>
-						<button className='btn border-0 rounded-circle p-2 ml-2' style={{ background: '#BFE6E0', width:'43px'  }}
+						<button className='btn border-0 rounded-circle p-2 ml-2' style={{ width:'43px'  }}
 							onClick={() =>
 								eliminarReclamo({
 									variables: { id: parseInt(reclamo.id) },
@@ -54,7 +54,7 @@ export default function ItemReclamo({reclamo, showData, props}){
 									],
 								})
 							}
-						>
+							style={{ background: '#BFE6E0', width:'43px' }}>
 								<i className='fa fa-trash' />
 						</button>
 					</div>

@@ -43,9 +43,10 @@ export default function ListaPedido(props){
         );
     
         return(
-            <div className='card mb-3' style={{ width: '100%' }}>
+                <div className='reclamof bg-light ' style={{ width: '100%', height:'300px' }}>
                 <div className='card-body'>
-                    <h5 className='card-title'>Listado de Pedidos</h5>
+                    <h5 className='card-title d-flex justify-content-around flex-wrap'>Listado de Pedidos</h5>
+
                     {/* <div className='input-group mb-3 pl-4'>
                         <input
                             type='search'
@@ -54,12 +55,11 @@ export default function ListaPedido(props){
                             aria-label='Busque un pedido...'
                         />
                     </div> */}
-
                     <div
-                        className='pl-4'
+                        className='pl-4 '
                         style={{
-                            height: '17.4rem',
-                            overflowY: 'auto',
+                            height: '200px',
+                            overflowY: 'scroll',
                         }}>
                         
                         {data.listarPedido.map(

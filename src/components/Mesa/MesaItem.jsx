@@ -30,8 +30,8 @@ export default function MesaItem({ mesa, url, showData,  props }) {
 		<div className='card border-0 mb-3 listaBorde'>
 			<div className='card-body '>
 				<div className='row '>
-					<div className='col-lg-2'>
-						<img src={url} className='img-fluid rounded-circle bg-primary' alt='mesa' />
+					<div className='col-lg-2 p-0'>
+						<img src={url} className='img-fluid rounded-circle ' alt='mesa' />
 					</div>
 					<div className='col-lg-5'>
 						<h4>Mesa N°{mesa.numero}</h4>

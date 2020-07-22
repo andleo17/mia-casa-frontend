@@ -341,3 +341,37 @@ hr.vertical {
 	display: flex;
 	align-items: center;
 }
+
+
+.btnColor {
+    /* background: linear-gradient(to bottom, #a35117 50%, #d56a1e 50%); */
+    background: linear-gradient(to bottom, #DC4B01 50%, #FF661B 50%);
+    color: white;
+    border-radius: 2px;
+}
+
+.btnColor:hover {
+    background: #d5691e;
+    /* background: #a35117; */
+    /* transform: translateY(-5px); */
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+    border: 0 solid;
+    text-decoration: none;
+}
+
+.colorLetra{
+	color: #EF9024;
+}
+
+.colorLetra2{
+	color: #555353;
+}
+
+.reclamof{
+	min-height: 14em;
+	height: 100%;
+	border-radius: 15px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.48);
+	transition: all 0.3s ease-in-out;
+	font-size: 1.1em;
+}

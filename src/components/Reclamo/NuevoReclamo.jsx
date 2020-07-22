@@ -59,17 +59,16 @@ export default function NuevoReclamo(props){
 		})
 	};
     return (
-        <div class='card mb-3' style={{ width: '100%' }}>
-            <div class='card-body'>
-                <h5 class='card-title'>Datos del reclamo</h5>
-                <form action="" clasName="className='bg-light p-3 damesa'" onSubmit={handleSubmit(onSubmit)}>
+        <div class=' ' style={{ width: '100%' }}>
+            {/* <div class='card-body'> */}
+                <h5 class='card-title  m-2'>Nuevo reclamo</h5>
+                <form action="" clasName="className=' damesa'" onSubmit={handleSubmit(onSubmit)}>
                     <div
-                        class='card bg-light mb-3 ml-4'
-                        style={{ width: '95%' }}>
+                        class='reclamof mb-4 bg-light'
+                        >
                         <div class='card-body'>
-                            <div class='row'>
-                                <div class='col-lg-6 col-xl-6'>
-                                    <div class='form-group'>
+                                <div class='row'>
+                                    <div class='col-lg-6'>
                                         <label for='txtPedido'>
                                             Pedido:
                                         </label>
@@ -77,8 +76,8 @@ export default function NuevoReclamo(props){
                                             type='text'
                                             name='txtPedido'
                                             id='txtPedido'
-                                            placeholder='Seleccione el pedido...'
-                                            class='form-control'
+                                            // placeholder='Seleccione el pedido...'
+                                            class='form-control '
                                             value={item.detallePedido.pedido.id}
                                             onChange={(e) =>
                                                 update({
@@ -89,20 +88,19 @@ export default function NuevoReclamo(props){
                                             disabled
                                         />
                                     </div>
-                                    <div class='form-group'>
+                                    <div class=' col-lg-6'>
                                         <label for='txtProducto'>
                                             Producto:
                                         </label>
                                         <select
                                             name=''
                                             id='txtProducto'
-                                            class='btn'
+                                            class='btn border-dark form-control'
                                             // className='form-control btn btn-outline-sistema '
                                             style={{ width: '100%' }}
                                             value={item.detallePedido.producto.id}
                                         // value={nombreLi}
                                         >
-
                                             {item.detallePedido.pedido.productos.map(
                                                     (detallePedido) => {
                                                         return (
@@ -123,17 +121,17 @@ export default function NuevoReclamo(props){
                                         /> */}
                                     </div>
                                 </div>
-                                <div class='col-lg-6 col-xl-6'>
-                                    <div class='form-group'>
+                                <div class='row'>
+                                    <div class='form-group col-12'>
                                         <label for='txtMotivo'>
                                             Motivo:
-                                        </label>
+                                        </label> <br/>
                                         <textarea
                                             name='txtMotivo'
                                             id='txtMotivo'
                                             placeholder='Ingrese el pedido...'
                                             value= {item.motivo}
-                                            class='form-control'
+                                            class='form-control col-12 border-bottom'
                                             onChange={(e) =>
                                                 update({
                                                     ...item,
@@ -141,13 +139,11 @@ export default function NuevoReclamo(props){
                                                 })
                                             }
                                         >     
-                                        </textarea>
-                                            
+                                        </textarea>     
                                     </div>
                                 </div>
-                            </div>
-                            <div class='row justify-content-end'>
-                                <button class='btn btn-shift mr-3'>
+                            <div class='row justify-content-end pr-3'>
+                                <button class=' btnColor d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'>
                                     Registrar
                                 </button>
                             </div>
@@ -156,7 +152,7 @@ export default function NuevoReclamo(props){
                 </form>
                 
             </div>
-        </div>
+        // </div>
     );
 }
 
