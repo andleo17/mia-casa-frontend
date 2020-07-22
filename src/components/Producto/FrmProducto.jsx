@@ -41,6 +41,7 @@ const MODIFICAR_PRODUCTO = gql`
 		$cantidad: Int!
 		$precio: Float!
 		$imagen: String!
+		$estado: Boolean!
 		$tipoProducto: ID!
 	) {
 		modificarProducto(
@@ -50,6 +51,7 @@ const MODIFICAR_PRODUCTO = gql`
 			cantidad: $cantidad
 			precio: $precio
 			imagen: $imagen
+			estado: $estado
 			tipoProducto: $tipoProducto
 		) {
 			id
@@ -155,6 +157,13 @@ export default function FrmProducto(props) {
 										name='tipoProducto'
 										id='cboTipoProducto'
 										ref={register({ required: true })}
+										value={item.tipoProducto.id}
+										onChange={(e) =>
+											update({
+												...item,
+												tipoProducto: {id: e.target.value},
+											})
+										}
 										className='form-control'>
 										<ListaTiposProducto />
 									</select>
@@ -167,6 +176,13 @@ export default function FrmProducto(props) {
 										name='nombre'
 										id='txtNombre'
 										ref={register({ required: true })}
+										value={item.nombre}
+										onChange={(e) =>
+											update({
+												...item,
+												nombre: e.target.value,
+											})
+										}
 										placeholder='Ingrese el nombre del producto..'
 										className='form-control'
 									/>
@@ -186,6 +202,13 @@ export default function FrmProducto(props) {
 										type='text'
 										name='descripcion'
 										id='txtDescripcion'
+										value={item.descripcion}
+										onChange={(e) =>
+											update({
+												...item,
+												descripcion: e.target.value,
+											})
+										}
 										ref={register({ required: true })}
 										placeholder='Ingrese una descripción del producto..'
 										className='form-control'
@@ -208,6 +231,13 @@ export default function FrmProducto(props) {
 										type='number'
 										name='cantidad'
 										id='txtCantidad'
+										value={item.cantidad}
+										onChange={(e) =>
+											update({
+												...item,
+												cantidad: e.target.value,
+											})
+										}
 										ref={register({
 											required: true,
 											min: 0,
@@ -240,6 +270,13 @@ export default function FrmProducto(props) {
 											required: true,
 											min: 1,
 										})}
+										value={item.precio}
+										onChange={(e) =>
+											update({
+												...item,
+												precio: e.target.value,
+											})
+										}
 										placeholder='Ingrese el precio del producto...'
 										className='form-control'
 									/>
@@ -267,6 +304,13 @@ export default function FrmProducto(props) {
 											name='estado'
 											id='chkEstado'
 											ref={register}
+											checked={item.estado}
+											onChange={(e) =>
+												update({
+													...item,
+													estado: e.target.checked,
+												})
+											}
 										/>
 										<label
 											className='form-check-label'
