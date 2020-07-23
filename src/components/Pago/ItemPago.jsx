@@ -41,6 +41,7 @@ export default function ItemPago(props) {
 									  ' <li class="list-group-item"> <b>Pedido numero:</b> ' + idpedido + '</li>'  + 
 									  ' <li class="list-group-item"> <b>Mesa numero:</b> ' + mesa + '</li>'  + 
 									  ' <li class="list-group-item"> <b>Fecha del pago:</b> ' + fecha + '</li>'  +
+									  ' <li class="list-group-item"> <b>Monto del pedido:</b> S/.' + monto + '</li>'  +
 									  ' <li class="list-group-item"> <b>Tipo de pago:</b> ' + tipo + '</li> </ul>' 
 									,
 									showCloseButton: true,

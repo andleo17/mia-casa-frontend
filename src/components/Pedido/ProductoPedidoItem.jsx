@@ -9,7 +9,7 @@ export default function ProductoPedidoItem({ producto }) {
 						<img
 							src={
 								process.env.PUBLIC_URL +
-								'source/producto/' +
+								"source/producto/" +
 								producto.imagen
 							}
 							className='img-fluid'
