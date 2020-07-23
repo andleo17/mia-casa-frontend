@@ -97,7 +97,7 @@ export default function FrmNuevoPago(props) {
 							</div>
 							<div className='row justify-content-end'>
 								<button
-									className='btn btn-shift mr-3'
+									class=' btnColor d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
 									type='submit'>
 									Registrar
 								</button>
