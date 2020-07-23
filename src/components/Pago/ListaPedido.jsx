@@ -58,7 +58,7 @@ export default function ListaPedido(props)  {
                                     return (
                                         <ItemPedido
                                             url={dish}
-                                            numero={
+                                            mesanumero={
                                                 pedido.mesa.numero
                                             }
                                             monto={pedido.productos.reduce(
@@ -68,7 +68,7 @@ export default function ListaPedido(props)  {
                                             id={pedido.id}
                                             setData={ () => setPayData(
                                                 {
-                                                    numero:pedido.mesa.numero,
+                                                    numero:pedido.id,
                                                     monto:pedido.productos.reduce(
                                                         (sum, p) => sum + p.precio,
                                                         0

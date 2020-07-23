@@ -81,7 +81,7 @@ export default function ListaPago(){
 											fecha={pago.fecha}
 											tipo={pago.tipoPago.nombre}
 											idpedido={pago.pedido.id}
-											mesa={pago.pedido.mesa.id}
+											mesa={pago.pedido.mesa.numero}
                                             url={money}
                                             numero={pago.numero}
                                             monto={pago.monto}

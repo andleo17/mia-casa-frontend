@@ -15,7 +15,7 @@ export default class ItemListado extends Component {
 							/>
 						</div>
 						<div className='col-6'>
-							<h4>Pedido N°{this.props.numero}</h4>
+							<h4>Mesa N°{this.props.mesanumero}</h4>
 							<span>s/ {this.props.monto}</span>
 							<br />
 						</div>
