@@ -34,7 +34,7 @@ export default function ListaPedido(props)  {
         );
     
         return(
-            <div className='card mb-3' style={{ width: '100%' }}>
+            <div className=' mb-3' style={{ width: '100%' }}>
                 <div className='card-body'>
                     <h5 className='card-title'>Listado de Pedidos</h5>
                     <div className='input-group mb-3 pl-4'>
@@ -58,7 +58,7 @@ export default function ListaPedido(props)  {
                                     return (
                                         <ItemPedido
                                             url={dish}
-                                            numero={
+                                            mesanumero={
                                                 pedido.mesa.numero
                                             }
                                             monto={pedido.productos.reduce(
@@ -68,7 +68,7 @@ export default function ListaPedido(props)  {
                                             id={pedido.id}
                                             setData={ () => setPayData(
                                                 {
-                                                    numero:pedido.mesa.numero,
+                                                    numero:pedido.id,
                                                     monto:pedido.productos.reduce(
                                                         (sum, p) => sum + p.precio,
                                                         0

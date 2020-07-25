@@ -88,7 +88,7 @@ export default function FrmMesa(props) {
 								type='number'
 								name='numero'
 								id='txtNumero'
-								ref={register({ required: true, min: 0 })}
+								ref={register({ required: true, min: 0, max: 1000 })}
 								value={item.numero}
 								onChange={(e) =>
 									update({
@@ -104,6 +104,9 @@ export default function FrmMesa(props) {
 							}
 							{errors.numero && errors.numero.type === 'min' && 
 								(<p className='mt-1 ml-1' style={{ color: 'red' }}>No se aceptan números negativos</p>)
+							}
+							{errors.numero && errors.numero.type === 'max' && 
+								(<p className='mt-1 ml-1' style={{ color: 'red' }}>Excede el número permitido</p>)
 							}
 						</div>
 						<div className='form-group'>

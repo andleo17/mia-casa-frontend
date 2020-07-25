@@ -22,6 +22,7 @@ export default function Pago() {
 			<div className='col-lg-6 col-xl-6'>
 				<NuevoPago  
 					item = {selectedItem} 
+					key={selectedItem.id}
 					setPayData = {setSelectedItem}
 					initialState = {state}
 				/>

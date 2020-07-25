@@ -26,7 +26,7 @@ export default function MesaPedidoItem({ mesa }) {
 				className={`card text-white ${estado}`}
 				to={`/venta/mesa/${mesa.id}`}>
 				<div className='card-body'>
-					<span className='card-title font-weight-bold'>
+					<span className='font-weight-bold'>
 						Mesa {mesa.numero}
 					</span>
 					{mesa.pedidoActual && (

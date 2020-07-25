@@ -376,6 +376,14 @@ hr.vertical {
 	font-size: 1.1em;
 }
 
+.nose{
+	min-height: 14em;
+	height: 100%;
+	border-radius: 15px;
+	transition: all 0.3s ease-in-out;
+	font-size: 1.1em;
+}
+
 input[type='file'] #txtImagen {
 	width: 0.1px;
 	height: 0.1px;
@@ -383,4 +391,14 @@ input[type='file'] #txtImagen {
 	overflow: hidden;
 	position: absolute;
 	z-index: -1;
+}
+
+.circuloverde{
+    border-radius: 250px;
+    position: relative;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    align-items: center;
 }

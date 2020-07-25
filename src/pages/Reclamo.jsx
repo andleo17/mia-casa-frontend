@@ -9,10 +9,10 @@ export const initialState = {
 	motivo: '',
 	detallePedido: {
 		__typename: 'DetallePedido',
-		producto:{
+		producto: {
 			__typename: 'Producto',
 			id: '',
-			nombre:'',
+			nombre: '',
 		},
 		pedido: {
 			__typename: 'Pedido',
@@ -22,15 +22,17 @@ export const initialState = {
 				id: '',
 				numero: '',
 			},
-			productos: [{
-				__typename: 'DetallePedido',
-				precio: '',
-				producto: {
-					__typename: 'Procucto',
-					id: '',
-					nombre: '',
+			productos: [
+				{
+					__typename: 'DetallePedido',
+					precio: '',
+					producto: {
+						__typename: 'Procucto',
+						id: '',
+						nombre: '',
+					},
 				},
-			}],
+			],
 		},
 	},
 };
@@ -39,21 +41,19 @@ export const initialReclamo = {
 	__typename: 'Reclamo',
 	estado: '',
 	id: '',
-	numero: ''
+	numero: '',
 };
 
-export default function Reclamo(){
-
+export default function Reclamo() {
 	const [selectedItem, setSelectedItem] = useState(initialState);
-	console.log(selectedItem);
 	return (
 		<div className=' row mt-3 mb-3'>
 			<div className='col-lg-7 '>
 				<NuevoReclamo
-					item={selectedItem} 
+					item={selectedItem}
 					key={selectedItem.id}
 					update={setSelectedItem}
-					initial = {initialState}
+					initial={initialState}
 				/>
 				<ListadoPedidos
 					update={setSelectedItem}
@@ -61,7 +61,7 @@ export default function Reclamo(){
 				/>
 			</div>
 			<div className='col-lg-5'>
-				<ListadoReclamo 
+				<ListadoReclamo
 					update={setSelectedItem}
 					initial={initialState}
 				/>
@@ -69,4 +69,3 @@ export default function Reclamo(){
 		</div>
 	);
 }
-

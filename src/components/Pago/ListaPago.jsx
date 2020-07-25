@@ -54,7 +54,7 @@ export default function ListaPago(){
         );
     
         return(
-            <div className='card' style={{ width: '100%' }}>
+            <div className='' style={{ width: '100%' }}>
                 <div className='card-body'>
                     <h5 className='card-title'>Listado de Pagos</h5>
                     <div className='input-group mb-3 pl-4'>
@@ -81,7 +81,7 @@ export default function ListaPago(){
 											fecha={pago.fecha}
 											tipo={pago.tipoPago.nombre}
 											idpedido={pago.pedido.id}
-											mesa={pago.pedido.mesa.id}
+											mesa={pago.pedido.mesa.numero}
                                             url={money}
                                             numero={pago.numero}
                                             monto={pago.monto}

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import ProductoPedidoItem from './ProductoPedidoItem';
-
-
+import Carta from './Carta';
+import ListaTiposProducto from '../Producto/ListadoTiposProducto';
 
 export const QUERY_LISTAR_PRODUCTO = gql`
 	query ListarProducto {
@@ -34,68 +33,54 @@ export default function ListaProductoPedido({ mesa, props }) {
 	if (loading) return 'Cargando...';
 	if (error) return 'Error';
 	return (
-		<div className="row">
-			<div className='col-lg-6'>
-				<div className='card h-100 border-0'>
-					<div className='card-body'>
-						<h5 className='card-title'>Listado de Productos</h5>
-						<div className="input-group mb-3">
-							<select
-								name="cboCategoria"
-								id="cboCategoria"
-								className="form-control"
-								onChange={(e) =>
-									setCateg(e.target.value)
-								}
-							>
-								{data.listarTipoProducto.map((cat) => {
-									return (
-										<option value={cat.id}>{cat.nombre}</option>
-									);
-								})}
-							</select>
-						</div>
-						<div className=' input-group '>
-							<input
-								type='search'
-								className='form-control '
-								placeholder='Buscar...'
-								aria-label='Busque un producto'
-							/>
-						</div>
-						<div className='mt-3'>
-							{data.listarTipoProducto.map((cat) => {
-								if (cat.id == categ){
-									return(
-										cat.productos.map((producto) => {
-											return (
-												<ProductoPedidoItem
-													url={producto.imagen}
-													producto={producto}
-													key={producto.id}
-												/>
-											);
-										})
-									);
-								}
-							})}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className="col-lg-6">
+		<div className='col-lg-7 mb-5' >
+			<div className='card  border-0'>
+				<div className='card-body pt-0' style={{
+					height: '30rem'
+				}}>
+					<select
+						name='tipoProducto'
+						id='cboTipoProducto'
+						className='form-control'>
+						<ListaTiposProducto />
+					</select>
 
-				<div className='card h-100 border-0'>
-					<div className='card-body'>
-						<h5 className='card-title'>Productos seleccionados</h5>
-						<div className='mt-3'>
-							hola
-						</div>
+					<div className='  input-group d-flex justify-content-between flex-wrap '>
+						<input
+							type='search'
+							className='form-control col-lg-9'
+							placeholder='Buscar producto'
+							aria-label='Busque un producto'
+						/>
+						<button
+							className='btnColor d-flex align-items-center border-0 justify-content-center
+							text-decoration-none'
+							type='button'
+						>
+							<span className='' >  <i className='fa fa-plus m-1' /> Buscar</span>
+						</button>
+					</div>
+
+
+					<div className=' mt-3'
+						style={{
+							height: '90%',
+							overflowY: 'scroll',
+						}}
+					>
+						{data.listarTipoProducto.map((cat) => {
+							return (
+								<Carta
+									categoria={cat}
+								/>
+							);
+						})}
 					</div>
 				</div>
 
 				<button className="btn btn-shift">Confirmar</button>
 			</div>
 		</div>
+
 	);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import ListaProductoPedido from '../components/Pedido/ListaProductoPedido';
+import ListaPedido from '../components/Pedido/ListaPedido';
 
 export const initialState = {
 	__typename: 'Pedido',
@@ -26,9 +27,20 @@ export const initialState = {
 
 export default function Pedido() {
 	return (
-		<div>
+		<div className='col'>
+			
 			<h1>Seleccionar productos</h1>
-			<ListaProductoPedido />
+			
+			<div className='row p-3'>
+				<ListaProductoPedido/>
+
+				<div className='col-lg-5' >
+					<ListaPedido />
+				</div>
+
+			</div>
 		</div>
+		
+		
 	);
 }

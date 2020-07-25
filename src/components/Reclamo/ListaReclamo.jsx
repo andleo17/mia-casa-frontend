@@ -39,7 +39,7 @@ export default function ListaReclamo(props) {
 			variables: {
 				filtro: filtro
 			},
-			pollInterval: 500,
+			// pollInterval: 500,
 		}
 	);
 	const { update, initial } = props;
