@@ -1,17 +1,42 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import ProductoPedidoItem from './ProductoPedidoItem';
 
-export default function ListaPedido() {
+export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
+	query buscarPedido($mesaId: Int!){
+		listarMesa( filtro: $mesaId){
+            id
+            numero
+            pedidoActual{
+                id
+                productos{
+                    cantidad
+                    entregado
+                    precio
+                    producto{
+                        id
+                        nombre
+                    }
+                }
+            }
+        }
+	}
+`;
 
-    // if (loading) return <h1>Cargando...</h1>;
-    // if (error)
-    // 	return (
-    // 		<h1>
-    // 			No se ha podido establecer la conexión con el servidor,
-    // 			intentelo nuevamente
-    // 		</h1>
-    //     );
+export default function ListaPedido({mesaId}) {
+    mesaId = parseInt(mesaId);
+    const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTOS_PEDIDOS, { variables: { mesaId } });
+
+    if (loading) return <h1>Cargando...</h1>;
+    if (error){
+        return (
+            <h1>
+                No se ha podido establecer la conexión con el servidor,
+                intentelo nuevamente
+            </h1>
+       );
+    }
 
     return (
         <div className=' nose col-lg-12'  >
@@ -31,31 +56,17 @@ export default function ListaPedido() {
             <div  style={{
                     height: '90%',
                     overflowY: 'scroll',
-                }} >
-
-                <div className='card mb-3 listaBorde ' >
-                    <div className='card-body'>
-                        <div className='d-flex justify-content-around flex-wrap'>
-                            <div className='col-lg-2'>
-                                <img
-                                    className='img-fluid'
-                                // alt='producto'
-                                />
-                            </div>
-                            <div className='col-lg-6'>
-                                <h5 className='colorLetra'> Inka Kola 1.5L</h5>
-                                <h6 className='colorLetra2'> S/8</h6>
-                            </div>
-                            <div className='col-lg-2  d-flex justify-content-end flex-wrap'>
-                                <div className='row'>
-                                    <button className='btn border-0 rounded-circle p-2 circuloverde m-0' style={{ background: '#EE814A' }}>
-                                        <samp>1</samp>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }}
+            >
+                {data.listarMesa[0].pedidoActual ? data.listarMesa[0].pedidoActual.productos.map((producto) => {
+                    return (
+                        <ProductoPedidoItem
+                            detallePedido={producto}
+                            key={producto.cantidad}
+                        />
+                    );
+                }): null}
+                
             </div>
             
             </div>

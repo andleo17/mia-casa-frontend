@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import Carta from './Carta';
 import ListaTiposProducto from '../Producto/ListadoTiposProducto';
-import ProductoPedidoItem from './ProductoPedidoItem';
+import ProductoCartaItem from './ProductoCartaItem';
 
 export const QUERY_LISTAR_PRODUCTO = gql`
 	query ListarProducto {
@@ -78,7 +77,7 @@ export default function ListaProductoPedido({ mesa, props }) {
 								return (
 									cat.productos.map((producto) => {
 										return (
-											<ProductoPedidoItem
+											<ProductoCartaItem
 												url={producto.imagen}
 												producto={producto}
 												key={producto.id}
