@@ -1,10 +1,7 @@
 import React from 'react';
-import { useQuery } from 'react-apollo';
-import { gql } from 'apollo-boost';
 import ProductoPedidoItem from './ProductoPedidoItem';
 
 export default function CartaItem({ categoria, props }) {
-
 	return (
 		<div className='card mb-3'>
 			<div className='card-body'>

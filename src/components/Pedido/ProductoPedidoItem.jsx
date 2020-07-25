@@ -7,11 +7,7 @@ export default function ProductoPedidoItem({ producto }) {
 				<div className='row'>
 					<div className='col-xl-4 col-lg-4'>
 						<img
-							src={
-								process.env.PUBLIC_URL +
-								'source/producto/' +
-								producto.imagen
-							}
+							src={process.env.PUBLIC_URL + "source/producto/" + producto.imagen}
 							className='img-fluid'
 							alt='producto'
 						/>
