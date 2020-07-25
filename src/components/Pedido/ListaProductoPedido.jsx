@@ -30,22 +30,41 @@ export default function ListaProductoPedido() {
 	if (loading) return 'Cargando...';
 	if (error) return 'Error';
 	return (
-		<div className='col-lg-6'>
-			<div className='card h-100 border-0'>
-				<div className='card-body'>
-					<h5 className='card-title'>Listado de Productos</h5>
-					<div className=' input-group '>
+		<div className='col-lg-7' >
+			<div className='card  border-0'>
+				<div className='card-body pt-0' style={{
+					height: '30rem'
+				}}>
+					<select name="" id="" className='form-control col-lg-12  mb-2 ' >
+						<section>TODOS</section>
+					</select>
+
+					<div className='  input-group d-flex justify-content-between flex-wrap '>
 						<input
 							type='search'
-							className='form-control col-lg-10 '
-							placeholder='Buscar...'
+							className='form-control col-lg-9'
+							placeholder='Buscar producto'
 							aria-label='Busque un producto'
 						/>
+						<button
+							className='btnColor d-flex align-items-center border-0 justify-content-center
+							text-decoration-none'
+							type='button'
+						>
+							<span className='' >  <i className='fa fa-plus m-1' /> Buscar</span>
+						</button>
 					</div>
-					<div className='mt-3'>
+
+
+					<div className=' mt-3'
+						style={{
+							height: '90%',
+							overflowY: 'scroll',
+						}}
+					>
 						{data.listarTipoProducto.map((cat) => {
 							return (
-								<Carta 
+								<Carta
 									categoria={cat}
 								/>
 							);
@@ -54,5 +73,6 @@ export default function ListaProductoPedido() {
 				</div>
 			</div>
 		</div>
+
 	);
 }

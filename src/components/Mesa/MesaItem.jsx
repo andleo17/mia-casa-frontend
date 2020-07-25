@@ -34,7 +34,7 @@ export default function MesaItem({ mesa, url, showData,  props }) {
 						<img src={url} className='img-fluid rounded-circle ' alt='mesa' />
 					</div>
 					<div className='col-lg-5'>
-						<h4>Mesa N°{mesa.numero}</h4>
+						<h4 className='colorLetra'>Mesa N°{mesa.numero}</h4>
 						<span>Estado: {mesa.estado ? 'Vigente' : 'No Vigente'}</span>
 					</div>
 					<div className='col-lg-5'>
