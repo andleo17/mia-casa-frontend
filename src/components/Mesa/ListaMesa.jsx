@@ -3,6 +3,7 @@ import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import MesaItem from './MesaItem';
 import plato from '../../assets/pedido.png';
+
 export const QUERY_LISTAR_MESA = gql`
 	query ListarMesa($filtro: Int) {
 		listarMesa(filtro: $filtro) {
@@ -21,12 +22,13 @@ export default function ListaMesa(props) {
 			variables: {
 				filtro: mesaId
 			},
-			pollInterval: 500,
+			// pollInterval: 500,
 		}
 	);
 	
 
 	if (loading){
+		//meter en scroll lista de mesas
 		return(
 			<div className='col-lg-6'>
 			<div className='card h-100 border-0'>

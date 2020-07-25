@@ -14,9 +14,7 @@ const ELIMINAR_RECLAMO = gql`
 
 
 export default function ItemReclamo({reclamo, showData, props}){
-	
 	const [eliminarReclamo] = useMutation(ELIMINAR_RECLAMO);
-
 	return (
 		<div class='card mb-3'>
 			<div class='card-body'>

@@ -44,7 +44,7 @@ export default function NuevoReclamo(props){
     const mutation = item.id
 	 	? MODIFICAR_RECLAMO
 	 	: REGISTRAR_RECLAMO;
-		const [execute, { data: datos, called }] = useMutation(mutation);
+		const [execute, { data: datos, called, error: queryError }] = useMutation(mutation);
 
     useEffect(() => {
 		if(flag){
@@ -65,7 +65,7 @@ export default function NuevoReclamo(props){
 				)
 				update(initial);
 				setFlag(false)
-			}
+            }
 		}
 		;
 	});
