@@ -2,7 +2,10 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
+import Swal from 'sweetalert2';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
@@ -13,9 +16,28 @@ const MUTATION_REGISTRAR_PAGO = gql`
 `;
 
 export default function FrmNuevoPago(props) {
-	const { item, setPayData } = props;
-	const { register, handleSubmit } = useForm();
+	const { item, setPayData, initialState } = props;
+	const { register, handleSubmit,  errors  } = useForm();
+	const [flag, setFlag] = useState(false);
 	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO);
+
+	useEffect(() => {
+		if(flag){
+			if( registrarPago) {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Pago registrado correctamente',
+					showConfirmButton: false,
+					timer: 1000
+				  })
+				setPayData(initialState);
+				setFlag(false)
+			}
+		}
+		;
+	});
+
 	const onSubmit = (data) => {
 		console.log(data);
 		registrarPago({
@@ -26,10 +48,11 @@ export default function FrmNuevoPago(props) {
 			},
 			refetchQueries: [{ query: QUERY_LISTAR_PAGO }],
 		});
+		setFlag(true)
 	};
 
 	return (
-		<div className='card mb-3' style={{ width: '100%' }}>
+		<div className=' mb-3' style={{ width: '100%' }}>
 			<div className='card-body'>
 				<h5 className='card-title'>Datos del pago</h5>
 				<div
@@ -89,13 +112,34 @@ export default function FrmNuevoPago(props) {
 											ref={register({
 												required: {
 													value: true,
+													min: 0
 												},
 											})}
+											onChange={(e) =>
+												setPayData({
+													...item,
+													numero: e.target.value,
+												})
+											}
 										/>
+										{errors.numero && errors.numero.type === 'required' && 
+											(<p className='mt-1 ml-1' style={{ color: 'red' }}>Debe ingresar un número</p>)
+										}
+										{errors.numero && errors.numero.type === 'min' && 
+											(<p className='mt-1 ml-1' style={{ color: 'red' }}>No se aceptan números negativos</p>)
+										}
 									</div>
 								</div>
 							</div>
 							<div className='row justify-content-end'>
+								<button
+									class=' d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
+									onClick={()=>{
+										setPayData(initialState)
+									}}
+									>
+									Cancelar
+								</button>
 								<button
 									class=' btnColor d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
 									type='submit'>

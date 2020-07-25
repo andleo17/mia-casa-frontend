@@ -34,7 +34,7 @@ export default function ListaPedido(props)  {
         );
     
         return(
-            <div className='card mb-3' style={{ width: '100%' }}>
+            <div className=' mb-3' style={{ width: '100%' }}>
                 <div className='card-body'>
                     <h5 className='card-title'>Listado de Pedidos</h5>
                     <div className='input-group mb-3 pl-4'>
