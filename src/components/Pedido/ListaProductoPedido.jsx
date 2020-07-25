@@ -3,6 +3,7 @@ import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import Carta from './Carta';
 import ListaTiposProducto from '../Producto/ListadoTiposProducto';
+import ProductoPedidoItem from './ProductoPedidoItem';
 
 export const QUERY_LISTAR_PRODUCTO = gql`
 	query ListarProducto {
@@ -41,7 +42,11 @@ export default function ListaProductoPedido({ mesa, props }) {
 					<select
 						name='tipoProducto'
 						id='cboTipoProducto'
-						className='form-control'>
+						className='form-control'
+						onChange={(e)=>
+							setCateg(e.target.value)
+						}
+					>
 						<ListaTiposProducto />
 					</select>
 
@@ -62,18 +67,26 @@ export default function ListaProductoPedido({ mesa, props }) {
 					</div>
 
 
-					<div className=' mt-3'
+					<div className='mt-3'
 						style={{
 							height: '90%',
 							overflowY: 'scroll',
 						}}
 					>
 						{data.listarTipoProducto.map((cat) => {
-							return (
-								<Carta
-									categoria={cat}
-								/>
-							);
+							if (cat.id == categ){
+								return (
+									cat.productos.map((producto) => {
+										return (
+											<ProductoPedidoItem
+												url={producto.imagen}
+												producto={producto}
+												key={producto.id}
+											/>
+										);
+									})
+								);
+							}
 						})}
 					</div>
 				</div>
