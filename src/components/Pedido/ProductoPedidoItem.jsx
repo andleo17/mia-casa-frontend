@@ -1,44 +1,28 @@
 import React from 'react';
 
-export default function ProductoPedidoItem({ producto }) {
+export default function ProductoPedidoItem({detallePedido}) {
 	return (
-		<div className='card mb-3 listaBorde row'>
-			<div className='card-body'>
-				<div className='d-flex justify-content-around flex-wrap'>
-					<div className='col-lg-2'>
-						<img
-							src={
-								process.env.PUBLIC_URL +
-								"source/producto/" +
-								producto.imagen
-							}
-							className='img-fluid'
-							alt='producto'
-						/>
-					</div>
-					<div className='col-lg-4'>
-						<h5 className='colorLetra'>{producto.nombre}</h5>
-						<span>
-							{/* Estado: {producto.estado ? 'Vigente' : 'No Vigente'} */}
-							 Precio: s/{producto.precio}
-						</span>
-					</div>
-					<div className='col-lg-4 mt-3  d-flex justify-content-around flex-wrap'>
-						<div className='row'>
-							<button
-								type='button'
-								className=' btn border-0 rounded-circle circuloverde p-2'
-								style={{ background: '#BFE6E0'}}>
-								<i className='fa fa-minus m-0' />
-							</button>
-							<input type="number" name="" id="" className='form-control' style={{width:'40%'}} />
-							<button className='btn border-0 rounded-circle p-2 circuloverde m-0' style={{ background: '#BFE6E0'  }}>
-								<i className='fa fa-plus' />
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div className='card mb-3 listaBorde ' >
+            <div className='card-body'>
+                <div className='d-flex justify-content-around flex-wrap'>
+                    <div className='col-lg-2'>
+                        <img
+                            className='img-fluid'
+                        />
+                    </div>
+                    <div className='col-lg-6'>
+                        <h5 className='colorLetra'> {detallePedido.producto.nombre}</h5>
+                        <h6 className='colorLetra2'>Precio: {detallePedido.precio}</h6>
+                    </div>
+                    <div className='col-lg-2  d-flex justify-content-end flex-wrap'>
+                        <div className='row'>
+                            <button className='btn border-0 rounded-circle p-2 circuloverde m-0' style={{ background: '#EE814A' }}>
+                                <samp>{detallePedido.cantidad}</samp>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	);
 }

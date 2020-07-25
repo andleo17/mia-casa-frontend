@@ -53,7 +53,9 @@ function App() {
 							<Route
 								exact
 								path='/venta/mesa/:id'
-								component={(props) => <Pedido />}
+								component={(props) => <Pedido
+															props = {props}
+														/>}
 							/>
 							<Route exact path='/reclamo' component={Reclamo} />
 							<Route exact path='/mesa' component={Mesa} />

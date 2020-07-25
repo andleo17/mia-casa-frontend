@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import Carta from './Carta';
 import ListaTiposProducto from '../Producto/ListadoTiposProducto';
+import ProductoCartaItem from './ProductoCartaItem';
 
 export const QUERY_LISTAR_PRODUCTO = gql`
 	query ListarProducto {
@@ -26,8 +26,10 @@ export const QUERY_LISTAR_PRODUCTO = gql`
 	}
 `;
 
-export default function ListaProductoPedido() {
+export default function ListaProductoPedido({ mesa, props }) {
 	const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTO);
+	const [categ, setCateg] = useState(1);
+
 	if (loading) return 'Cargando...';
 	if (error) return 'Error';
 	return (
@@ -39,7 +41,11 @@ export default function ListaProductoPedido() {
 					<select
 						name='tipoProducto'
 						id='cboTipoProducto'
-						className='form-control'>
+						className='form-control'
+						onChange={(e)=>
+							setCateg(e.target.value)
+						}
+					>
 						<ListaTiposProducto />
 					</select>
 
@@ -60,21 +66,31 @@ export default function ListaProductoPedido() {
 					</div>
 
 
-					<div className=' mt-3'
+					<div className='mt-3'
 						style={{
 							height: '90%',
 							overflowY: 'scroll',
 						}}
 					>
 						{data.listarTipoProducto.map((cat) => {
-							return (
-								<Carta
-									categoria={cat}
-								/>
-							);
+							if (cat.id == categ){
+								return (
+									cat.productos.map((producto) => {
+										return (
+											<ProductoCartaItem
+												url={producto.imagen}
+												producto={producto}
+												key={producto.id}
+											/>
+										);
+									})
+								);
+							}
 						})}
 					</div>
 				</div>
+
+				<button className="btn btn-shift">Confirmar</button>
 			</div>
 		</div>
 
