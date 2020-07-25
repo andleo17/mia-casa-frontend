@@ -34,23 +34,23 @@ export default function ProductoItem({ producto, url, showData,  props }) {
 		<div className='card listaBorde mb-3'>
 			<div className='card-body'>
 				<div className='row'>
-					<div className='col-xl-2 col-lg-2 text-center'>
+					<div className='col-lg-2 text-center'>
 						<img
 							src={process.env.PUBLIC_URL + "source/producto/" + producto.imagen}
 							className='img-fluid'
 							alt='producto'
 						/>
 					</div>
-					<div className='col-xl-6 col-lg-6 mb-3'>
-						<h4>{producto.nombre}</h4>
-						<span>Tipo: {producto.tipoProducto.nombre}</span>
+					<div className=' col-lg-6 mb-3'>
+						<h5 className='colorLetra'>{producto.nombre}</h5>
+						<span className='colorLetra2'>Tipo: {producto.tipoProducto.nombre}</span>
 						<br />
-						<span>
-							Estado: {producto.estado ? 'Vigente' : 'No Vigente'}, Precio: s/{producto.precio}
+						<span className='colorLetra2'>
+							Estado: {producto.estado ? 'Vigente' : 'No Vigente'} <br/> Precio: s/{producto.precio}
 						</span>
 					</div>
 					<div className='col-lg-4'>
-						<div className=' row d-flex justify-content-around flex-wrap '>
+						<div className=' row d-flex justify-content-around flex-wrap'>
 							<button
 								type='button'
 								className=' btn border-0 circuloverde rounded-circle p-2'

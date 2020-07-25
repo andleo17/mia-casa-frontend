@@ -45,19 +45,17 @@ export default function MesaItem({ mesa, url, showData, props }) {
 						<div className=' row d-flex justify-content-around flex-wrap '>
 							<button
 								type='button'
-								className=' btn border-0 rounded-circle p-2'
+								className='btn border-0 circuloverde rounded-circle p-2'
+								style={{ background: '#BFE6E0'}}
 								onClick={() => {
 									showData();
 								}}
-								style={{
-									background: '#BFE6E0',
-									width: '50px',
-								}}>
+							>
 								<i className='fa fa-pen m-0' />
 							</button>
 							<button
-								className=' btn border-0  rounded-circle p-2'
-								style={{ background: '#BFE6E0', width: '50px' }}
+								className='btn border-0 circuloverde rounded-circle p-2'
+								style={{ background: '#BFE6E0'}}
 								onClick={() =>
 									darBajaMesa({
 										variables: {
@@ -75,8 +73,8 @@ export default function MesaItem({ mesa, url, showData, props }) {
 								<i className='fa fa-ban' />
 							</button>
 							<button
-								className='btn border-0 rounded-circle p-2'
-								style={{ background: '#BFE6E0', width: '50px' }}
+								className='btn border-0 circuloverde rounded-circle p-2'
+								style={{ background: '#BFE6E0'}}
 								onClick={() =>
 									eliminarMesa({
 										variables: { id: parseInt(mesa.id) },

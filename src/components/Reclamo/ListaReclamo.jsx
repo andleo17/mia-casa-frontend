@@ -51,8 +51,8 @@ export default function ListaReclamo(props) {
 	return (
 		<div className='card-body bg-light reclamof' style={{ width: '100%' }}>
 			{/* <div class='card-body'> */}
-				<h5 className='card-title d-flex justify-content-around flex-wrap'> Lista de Reclamos </h5>
-				<div className='input-group d-flex justify-content-around flex-wrap '>
+				<h5 className='card-title font-weight-bold d-flex justify-content-around flex-wrap'> Lista de Reclamos </h5>
+				<div className='input-group buscar d-flex justify-content-between flex-wrap '>
 					<input
 						type='search'
 						id='txtbuscar'

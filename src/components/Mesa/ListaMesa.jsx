@@ -74,8 +74,8 @@ export default function ListaMesa(props) {
 		<div className='col-lg-6'>
 			<div className='card h-100 border-0'>
 				<div className='card-body'>
-					<h5 className='card-title'>Listado de Mesas</h5>
-					<div className=' input-group d-flex justify-content-around flex-wrap'>
+					<h5 className='card-title font-weight-bold'>Listado de Mesas</h5>
+					<div className=' input-group buscar d-flex justify-content-between flex-wrap'>
 						<input
 							type='number'
 							id='txtbuscar'
@@ -118,7 +118,7 @@ export default function ListaMesa(props) {
 							<span  className='' >  <i className='fa fa-plus m-1' /> Agregar</span>
 						</button>
 					</div>
-					<div className='mt-3'>
+					<div className='mt-3' style={{height:'30rem', overflowY:'scroll'}}>
 						{data.listarMesa.map((mesa) => {
 							return (
 								<MesaItem

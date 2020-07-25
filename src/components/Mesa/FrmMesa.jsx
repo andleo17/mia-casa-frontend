@@ -78,9 +78,9 @@ export default function FrmMesa(props) {
 		<div className='col-lg-6'>
 			<div className='card border-0 '>
 				<div className='card-body'>
-					<h5 className='card-title'>Datos de la mesa</h5>
+					<h5 className='card-title font-weight-bold'>Datos de la mesa</h5>
 					<form
-						className='bg-light p-3 damesa'
+						className='bg-light p-3 damesa reclamof'
 						onSubmit={handleSubmit(onSubmit)}>
 						<div className='form-group'>
 							<label htmlFor='txtNumero'>Número:</label>

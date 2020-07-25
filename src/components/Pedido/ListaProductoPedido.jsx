@@ -41,7 +41,7 @@ export default function ListaProductoPedido({ mesa, props }) {
 					<select
 						name='tipoProducto'
 						id='cboTipoProducto'
-						className='form-control'
+						className='form-control   mb-2 ' 
 						onChange={(e)=>
 							setCateg(e.target.value)
 						}
@@ -49,7 +49,7 @@ export default function ListaProductoPedido({ mesa, props }) {
 						<ListaTiposProducto />
 					</select>
 
-					<div className='  input-group d-flex justify-content-between flex-wrap '>
+					<div className='  buscar input-group d-flex justify-content-between flex-wrap '>
 						<input
 							type='search'
 							className='form-control col-lg-9'
@@ -66,9 +66,9 @@ export default function ListaProductoPedido({ mesa, props }) {
 					</div>
 
 
-					<div className='mt-3'
+					<div className='mt-3 '
 						style={{
-							height: '90%',
+							height: '28rem',
 							overflowY: 'scroll',
 						}}
 					>

@@ -38,7 +38,7 @@ export default function ListaProducto(props) {
 			<div className='card h-100 border-0'>
 				<div className='card-body'>
 					<h5 className='card-title font-weight-bold'>Listado de Productos</h5>
-					<div className=' input-group d-flex justify-content-between flex-wrap m-0'>
+					<div className=' input-group buscar d-flex justify-content-between flex-wrap m-0'>
 						<input
 							type='search'
 							className='form-control col-lg-9 '

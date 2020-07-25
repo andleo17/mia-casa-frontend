@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ProductoCartaItem({ producto }) {
 	return (
-		<div className='card mb-3 listaBorde row'>
+		<div className='card mb-3 listaBorde col-lg-12'>
 			<div className='card-body'>
 				<div className='d-flex justify-content-around flex-wrap'>
 					<div className='col-lg-2'>

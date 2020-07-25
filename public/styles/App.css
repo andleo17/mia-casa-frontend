@@ -371,7 +371,7 @@ hr.vertical {
 	min-height: 14em;
 	height: 100%;
 	border-radius: 15px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.48);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.48);
 	transition: all 0.3s ease-in-out;
 	font-size: 1.1em;
 }
@@ -402,3 +402,35 @@ input[type='file'] #txtImagen {
     text-align: center;
     align-items: center;
 }
+
+
+.buscar input {
+    background-color: transparent;
+    border: 2px solid #d5691e;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    color: purple;
+}
+
+.buscar input:hover {
+	border: 1px solid #d5691e;
+}
+
+
+.btn-outline-sistema{
+	color: #D5691E;
+	/* border: 1px solid #D5691E; */
+	border-color: #D5691E;
+  }
+  
+  .btn-outline-sistema:hover {
+	color: #fff;
+	background-color: #D5691E;
+	border-color: #D5691E;
+  }
+/*  
+  .btn-outline-sistema.disabled, .btn-outline-sistema:disabled {
+	color: #D5691E;
+	background-color: transparent;
+  } */
