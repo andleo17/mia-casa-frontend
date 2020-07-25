@@ -89,15 +89,15 @@ export default function FrmProducto(props) {
 		formData.append("archivo", document.getElementById('txtImagen').files[0]);
 
 		var content = '<a id="a"><b id="b">hey!</b></a>';
-		var blob = new Blob([content], { type: "text/xml"});
+		var blob = new Blob([content], { type: "text/xml" });
 
 		formData.append("webmasterfile", blob);
 
 		var request = new XMLHttpRequest();
 		request.open("POST", process.env.PUBLIC_URL + 'source/' + "submitFile.php");
-		request.onload = function(ev) {
+		request.onload = function (ev) {
 			if (request.status == 200) {
-			  	console.log(ev);
+				console.log(ev);
 			} else {
 				console.log(ev);
 			}
@@ -121,82 +121,65 @@ export default function FrmProducto(props) {
 	};
 
 	return (
-		<div className='col-lg-6'>
+		<div className='col-lg-6 '>
 			<div className='card border-0 '>
 				<div className='card-body'>
-					<h5 className='card-title'>Datos del Producto</h5>
+					<h5 className='card-title  font-weight-bold'>Datos del Producto</h5>
+					<br />
 					<form
-						className='bg-light p-3 damesa'
+						className='bg-light p-3 damesa reclamof'
 						onSubmit={handleSubmit(onSubmit)}
 						encType="multipart/form-data">
 						<div className='row'>
-							<div className='col-lg-5 col-xl-5'>
-								<label
-									htmlFor='txtImagen'
-									style={{
-										position: 'absolute',
-										borderRadius: '50%',
-									}}
-									className='btn btn-shift'>
-									<i className='fa fa-pen'></i>
-								</label>
-								<input
-									type='file'
-									name='txtImagen'
-									id='txtImagen'
-									onChange={(e) =>{
-										update({
-											...item,
-											imagen: e.target.files[0].name,
-										});
-
-										var archivo = document.getElementById("txtImagen").files[0];
-										var reader = new FileReader();
-										if (archivo) {
-											reader.readAsDataURL(archivo);
-											reader.onloadend = function () {
-												document.getElementById("img").src = reader.result;
-											}
-										}
-									}
-									}
-									className='btn'
-									style={{
-										width: '0px',
-										height: '0px',
-										visibility: 'hidden',
-										position: 'absolute',
-									}}
-									accept=".jpg, .jpeg, .png"
-								/>
-								<img
-									src={process.env.PUBLIC_URL + 'source/producto/' + item.imagen}
-									className='img-fluid img-circle'
-									alt='IMG'
-									id='img'
-								/>
-							</div>
-
-							<div className='col-lg-7 col-xl-7'>
-								<div className='form-group'>
-									<label htmlFor='cboTipoProducto'>
-										Tipo de producto:
+							<div className='col-lg-6  '>
+								<div className='text-center ' >
+									<label
+										htmlFor='txtImagen'
+										style={{
+											position: 'absolute',
+											borderRadius: '50%',
+										}}
+										className='btn btn-shift'>
+										<i className='fa fa-pen'></i>
 									</label>
-									<select
-										name='tipoProducto'
-										id='cboTipoProducto'
-										ref={register({ required: true })}
-										value={item.tipoProducto.id}
-										onChange={(e) =>
+									<input
+										type='file'
+										name='txtImagen'
+										id='txtImagen'
+										onChange={(e) => {
 											update({
 												...item,
-												tipoProducto: {id: e.target.value},
-											})
+												imagen: e.target.files[0].name,
+											});
+
+											var archivo = document.getElementById("txtImagen").files[0];
+											var reader = new FileReader();
+											if (archivo) {
+												reader.readAsDataURL(archivo);
+												reader.onloadend = function () {
+													document.getElementById("img").src = reader.result;
+												}
+											}
 										}
-										className='form-control'>
-										<ListaTiposProducto />
-									</select>
+										}
+										className='btn'
+										style={{
+											width: '0px',
+											height: '0px',
+											visibility: 'hidden',
+											position: 'absolute',
+										}}
+										accept=".jpg, .jpeg, .png"
+									/>
+									<img
+										src={process.env.PUBLIC_URL + 'source/producto/' + item.imagen}
+										className='img-fluid img-circle'
+										alt='IMG'
+										id='img'
+									/>
 								</div>
+
+
 
 								<div className='form-group'>
 									<label htmlFor='txtNombre'>Nombre:</label>
@@ -222,7 +205,6 @@ export default function FrmProducto(props) {
 											</p>
 										)}
 								</div>
-
 								<div className='form-group'>
 									<label htmlFor='txtDescripcion'>
 										Descripci&oacute;n:
@@ -244,12 +226,34 @@ export default function FrmProducto(props) {
 									/>
 									{errors.descripcion &&
 										errors.descripcion.type ===
-											'required' && (
+										'required' && (
 											<p className='mt-1 ml-1 text-danger'>
 												Debe ingresar una descripción
 												del producto
 											</p>
 										)}
+								</div>
+							</div>
+
+							<div className='col-lg-6 '>
+								<div className='form-group'>
+									<label htmlFor='cboTipoProducto'>
+										Tipo de producto:
+									</label>
+									<select
+										name='tipoProducto'
+										id='cboTipoProducto'
+										ref={register({ required: true })}
+										value={item.tipoProducto.id}
+										onChange={(e) =>
+											update({
+												...item,
+												tipoProducto: { id: e.target.value },
+											})
+										}
+										className='form-control'>
+										<ListaTiposProducto />
+									</select>
 								</div>
 
 								<div className='form-group'>
@@ -348,12 +352,14 @@ export default function FrmProducto(props) {
 										</label>
 									</div>
 								</div>
+
 							</div>
 						</div>
-						<div className='text-center'>
-							<button className='btn btn-shift' type='submit'>
+						<div className='d-flex justify-content-end  flex-wrap'>
+							<button className='btnColor border-0 text-decoration-none' type='submit'>
 								{item.id ? 'Modificar' : 'Registrar'}
 							</button>
+
 						</div>
 					</form>
 				</div>

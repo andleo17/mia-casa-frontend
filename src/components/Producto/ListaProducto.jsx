@@ -37,25 +37,27 @@ export default function ListaProducto(props) {
 		<div className='col-lg-6'>
 			<div className='card h-100 border-0'>
 				<div className='card-body'>
-					<h5 className='card-title'>Listado de Productos</h5>
-					<div className=' input-group '>
+					<h5 className='card-title font-weight-bold'>Listado de Productos</h5>
+					<div className=' input-group d-flex justify-content-between flex-wrap m-0'>
 						<input
 							type='search'
-							className='form-control col-lg-10 '
+							className='form-control col-lg-9 '
 							placeholder='Buscar...'
 							aria-label='Busque un producto'
 						/>
 						<button
-							className='btn btn-shift'
+							className='btnColor d-flex align-items-center border-0 justify-content-center
+							text-decoration-none'
 							type='button'
-							onClick={() => {
-								update(initial);
-							}}>
-							<i className='fa fa-plus' />
-							<span className='ml-2'>Agregar</span>
+							>
+							
+							<span  className='' >  <i className='fa fa-plus m-1' /> Agregar</span>
 						</button>
+					
 					</div>
-					<div className='mt-3'>
+					<div className='mt-3'
+					 style={{height:'30rem', overflowY:'scroll'}}
+					 >
 						{data.listarProducto.map((producto) => {
 							return (
 								<ProductoItem

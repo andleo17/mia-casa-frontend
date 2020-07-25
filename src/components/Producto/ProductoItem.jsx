@@ -31,10 +31,10 @@ export default function ProductoItem({ producto, url, showData,  props }) {
 	const [darBajaProducto] = useMutation(DAR_BAJA_PRODUCTO);
 
 	return (
-		<div className='card mb-3'>
+		<div className='card listaBorde mb-3'>
 			<div className='card-body'>
 				<div className='row'>
-					<div className='col-xl-2 col-lg-2'>
+					<div className='col-xl-2 col-lg-2 text-center'>
 						<img
 							src={process.env.PUBLIC_URL + "source/producto/" + producto.imagen}
 							className='img-fluid'
@@ -53,16 +53,16 @@ export default function ProductoItem({ producto, url, showData,  props }) {
 						<div className=' row d-flex justify-content-around flex-wrap '>
 							<button
 								type='button'
-								className=' btn border-0 rounded-circle p-2'
+								className=' btn border-0 circuloverde rounded-circle p-2'
 								onClick={
 									()=>{
 										showData()
 									}
 								}
-								style={{ background: '#BFE6E0', width:'50px' }}>
+								style={{ background: '#BFE6E0' }}>
 								<i className='fa fa-pen m-0' />
 							</button>
-							<button className=' btn border-0  rounded-circle p-2' style={{ background: '#BFE6E0', width:'50px'  }}
+							<button className=' btn border-0 circuloverde rounded-circle p-2' style={{ background: '#BFE6E0'}}
 								onClick={() =>
 									darBajaProducto({
 										variables: { id: parseInt(producto.id), estado: false },
@@ -76,7 +76,7 @@ export default function ProductoItem({ producto, url, showData,  props }) {
 							>
 								<i className='fa fa-ban' />
 							</button>
-							<button className='btn border-0 rounded-circle p-2' style={{ background: '#BFE6E0', width:'50px'  }}
+							<button className='btn border-0 circuloverde rounded-circle p-2' style={{ background: '#BFE6E0'}}
 								onClick={() =>
 									eliminarProducto({
 										variables: { id: parseInt(producto.id) },
