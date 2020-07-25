@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import Carta from './Carta';
+import ListaTiposProducto from '../Producto/ListadoTiposProducto';
 
 export const QUERY_LISTAR_PRODUCTO = gql`
 	query ListarProducto {
@@ -35,8 +36,11 @@ export default function ListaProductoPedido() {
 				<div className='card-body pt-0' style={{
 					height: '30rem'
 				}}>
-					<select name="" id="" className='form-control col-lg-12  mb-2 ' >
-						<section>TODOS</section>
+					<select
+						name='tipoProducto'
+						id='cboTipoProducto'
+						className='form-control'>
+						<ListaTiposProducto />
 					</select>
 
 					<div className='  input-group d-flex justify-content-between flex-wrap '>
