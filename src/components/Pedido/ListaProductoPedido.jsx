@@ -30,7 +30,7 @@ export default function ListaProductoPedido() {
 	if (loading) return 'Cargando...';
 	if (error) return 'Error';
 	return (
-		<div className='col-lg-7' >
+		<div className='col-lg-7 mb-5' >
 			<div className='card  border-0'>
 				<div className='card-body pt-0' style={{
 					height: '30rem'

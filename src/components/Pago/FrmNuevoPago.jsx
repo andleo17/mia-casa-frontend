@@ -56,7 +56,7 @@ export default function FrmNuevoPago(props) {
 			<div className='card-body'>
 				<h5 className='card-title'>Datos del pago</h5>
 				<div
-					className='card bg-light mb-3 ml-4'
+					className='card mb-3 ml-4 reclamof'
 					style={{ width: '95%' }}>
 					<div className='card-body'>
 						<form onSubmit={handleSubmit(onSubmit)}>
@@ -133,7 +133,7 @@ export default function FrmNuevoPago(props) {
 							</div>
 							<div className='row justify-content-end'>
 								<button
-									class=' d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
+									class='btn-dark mr-3 d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
 									onClick={()=>{
 										setPayData(initialState)
 									}}
@@ -141,7 +141,7 @@ export default function FrmNuevoPago(props) {
 									Cancelar
 								</button>
 								<button
-									class=' btnColor d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
+									class='mr-3 btnColor d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
 									type='submit'>
 									Registrar
 								</button>

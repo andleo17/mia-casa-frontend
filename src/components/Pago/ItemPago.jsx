@@ -17,7 +17,7 @@ export default function ItemPago(props) {
 	const [eliminarPago] = useMutation(MUTATION_ELIMINAR_PAGO);
 
 	return (
-		<div className='card mb-3'>
+		<div className='card listaBorde mb-3'>
 			<div className='card-body'>
 				<div className='row'>
 					<div className='col-2 row align-items-center'>
@@ -28,8 +28,8 @@ export default function ItemPago(props) {
 						/>
 					</div>
 					<div className='col-6'>
-						<h4>Pago {id}</h4>
-						<span>Monto: {monto}</span>
+						<h5 className='colorLetra'>Pago {id}</h5>
+						<span className='colorLetra2'>Monto: {monto}</span>
 						<br />
 					</div>
 					<div className='col-4 col-btn align-self-end'>
