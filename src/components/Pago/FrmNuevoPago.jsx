@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
 import Swal from 'sweetalert2';
+import { QUERY_LISTAR_PEDIDO } from './ListaPedido';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
@@ -46,7 +47,7 @@ export default function FrmNuevoPago(props) {
 				tipoPago: data.cboTipo,
 				pedido: data.txtPedido,
 			},
-			refetchQueries: [{ query: QUERY_LISTAR_PAGO }],
+			refetchQueries: [{ query: QUERY_LISTAR_PAGO },{query: QUERY_LISTAR_PEDIDO}],
 		});
 		setFlag(true)
 	};

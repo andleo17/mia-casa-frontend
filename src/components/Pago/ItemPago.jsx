@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
+import { QUERY_LISTAR_PEDIDO } from '../Pago/ListaPedido';
 import Swal from 'sweetalert2'
 
 const MUTATION_ELIMINAR_PAGO = gql`
@@ -15,6 +18,23 @@ const MUTATION_ELIMINAR_PAGO = gql`
 export default function ItemPago(props) {
 	const { numero, monto, url, serie, fecha, tipo, idpedido, mesa, id } = props;
 	const [eliminarPago] = useMutation(MUTATION_ELIMINAR_PAGO);
+	const [flag, setFlag] = useState(false);
+
+	useEffect(() => {
+		if(flag){
+			if( eliminarPago) {
+				Swal.fire({
+					position: 'top-end',
+					icon: 'error',
+					title: 'Pago eliminado correctamente',
+					showConfirmButton: false,
+					timer: 1000
+				  })
+				setFlag(false)
+			}
+		}
+		;
+	});
 
 	return (
 		<div className='card listaBorde mb-3'>
@@ -53,15 +73,20 @@ export default function ItemPago(props) {
 							}>
 							<i className='fa fa-search'></i>
 						</button>
-						<button className='btn border-0 rounded-circle p-2 ml-2' style={{ width:'43px', background: '#BFE6E0'  }} onClick={() =>
+						<button className='btn border-0 rounded-circle p-2 ml-2' style={{ width:'43px', background: '#BFE6E0'  }} onClick={() =>{ 
 								eliminarPago({
 									variables: { id: parseInt(id) },
 									refetchQueries: [
 										{
-											query: QUERY_LISTAR_PAGO,
+											query: QUERY_LISTAR_PAGO
 										},
+										{
+											query: QUERY_LISTAR_PEDIDO
+										}
 									],
 								})
+								setFlag(true)
+							}
 							}>
 							<i className='fa fa-trash'></i>
 						</button>

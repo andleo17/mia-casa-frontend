@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ItemPedido from './ItemPedido';
 import dish from '../../assets/dish.png';
 
 export const QUERY_LISTAR_PEDIDO = gql`
-query ListarPedido {
-    listarPedido{
+query ListarPedido($pago: Boolean, $mesa: Int) {
+    listarPedido(pago: $pago, mesa: $mesa){
         id
         mesa{
             id
@@ -20,8 +20,15 @@ query ListarPedido {
 `;
 
 export default function ListaPedido(props)  {
-    const { loading, error, data } = useQuery(QUERY_LISTAR_PEDIDO);
+    const [mesa, setFiltro] = useState(undefined);
     const { setPayData, initialState } = props;
+    const { loading, error, data, refetch } = useQuery(QUERY_LISTAR_PEDIDO,
+        {
+            variables: {
+                mesa: parseInt(mesa) ,
+                pago: false
+            }
+        });
     // this.state = {monto: 0, numeropago: ""};   
 
     if (loading) return <h1>Cargando...</h1>;
@@ -40,9 +47,33 @@ export default function ListaPedido(props)  {
                     <div className='input-group mb-3 pl-4'>
                         <input
                             type='search'
+                            id='txtbuscar'
                             className='form-control'
-                            placeholder='Buscar...'
-                            aria-label='Busque un pedido...'
+                            placeholder='Buscar por mesa...'
+                            aria-label='Buscar pedido...'
+                            defaultValue={mesa}
+                            onChange={(e) => {
+								if (e.target.value === '') {
+										setFiltro(undefined);
+										refetch();
+								}
+							}}
+                            onKeyDown={(e) => {
+                                    if (e.keyCode === 13 && !e.shiftKey) {
+                                        e.preventDefault();
+                                        if (e.target.value === '') {
+                                            setFiltro(undefined);
+                                            refetch();
+                                        } else {
+                                            setFiltro(
+                                                document.getElementById(
+                                                    'txtbuscar'
+                                                ).value
+                                            );
+                                            refetch();
+                                        }
+                                    }
+                            }}
                         />
                     </div>
 
