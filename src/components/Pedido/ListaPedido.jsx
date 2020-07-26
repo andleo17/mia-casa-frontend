@@ -45,16 +45,8 @@ export default function ListaPedido(props) {
 		}
     }, [data]);
     
-    if (loading) return <h1>Cargando...</h1>;
-    if (error){
-        return (
-            <h1>
-                No se ha podido establecer la conexión con el servidor,
-                intentelo nuevamente
-            </h1>
-       );
-    }
-
+    if (loading) return 'Cargando...';
+    if (error) return 'No se ha podido establecer la conexión con el servidor, intentelo nuevamente';
     
     return (
         <div className=' nose col-lg-12'  >

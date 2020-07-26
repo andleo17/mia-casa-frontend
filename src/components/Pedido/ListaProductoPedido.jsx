@@ -32,7 +32,7 @@ export default function ListaProductoPedido(props) {
 	const [categ, setCateg] = useState(1);
 
 	if (loading) return 'Cargando...';
-	if (error) return 'Error';
+	if (error) return 'No se ha podido establecer la conexión con el servidor, intentelo nuevamente';
 	return (
 		<div className='col-lg-7 mb-5' >
 			<div className='card  border-0'>
