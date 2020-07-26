@@ -17,6 +17,7 @@ export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
                     producto{
                         id
                         nombre
+                        imagen
                     }
                 }
             }
