@@ -5,9 +5,11 @@ export default function ProductoPedidoItem({detallePedido}) {
 		<div className='card mb-3 listaBorde ' >
             <div className='card-body'>
                 <div className='d-flex justify-content-around flex-wrap'>
-                    <div className='col-lg-2'>
+                    <div className='col-lg-4'>
                         <img
+                            src={process.env.PUBLIC_URL + "/source/producto/" + detallePedido.producto.imagen}
                             className='img-fluid'
+                            alt='producto'
                         />
                     </div>
                     <div className='col-lg-6'>

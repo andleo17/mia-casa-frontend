@@ -7,11 +7,7 @@ export default function ProductoCartaItem({ producto }) {
 				<div className='d-flex justify-content-around flex-wrap'>
 					<div className='col-lg-2'>
 						<img
-							src={
-								process.env.PUBLIC_URL +
-								"source/producto/" +
-								producto.imagen
-							}
+							src={process.env.PUBLIC_URL + "/source/producto/" + producto.imagen}
 							className='img-fluid'
 							alt='producto'
 						/>
