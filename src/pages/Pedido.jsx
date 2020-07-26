@@ -16,17 +16,17 @@ export const initialState = {
     mesa: {
       numero: '',
     },
-    productos: {
+    productos: [{
       precio: '',
       cantidad: '',
       entregado: '',
       estado: '',
       producto: '',
-    }
+    }]
 };
 
 export default function Pedido({props}) {
-  const mesaId = props.match.params.id;
+  const mesaId = props.match.params.num;
   const [selectedItem, setSelectedItem] = useState(initialState);
 
 	return (
