@@ -30,6 +30,7 @@ export default function ItemReclamo({reclamo, showData, props}){
 						<label className='colorLetra font-weight-bold'>Reclamo N° {reclamo.id}</label> <br/>
 						<label>Pedido: {reclamo.detallePedido.pedido.id}</label>
 						<label className='colorLetra2'>Producto: {reclamo.detallePedido.producto.nombre}</label>
+						<label>Motivo: {reclamo.motivo}</label>
 					</div>
 					<div class='col-4 col-btn align-self-center'>
 						<button
