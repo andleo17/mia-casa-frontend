@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function ProductoCartaItem({ producto }) {
+export default function ProductoCartaItem(props) {
+	const { producto, item, update, initial } = props;
+
+	console.log(item)
+	
 	return (
 		<div className='card mb-3 listaBorde col-lg-12'>
 			<div className='card-body'>
@@ -24,10 +28,21 @@ export default function ProductoCartaItem({ producto }) {
 							<button
 								type='button'
 								className=' btn border-0 rounded-circle circuloverde p-2'
-								style={{ background: '#BFE6E0'}}>
+								style={{ background: '#BFE6E0'}}
+							>
 								<i className='fa fa-minus m-0' />
 							</button>
-							<input type="number" name="" id="" className='form-control' style={{width:'40%'}} />
+
+							<input
+								type="number"
+								name=""
+								id=""
+								className='form-control'
+								style={{width:'40%'}}
+								min="0"
+								max={producto.cantidad}
+							/>
+							
 							<button className='btn border-0 rounded-circle p-2 circuloverde m-0' style={{ background: '#BFE6E0'  }}>
 								<i className='fa fa-plus' />
 							</button>

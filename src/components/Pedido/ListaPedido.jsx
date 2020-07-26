@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import { Link } from "react-router-dom";
 import ProductoPedidoItem from './ProductoPedidoItem';
 
 export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
-	query buscarPedido($mesaId: Int!){
-		listarMesa( filtro: $mesaId){
+	query buscarPedido($mId: Int!){
+		listarMesa( filtro: $mId){
             id
             numero
             pedidoActual{
                 id
+                monto
                 productos{
                     cantidad
                     entregado
@@ -18,6 +20,7 @@ export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
                         id
                         nombre
                         imagen
+                        cantidad
                     }
                 }
             }
@@ -25,20 +28,26 @@ export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
 	}
 `;
 
-export default function ListaPedido({mesaId}) {
-    mesaId = parseInt(mesaId);
-    const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTOS_PEDIDOS, { variables: { mesaId } });
+export default function ListaPedido(props) {
+    const { idMesa, item, update, initial } = props;
+    const mId = parseInt(idMesa);
+    const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTOS_PEDIDOS, { variables: { mId } });
 
-    if (loading) return <h1>Cargando...</h1>;
-    if (error){
-        return (
-            <h1>
-                No se ha podido establecer la conexión con el servidor,
-                intentelo nuevamente
-            </h1>
-       );
-    }
-
+    useEffect(() => {
+		if (data) {
+			update({
+                ...item,
+                mesaId: data.listarMesa[0].id,
+                mesa: {numero: data.listarMesa[0].numero},
+                productos: data.listarMesa[0].pedidoActual? data.listarMesa[0].pedidoActual.productos: [],
+                monto: data.listarMesa[0].pedidoActual ? data.listarMesa[0].pedidoActual.monto: 0,
+            });
+		}
+    }, [data]);
+    
+    if (loading) return 'Cargando...';
+    if (error) return 'No se ha podido establecer la conexión con el servidor, intentelo nuevamente';
+    
     return (
         <div className=' nose col-lg-12'  >
             <div className='card-body bg-light reclamof col-lg-12' >
@@ -59,11 +68,11 @@ export default function ListaPedido({mesaId}) {
                     overflowY: 'scroll',
                 }}
             >
-                {data.listarMesa[0].pedidoActual ? data.listarMesa[0].pedidoActual.productos.map((producto) => {
+                {item.productos ? item.productos.map((producto) => {
                     return (
                         <ProductoPedidoItem
                             detallePedido={producto}
-                            key={producto.cantidad}
+                            key={producto.producto.id}
                         />
                     );
                 }): null}
@@ -72,22 +81,25 @@ export default function ListaPedido({mesaId}) {
             
             </div>
             <div>
-                <label htmlFor="" className='row d-flex justify-content-end flex-wrap mr-3 mt-2'>Total: S/ 300</label>
+                <label htmlFor="" className='row d-flex justify-content-end flex-wrap mr-3 mt-2'>
+                    Total: S/ {item.monto}
+                </label>
             </div>
             <div className='row d-flex justify-content-end flex-wrap mt-3 mb-3'>
-                <button
-                    className='btn-dark  mr-3 d-flex align-items-center border-0 justify-content-center
-							text-decoration-none'
-                    
-                >
-                    <span className='' >   Cancelar</span>
-                </button>
+
+                <Link to='/venta' style={{textDecoration:'none'}}>
+                    <button 
+                        className='btn-dark  mr-3 d-flex align-items-center border-0 justify-content-center text-decoration-none'
+                        
+                    >
+                        <span className=''>Cancelar</span>
+                    </button>
+                </Link>
                 <button
                     className='btnColor d-flex align-items-center border-0 mr-2 justify-content-center
 							text-decoration-none'
-                    
                 >
-                    <span className='' > Confirmar</span>
+                    <span className=''>Confirmar</span>
                 </button>
             </div>
         </div>

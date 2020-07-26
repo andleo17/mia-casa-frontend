@@ -26,12 +26,13 @@ export const QUERY_LISTAR_PRODUCTO = gql`
 	}
 `;
 
-export default function ListaProductoPedido({ mesa, props }) {
+export default function ListaProductoPedido(props) {
+	const { item, update, initial } = props;
 	const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTO);
 	const [categ, setCateg] = useState(1);
 
 	if (loading) return 'Cargando...';
-	if (error) return 'Error';
+	if (error) return 'No se ha podido establecer la conexión con el servidor, intentelo nuevamente';
 	return (
 		<div className='col-lg-7 mb-5' >
 			<div className='card  border-0'>
@@ -78,9 +79,11 @@ export default function ListaProductoPedido({ mesa, props }) {
 									cat.productos.map((producto) => {
 										return (
 											<ProductoCartaItem
-												url={producto.imagen}
 												producto={producto}
 												key={producto.id}
+												item={item}
+												update={update}
+            									initial = {initial}
 											/>
 										);
 									})

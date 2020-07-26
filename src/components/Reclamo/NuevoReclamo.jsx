@@ -40,7 +40,7 @@ export default function NuevoReclamo(props){
     const { item, update, initial} = props;
     const [flag, setFlag] = useState(false);
     const { register, handleSubmit, errors } = useForm();
-
+    console.log(item);
     const mutation = item.id
 	 	? MODIFICAR_RECLAMO
 	 	: REGISTRAR_RECLAMO;
@@ -111,11 +111,10 @@ export default function NuevoReclamo(props){
                                             onChange={(e) =>
                                                 update({
                                                     ...item,
-                                                    detallePedido:{
-                                                        pedido:{
-                                                            id: e.target.value,
-                                                        },
-                                                    },
+                                                    ...item.
+                                                    detallePedido.
+                                                    pedido,
+                                                    id: e.target.value,
                                                 })
                                             }
                                             disabled
@@ -135,7 +134,15 @@ export default function NuevoReclamo(props){
                                             ref={register({ required: true})}
                                             // className='form-control btn btn-outline-sistema '
                                             style={{ width: '100%' }}
-                                            value={item.detallePedido.producto.id}
+                                            defaultValue={item.detallePedido.producto.id}
+                                            // onChange={(e) =>
+                                            //     update({
+                                            //         ...item.
+                                            //         detallePedido.
+                                            //         producto,
+                                            //         id: e.target.value,
+                                            //     })
+                                            // }
                                         // value={nombreLi}
                                         >
                                             {item.detallePedido.pedido.productos.map(
