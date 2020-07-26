@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ItemPago from './ItemPago';
 import money from '../../assets/money.png';
 
 export const QUERY_LISTAR_PAGO = gql`
-	query ListarPago {
-		listarPago {
+	query ListarPago($id: ID) {
+		listarPago(id: $id) {
 			id
 			serie
 			numero
@@ -42,7 +42,13 @@ export const QUERY_LISTAR_PAGO = gql`
 `;
 
 export default function ListaPago(){
-    const { loading, error, data } = useQuery(QUERY_LISTAR_PAGO);
+	const [id, setFiltro] = useState(undefined);
+	const { loading, error, data, refetch } = useQuery(QUERY_LISTAR_PAGO,
+		{
+			variables: {
+				id: parseInt(id)
+			}
+		});
 
     if (loading) return <h1>Cargando...</h1>;
 	if (error)
@@ -59,10 +65,34 @@ export default function ListaPago(){
                     <h5 className='card-title'>Listado de Pagos</h5>
                     <div className='input-group mb-3 pl-4'>
                         <input
-                            type='search'
+							type='search'
+							id='txtBuscar'
                             className='form-control'
                             placeholder='Buscar...'
-                            aria-label='Busque un pago'
+							aria-label='Busque un pago'
+							defaultValue={id}
+                            onChange={(e) => {
+								if (e.target.value === '') {
+										setFiltro(undefined);
+										refetch();
+								}
+							}}
+							onKeyDown={(e) => {
+								if (e.keyCode === 13 && !e.shiftKey) {
+									e.preventDefault();
+									if (e.target.value === '') {
+										setFiltro(undefined);
+										refetch();
+									} else {
+										setFiltro(
+											document.getElementById(
+												'txtBuscar'
+											).value
+										);
+										refetch();
+									}
+								}
+							}}
                         />
                         
                     </div>

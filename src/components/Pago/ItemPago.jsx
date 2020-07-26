@@ -25,7 +25,7 @@ export default function ItemPago(props) {
 			if( eliminarPago) {
 				Swal.fire({
 					position: 'top-end',
-					icon: 'error',
+					icon: 'success',
 					title: 'Pago eliminado correctamente',
 					showConfirmButton: false,
 					timer: 1000
