@@ -11,6 +11,7 @@ export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
             numero
             pedidoActual{
                 id
+                monto
                 productos{
                     cantidad
                     entregado
@@ -39,8 +40,8 @@ export default function ListaPedido(props) {
                 mesaId: data.listarMesa[0].id,
                 mesa: {numero: data.listarMesa[0].numero},
                 productos: data.listarMesa[0].pedidoActual? data.listarMesa[0].pedidoActual.productos: [],
+                monto: data.listarMesa[0].pedidoActual ? data.listarMesa[0].pedidoActual.monto: 0,
             });
-            console.log(item);
 		}
     }, [data]);
     
@@ -75,11 +76,11 @@ export default function ListaPedido(props) {
                     overflowY: 'scroll',
                 }}
             >
-                {data.listarMesa[0].pedidoActual ? data.listarMesa[0].pedidoActual.productos.map((producto) => {
+                {item.productos ? item.productos.map((producto) => {
                     return (
                         <ProductoPedidoItem
                             detallePedido={producto}
-                            key={producto.cantidad}
+                            key={producto.producto.id}
                         />
                     );
                 }): null}
@@ -88,7 +89,9 @@ export default function ListaPedido(props) {
             
             </div>
             <div>
-                <label htmlFor="" className='row d-flex justify-content-end flex-wrap mr-3 mt-2'>Total: S/ 300</label>
+                <label htmlFor="" className='row d-flex justify-content-end flex-wrap mr-3 mt-2'>
+                    Total: S/ {item.monto}
+                </label>
             </div>
             <div className='row d-flex justify-content-end flex-wrap mt-3 mb-3'>
                 <button

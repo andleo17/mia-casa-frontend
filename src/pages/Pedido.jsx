@@ -7,7 +7,7 @@ export const initialState = {
     monto: '',
     mesaId: '',
     pago: {
-		id: '',
+		  id: '',
     },
     personal: {
       id: '',
