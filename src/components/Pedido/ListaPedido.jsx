@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import { Link } from "react-router-dom";
 import ProductoPedidoItem from './ProductoPedidoItem';
-import { useEffect } from 'react';
 
 export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
 	query buscarPedido($mId: Int!){
@@ -86,19 +86,20 @@ export default function ListaPedido(props) {
                 </label>
             </div>
             <div className='row d-flex justify-content-end flex-wrap mt-3 mb-3'>
-                <button
-                    className='btn-dark  mr-3 d-flex align-items-center border-0 justify-content-center
-							text-decoration-none'
-                    
-                >
-                    <span className='' >   Cancelar</span>
-                </button>
+
+                <Link to='/venta' style={{textDecoration:'none'}}>
+                    <button 
+                        className='btn-dark  mr-3 d-flex align-items-center border-0 justify-content-center text-decoration-none'
+                        
+                    >
+                        <span className=''>Cancelar</span>
+                    </button>
+                </Link>
                 <button
                     className='btnColor d-flex align-items-center border-0 mr-2 justify-content-center
 							text-decoration-none'
-                    
                 >
-                    <span className='' > Confirmar</span>
+                    <span className=''>Confirmar</span>
                 </button>
             </div>
         </div>
