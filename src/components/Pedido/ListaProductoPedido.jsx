@@ -26,7 +26,8 @@ export const QUERY_LISTAR_PRODUCTO = gql`
 	}
 `;
 
-export default function ListaProductoPedido({ mesa, props }) {
+export default function ListaProductoPedido(props) {
+	const { item, update, initial } = props;
 	const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTO);
 	const [categ, setCateg] = useState(1);
 
@@ -78,9 +79,11 @@ export default function ListaProductoPedido({ mesa, props }) {
 									cat.productos.map((producto) => {
 										return (
 											<ProductoCartaItem
-												url={producto.imagen}
 												producto={producto}
 												key={producto.id}
+												item={item}
+												update={update}
+            									initial = {initial}
 											/>
 										);
 									})

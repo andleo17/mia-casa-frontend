@@ -2,10 +2,11 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ProductoPedidoItem from './ProductoPedidoItem';
+import { useEffect } from 'react';
 
 export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
-	query buscarPedido($mesaId: Int!){
-		listarMesa( filtro: $mesaId){
+	query buscarPedido($mId: Int!){
+		listarMesa( filtro: $mId){
             id
             numero
             pedidoActual{
@@ -18,6 +19,7 @@ export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
                         id
                         nombre
                         imagen
+                        cantidad
                     }
                 }
             }
@@ -25,10 +27,23 @@ export const QUERY_LISTAR_PRODUCTOS_PEDIDOS = gql`
 	}
 `;
 
-export default function ListaPedido({mesaId}) {
-    mesaId = parseInt(mesaId);
-    const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTOS_PEDIDOS, { variables: { mesaId } });
+export default function ListaPedido(props) {
+    const { idMesa, item, update, initial } = props;
+    const mId = parseInt(idMesa);
+    const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTOS_PEDIDOS, { variables: { mId } });
 
+    useEffect(() => {
+		if (data) {
+			update({
+                ...item,
+                mesaId: data.listarMesa[0].id,
+                mesa: {numero: data.listarMesa[0].numero},
+                productos: data.listarMesa[0].pedidoActual? data.listarMesa[0].pedidoActual.productos: [],
+            });
+            console.log(item);
+		}
+    }, [data]);
+    
     if (loading) return <h1>Cargando...</h1>;
     if (error){
         return (
@@ -39,6 +54,7 @@ export default function ListaPedido({mesaId}) {
        );
     }
 
+    
     return (
         <div className=' nose col-lg-12'  >
             <div className='card-body bg-light reclamof col-lg-12' >
