@@ -72,16 +72,12 @@ export default function ListaPedido({ numero }) {
 				</span>
 			</div>
 			<div className='row d-flex justify-content-end flex-wrap mt-3 mb-3'>
-				<Link to='/venta' style={{ textDecoration: 'none' }}>
-					<button className='btn-dark  mr-3 d-flex align-items-center border-0 justify-content-center text-decoration-none'>
-						<span className=''>Cancelar</span>
-					</button>
+				<Link className='btn btn-danger' to='/reclamo'>
+					Reclamar
 				</Link>
-				<button
-					className='btnColor d-flex align-items-center border-0 mr-2 justify-content-center
-							text-decoration-none'>
-					<span className=''>Confirmar</span>
-				</button>
+				<Link className='btn btn-success' to='/pago'>
+					<span>Pagar</span>
+				</Link>
 			</div>
 		</div>
 	);

@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { QUERY_LISTAR_PAGO } from '../Pago/ListaPago';
 import Swal from 'sweetalert2';
 import { QUERY_LISTAR_PEDIDO } from './ListaPedido';
+import { useHistory } from 'react-router';
+import { QUERY_LISTAR_MESA } from '../Mesa/ListaMesa';
 
 const MUTATION_REGISTRAR_PAGO = gql`
 	mutation registrarPago($monto: Float!, $tipoPago: ID!, $pedido: ID!) {
@@ -20,7 +22,10 @@ export default function FrmNuevoPago(props) {
 	const { item, setPayData, initialState } = props;
 	const { register, handleSubmit, errors } = useForm();
 	const [flag, setFlag] = useState(false);
-	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO);
+	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO, {
+		refetchQueries: [{ query: QUERY_LISTAR_MESA }],
+	});
+	const history = useHistory();
 
 	useEffect(() => {
 		if (flag) {
@@ -34,9 +39,10 @@ export default function FrmNuevoPago(props) {
 				});
 				setPayData(initialState);
 				setFlag(false);
+				history.push('/venta');
 			}
 		}
-	}, [flag, registrarPago, setPayData, initialState]);
+	}, [flag, registrarPago, setPayData, initialState, history]);
 
 	const onSubmit = (data) => {
 		console.log(data);

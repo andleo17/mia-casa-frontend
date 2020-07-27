@@ -5,7 +5,7 @@ import MesaPedidoItem from '../components/Mesa/MesaPedidoItem';
 import { NavLink } from 'react-router-dom';
 import { QUERY_USUARIO_ACTUAL } from './App';
 
-const QUERY_LISTAR_MESA = gql`
+export const QUERY_LISTAR_MESA = gql`
 	query ListarMesa {
 		listarMesa {
 			id

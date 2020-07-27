@@ -3,6 +3,8 @@ import { useQuery, useMutation } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import ListaTiposProducto from '../Producto/ListadoTiposProducto';
 import ProductoCartaItem from './ProductoCartaItem';
+import { useHistory } from 'react-router';
+import { QUERY_LISTAR_MESA } from '../../pages/Venta';
 
 export const QUERY_LISTAR_PRODUCTO = gql`
 	query ListarProducto {
@@ -41,6 +43,7 @@ export default function ListaProductoPedido({ mesa }) {
 	const [registrar] = useMutation(MUTATION_REGISTRAR_PEDIDO, {
 		variables: { mesa, productos },
 	});
+	const history = useHistory();
 
 	const agregarProducto = (producto) => {
 		const iProducto = productos.findIndex(
@@ -111,7 +114,14 @@ export default function ListaProductoPedido({ mesa }) {
 					</div>
 				</div>
 
-				<button className='btn btn-shift' onClick={registrar}>
+				<button
+					className='btn btn-shift'
+					onClick={() => {
+						registrar({
+							refetchQueries: [{ query: QUERY_LISTAR_MESA }],
+						});
+						history.push('/venta');
+					}}>
 					Confirmar
 				</button>
 			</div>
