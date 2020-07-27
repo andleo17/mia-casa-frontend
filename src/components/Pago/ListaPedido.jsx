@@ -8,6 +8,7 @@ export const QUERY_LISTAR_PEDIDO = gql`
 	query ListarPedido($pago: Boolean, $mesa: Int) {
 		listarPedido(pago: $pago, mesa: $mesa) {
 			id
+			monto
 			mesa {
 				id
 				numero
@@ -86,18 +87,12 @@ export default function ListaPedido(props) {
 							<ItemPedido
 								url={dish}
 								mesanumero={pedido.mesa.numero}
-								monto={pedido.productos.reduce(
-									(sum, p) => sum + p.precio,
-									0
-								)}
+								monto={pedido.monto}
 								id={pedido.id}
 								setData={() =>
 									setPayData({
 										numero: pedido.id,
-										monto: pedido.productos.reduce(
-											(sum, p) => sum + p.precio,
-											0
-										),
+										monto: pedido.monto,
 									})
 								}
 							/>
