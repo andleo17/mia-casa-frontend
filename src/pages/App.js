@@ -14,12 +14,15 @@ import { gql } from 'apollo-boost';
 import { useQuery } from 'react-apollo';
 import Pedido from './Pedido';
 
-const QUERY_USUARIO_ACTUAL = gql`
+export const QUERY_USUARIO_ACTUAL = gql`
 	query UsuarioActual {
 		usuarioActual {
 			id
 			nombres
 			apellidos
+			credencial {
+				rol
+			}
 		}
 	}
 `;
@@ -52,8 +55,8 @@ function App() {
 							<Route exact path='/venta' component={Venta} />
 							<Route
 								exact
-								path='/venta/mesa/:id,:num'
-								component={(props) => <Pedido props = {props} />}
+								path='/venta/mesa/:numero'
+								component={Pedido}
 							/>
 							<Route exact path='/reclamo' component={Reclamo} />
 							<Route exact path='/mesa' component={Mesa} />

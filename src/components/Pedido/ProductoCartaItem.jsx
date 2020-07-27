@@ -1,52 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function ProductoCartaItem(props) {
-	const { producto, item, update, initial } = props;
-
-	console.log(item)
-	
+export default function ProductoCartaItem({ producto }) {
+	const [cantidad, setCantidad] = useState(0);
+	const cambiarCantidad = (accion) => {
+		if (accion === '-') {
+			const cantidadNueva = cantidad - 1;
+			if (cantidadNueva >= 0) setCantidad(cantidadNueva);
+		} else {
+			const cantidadNueva = cantidad + 1;
+			if (cantidadNueva <= producto.cantidad) setCantidad(cantidadNueva);
+		}
+	};
 	return (
 		<div className='card mb-3 listaBorde col-lg-12'>
 			<div className='card-body'>
 				<div className='d-flex justify-content-around flex-wrap'>
 					<div className='col-lg-2'>
 						<img
-							src={process.env.PUBLIC_URL + "/source/producto/" + producto.imagen}
+							src={
+								process.env.PUBLIC_URL +
+								'/source/producto/' +
+								producto.imagen
+							}
 							className='img-fluid'
 							alt='producto'
 						/>
 					</div>
 					<div className='col-lg-4'>
 						<h5 className='colorLetra'>{producto.nombre}</h5>
-						<span>
-							{/* Estado: {producto.estado ? 'Vigente' : 'No Vigente'} */}
-							 Precio: s/{producto.precio}
-						</span>
+						<span>Precio: s/{producto.precio}</span>
 					</div>
-					<div className='col-lg-4 mt-3  d-flex justify-content-around flex-wrap'>
-						<div className='row'>
-							<button
-								type='button'
-								className=' btn border-0 rounded-circle circuloverde p-2'
-								style={{ background: '#BFE6E0'}}
-							>
-								<i className='fa fa-minus m-0' />
-							</button>
-
-							<input
-								type="number"
-								name=""
-								id=""
-								className='form-control'
-								style={{width:'40%'}}
-								min="0"
-								max={producto.cantidad}
-							/>
-							
-							<button className='btn border-0 rounded-circle p-2 circuloverde m-0' style={{ background: '#BFE6E0'  }}>
-								<i className='fa fa-plus' />
-							</button>
-						</div>
+					<div className='col-lg-4 control-pedido'>
+						<button
+							type='button'
+							className='btn-circuloverde'
+							onClick={() => cambiarCantidad('-')}>
+							<i className='fa fa-minus m-0' />
+						</button>
+						<input
+							type='number'
+							className='form-control'
+							min='0'
+							max={producto.cantidad}
+							value={cantidad}
+							onChange={(e) =>
+								setCantidad(parseInt(e.target.value) || 0)
+							}
+						/>
+						<button
+							type='button'
+							className='btn-circuloverde'
+							onClick={() => cambiarCantidad('+')}>
+							<i className='fa fa-plus' />
+						</button>
 					</div>
 				</div>
 			</div>

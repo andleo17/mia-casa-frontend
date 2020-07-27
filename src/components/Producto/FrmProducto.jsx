@@ -80,28 +80,31 @@ export default function FrmProducto(props) {
 				setFlag(false);
 			}
 		}
-	});
+	}, [datos, flag, initial, update]);
 
 	const onSubmit = (data) => {
 		setFlag(true);
 
 		var formData = new FormData();
-		formData.append("archivo", document.getElementById('txtImagen').files[0]);
+		formData.append(
+			'archivo',
+			document.getElementById('txtImagen').files[0]
+		);
 
 		var content = '<a id="a"><b id="b">hey!</b></a>';
-		var blob = new Blob([content], { type: "text/xml" });
+		var blob = new Blob([content], { type: 'text/xml' });
 
-		formData.append("webmasterfile", blob);
+		formData.append('webmasterfile', blob);
 
 		var request = new XMLHttpRequest();
-		request.open("POST", process.env.PUBLIC_URL + 'source/' + "submitFile.php");
+		request.open('POST', process.env.PUBLIC_URL + 'source/submitFile.php');
 		request.onload = function (ev) {
-			if (request.status == 200) {
+			if (request.status === 200) {
 				console.log(ev);
 			} else {
 				console.log(ev);
 			}
-		}
+		};
 		request.send(formData);
 
 		execute({
@@ -124,15 +127,17 @@ export default function FrmProducto(props) {
 		<div className='col-lg-6 '>
 			<div className='card border-0 '>
 				<div className='card-body'>
-					<h5 className='card-title  font-weight-bold'>Datos del Producto</h5>
+					<h5 className='card-title  font-weight-bold'>
+						Datos del Producto
+					</h5>
 					<br />
 					<form
 						className='bg-light p-3 damesa reclamof'
 						onSubmit={handleSubmit(onSubmit)}
-						encType="multipart/form-data">
+						encType='multipart/form-data'>
 						<div className='row'>
 							<div className='col-lg-6  '>
-								<div className='text-center ' >
+								<div className='text-center '>
 									<label
 										htmlFor='txtImagen'
 										style={{
@@ -152,16 +157,19 @@ export default function FrmProducto(props) {
 												imagen: e.target.files[0].name,
 											});
 
-											var archivo = document.getElementById("txtImagen").files[0];
+											var archivo = document.getElementById(
+												'txtImagen'
+											).files[0];
 											var reader = new FileReader();
 											if (archivo) {
 												reader.readAsDataURL(archivo);
 												reader.onloadend = function () {
-													document.getElementById("img").src = reader.result;
-												}
+													document.getElementById(
+														'img'
+													).src = reader.result;
+												};
 											}
-										}
-										}
+										}}
 										className='btn'
 										style={{
 											width: '0px',
@@ -169,17 +177,19 @@ export default function FrmProducto(props) {
 											visibility: 'hidden',
 											position: 'absolute',
 										}}
-										accept=".jpg, .jpeg, .png"
+										accept='.jpg, .jpeg, .png'
 									/>
 									<img
-										src={process.env.PUBLIC_URL + 'source/producto/' + item.imagen}
+										src={
+											process.env.PUBLIC_URL +
+											'source/producto/' +
+											item.imagen
+										}
 										className='img-fluid img-circle'
 										alt='IMG'
 										id='img'
 									/>
 								</div>
-
-
 
 								<div className='form-group'>
 									<label htmlFor='txtNombre'>Nombre:</label>
@@ -226,7 +236,7 @@ export default function FrmProducto(props) {
 									/>
 									{errors.descripcion &&
 										errors.descripcion.type ===
-										'required' && (
+											'required' && (
 											<p className='mt-1 ml-1 text-danger'>
 												Debe ingresar una descripción
 												del producto
@@ -248,7 +258,9 @@ export default function FrmProducto(props) {
 										onChange={(e) =>
 											update({
 												...item,
-												tipoProducto: { id: e.target.value },
+												tipoProducto: {
+													id: e.target.value,
+												},
 											})
 										}
 										className='form-control'>
@@ -352,14 +364,14 @@ export default function FrmProducto(props) {
 										</label>
 									</div>
 								</div>
-
 							</div>
 						</div>
 						<div className='d-flex justify-content-end  flex-wrap'>
-							<button className='btnColor border-0 text-decoration-none' type='submit'>
+							<button
+								className='btnColor border-0 text-decoration-none'
+								type='submit'>
 								{item.id ? 'Modificar' : 'Registrar'}
 							</button>
-
 						</div>
 					</form>
 				</div>

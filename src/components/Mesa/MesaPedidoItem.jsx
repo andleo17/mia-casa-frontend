@@ -24,11 +24,9 @@ export default function MesaPedidoItem({ mesa }) {
 		<div className='col-xl-4 col-lg-6 col-md-12 mesa-pedido'>
 			<NavLink
 				className={`card text-white ${estado}`}
-				to={`/venta/mesa/${mesa.id},${mesa.numero}`}>
+				to={`/venta/mesa/${mesa.id}`}>
 				<div className='card-body'>
-					<span className='font-weight-bold'>
-						Mesa {mesa.numero}
-					</span>
+					<span className='font-weight-bold'>Mesa {mesa.numero}</span>
 					{mesa.pedidoActual && (
 						<table className='table table-sm mt-3'>
 							<thead>

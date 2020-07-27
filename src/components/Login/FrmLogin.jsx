@@ -13,6 +13,9 @@ export const LOGIN_QUERY = gql`
 				id
 				nombres
 				apellidos
+				credencial {
+					rol
+				}
 			}
 		}
 	}

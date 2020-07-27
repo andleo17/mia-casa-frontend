@@ -3,10 +3,9 @@ import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import {QUERY_LISTAR_MESA} from './ListaMesa'
+import { QUERY_LISTAR_MESA } from './ListaMesa';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
-import { initialState } from '../../pages/Mesa';
 
 const REGISTRAR_MESA = gql`
 	mutation RegistrarMesa($numero: Int!) {
@@ -30,55 +29,43 @@ export default function FrmMesa(props) {
 	const { item, update, initial } = props;
 	const [flag, setFlag] = useState(false);
 	const { register, handleSubmit, errors } = useForm();
-	const mutation = item.id
-	 	? MODIFICAR_MESA
-	 	: REGISTRAR_MESA;
-		const [execute, { data: datos, called }] = useMutation(mutation);
-	
+	const mutation = item.id ? MODIFICAR_MESA : REGISTRAR_MESA;
+	const [execute, { data: datos }] = useMutation(mutation);
+
 	useEffect(() => {
-		if(flag){
-			if(datos && datos.modificarMesa) {
-				Swal.fire(
-					'Mesa modificada correctamente',
-					'',
-					'success'
-				)
+		if (flag) {
+			if (datos && datos.modificarMesa) {
+				Swal.fire('Mesa modificada correctamente', '', 'success');
 				update(initial);
-				setFlag(false)
+				setFlag(false);
 			}
-			if(datos && datos.registrarMesa) {
-				Swal.fire(
-					'Mesa registrada correctamente',
-					'',
-					'success'
-				)
+			if (datos && datos.registrarMesa) {
+				Swal.fire('Mesa registrada correctamente', '', 'success');
 				update(initial);
-				setFlag(false)
+				setFlag(false);
 			}
 		}
-		;
-	});
-	
-  	const onSubmit = data => {
+	}, [datos, flag, initial, update, setFlag]);
+
+	const onSubmit = () => {
 		setFlag(true);
 		execute({
-					variables: {
-							id: parseInt(item.id),
-							numero: parseInt(document.getElementById('txtNumero').value),
-							estado: document.getElementById('chkEstado').checked,
-					},
-					refetchQueries: [
-						{ query: QUERY_LISTAR_MESA },
-					
-					],
-		})
+			variables: {
+				id: parseInt(item.id),
+				numero: parseInt(document.getElementById('txtNumero').value),
+				estado: document.getElementById('chkEstado').checked,
+			},
+			refetchQueries: [{ query: QUERY_LISTAR_MESA }],
+		});
 	};
-	
+
 	return (
 		<div className='col-lg-6'>
 			<div className='card border-0 '>
 				<div className='card-body'>
-					<h5 className='card-title font-weight-bold'>Datos de la mesa</h5>
+					<h5 className='card-title font-weight-bold'>
+						Datos de la mesa
+					</h5>
 					<form
 						className='bg-light p-3 damesa reclamof'
 						onSubmit={handleSubmit(onSubmit)}>
@@ -88,7 +75,11 @@ export default function FrmMesa(props) {
 								type='number'
 								name='numero'
 								id='txtNumero'
-								ref={register({ required: true, min: 0, max: 1000 })}
+								ref={register({
+									required: true,
+									min: 0,
+									max: 1000,
+								})}
 								value={item.numero}
 								onChange={(e) =>
 									update({
@@ -99,15 +90,28 @@ export default function FrmMesa(props) {
 								placeholder='Ingrese el número de mesa...'
 								className='form-control'
 							/>
-							{errors.numero && errors.numero.type === 'required' && 
-								(<p className='mt-1 ml-1' style={{ color: 'red' }}>Debe ingresar un número</p>)
-							}
-							{errors.numero && errors.numero.type === 'min' && 
-								(<p className='mt-1 ml-1' style={{ color: 'red' }}>No se aceptan números negativos</p>)
-							}
-							{errors.numero && errors.numero.type === 'max' && 
-								(<p className='mt-1 ml-1' style={{ color: 'red' }}>Excede el número permitido</p>)
-							}
+							{errors.numero &&
+								errors.numero.type === 'required' && (
+									<p
+										className='mt-1 ml-1'
+										style={{ color: 'red' }}>
+										Debe ingresar un número
+									</p>
+								)}
+							{errors.numero && errors.numero.type === 'min' && (
+								<p
+									className='mt-1 ml-1'
+									style={{ color: 'red' }}>
+									No se aceptan números negativos
+								</p>
+							)}
+							{errors.numero && errors.numero.type === 'max' && (
+								<p
+									className='mt-1 ml-1'
+									style={{ color: 'red' }}>
+									Excede el número permitido
+								</p>
+							)}
 						</div>
 						<div className='form-group'>
 							<label htmlFor='chkEstado'>Estado:</label>
@@ -134,8 +138,10 @@ export default function FrmMesa(props) {
 							</div>
 						</div>
 						<div className='d-flex justify-content-around flex-wrap'>
-							<button className='btnColor d-flex align-items-center border-0 justify-content-center
-							text-decoration-none' type='submit'>
+							<button
+								className='btnColor d-flex align-items-center border-0 justify-content-center
+							text-decoration-none'
+								type='submit'>
 								{item.id ? 'Modificar' : 'Registrar'}
 							</button>
 						</div>

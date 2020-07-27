@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import imgReclamo from '../../assets/reclamo.png';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import {QUERY_LISTAR_RECLAMO} from './ListaReclamo'
+import { QUERY_LISTAR_RECLAMO } from './ListaReclamo';
 
 const ELIMINAR_RECLAMO = gql`
 	mutation EliminarReclamo($id: ID!) {
@@ -12,8 +12,7 @@ const ELIMINAR_RECLAMO = gql`
 	}
 `;
 
-
-export default function ItemReclamo({reclamo, showData, props}){
+export default function ItemReclamo({ reclamo, showData }) {
 	const [eliminarReclamo] = useMutation(ELIMINAR_RECLAMO);
 	return (
 		<div class='card mb-3'>
@@ -27,22 +26,26 @@ export default function ItemReclamo({reclamo, showData, props}){
 						/>
 					</div>
 					<div class='col-6'>
-						<label className='colorLetra font-weight-bold'>Reclamo N° {reclamo.id}</label> <br/>
+						<label className='colorLetra font-weight-bold'>
+							Reclamo N° {reclamo.id}
+						</label>{' '}
+						<br />
 						<label>Pedido: {reclamo.detallePedido.pedido.id}</label>
-						<label className='colorLetra2'>Producto: {reclamo.detallePedido.producto.nombre}</label>
+						<label className='colorLetra2'>
+							Producto: {reclamo.detallePedido.producto.nombre}
+						</label>
 						<label>Motivo: {reclamo.motivo}</label>
 					</div>
 					<div class='col-4 col-btn align-self-center'>
 						<button
 							type='button'
 							className=' btn border-0 rounded-circle p-2'
-							onClick={
-									showData
-							}
-							style={{ background: '#BFE6E0', width:'43px' }}>
+							onClick={showData}
+							style={{ background: '#BFE6E0', width: '43px' }}>
 							<i className='fa fa-pen m-0' />
 						</button>
-						<button className='btn border-0 rounded-circle p-2 ml-2' style={{ width:'43px'  }}
+						<button
+							className='btn border-0 rounded-circle p-2 ml-2'
 							onClick={() =>
 								eliminarReclamo({
 									variables: { id: parseInt(reclamo.id) },
@@ -53,8 +56,8 @@ export default function ItemReclamo({reclamo, showData, props}){
 									],
 								})
 							}
-							style={{ background: '#BFE6E0', width:'43px' }}>
-								<i className='fa fa-trash' />
+							style={{ background: '#BFE6E0', width: '43px' }}>
+							<i className='fa fa-trash' />
 						</button>
 					</div>
 				</div>
@@ -62,4 +65,3 @@ export default function ItemReclamo({reclamo, showData, props}){
 		</div>
 	);
 }
-

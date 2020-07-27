@@ -18,26 +18,25 @@ const MUTATION_REGISTRAR_PAGO = gql`
 
 export default function FrmNuevoPago(props) {
 	const { item, setPayData, initialState } = props;
-	const { register, handleSubmit,  errors  } = useForm();
+	const { register, handleSubmit, errors } = useForm();
 	const [flag, setFlag] = useState(false);
 	const [registrarPago] = useMutation(MUTATION_REGISTRAR_PAGO);
 
 	useEffect(() => {
-		if(flag){
-			if( registrarPago) {
+		if (flag) {
+			if (registrarPago) {
 				Swal.fire({
 					position: 'top-end',
 					icon: 'success',
 					title: 'Pago registrado correctamente',
 					showConfirmButton: false,
-					timer: 1000
-				  })
+					timer: 1000,
+				});
 				setPayData(initialState);
-				setFlag(false)
+				setFlag(false);
 			}
 		}
-		;
-	});
+	}, [flag, registrarPago, setPayData, initialState]);
 
 	const onSubmit = (data) => {
 		console.log(data);
@@ -47,9 +46,12 @@ export default function FrmNuevoPago(props) {
 				tipoPago: data.cboTipo,
 				pedido: data.txtPedido,
 			},
-			refetchQueries: [{ query: QUERY_LISTAR_PAGO },{query: QUERY_LISTAR_PEDIDO}],
+			refetchQueries: [
+				{ query: QUERY_LISTAR_PAGO },
+				{ query: QUERY_LISTAR_PEDIDO },
+			],
 		});
-		setFlag(true)
+		setFlag(true);
 	};
 
 	return (
@@ -113,7 +115,7 @@ export default function FrmNuevoPago(props) {
 											ref={register({
 												required: {
 													value: true,
-													min: 0
+													min: 0,
 												},
 											})}
 											onChange={(e) =>
@@ -123,22 +125,33 @@ export default function FrmNuevoPago(props) {
 												})
 											}
 										/>
-										{errors.numero && errors.numero.type === 'required' && 
-											(<p className='mt-1 ml-1' style={{ color: 'red' }}>Debe ingresar un número</p>)
-										}
-										{errors.numero && errors.numero.type === 'min' && 
-											(<p className='mt-1 ml-1' style={{ color: 'red' }}>No se aceptan números negativos</p>)
-										}
+										{errors.numero &&
+											errors.numero.type ===
+												'required' && (
+												<p
+													className='mt-1 ml-1'
+													style={{ color: 'red' }}>
+													Debe ingresar un número
+												</p>
+											)}
+										{errors.numero &&
+											errors.numero.type === 'min' && (
+												<p
+													className='mt-1 ml-1'
+													style={{ color: 'red' }}>
+													No se aceptan números
+													negativos
+												</p>
+											)}
 									</div>
 								</div>
 							</div>
 							<div className='row justify-content-end'>
 								<button
 									class='btn-dark mr-3 d-flex p-2 align-items-center border-0 justify-content-center text-decoration-none'
-									onClick={()=>{
-										setPayData(initialState)
-									}}
-									>
+									onClick={() => {
+										setPayData(initialState);
+									}}>
 									Cancelar
 								</button>
 								<button

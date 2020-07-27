@@ -26,31 +26,28 @@ export const QUERY_LISTAR_PRODUCTO = gql`
 	}
 `;
 
-export default function ListaProductoPedido(props) {
-	const { item, update, initial } = props;
+export default function ListaProductoPedido() {
 	const { loading, data, error } = useQuery(QUERY_LISTAR_PRODUCTO);
-	const [categ, setCateg] = useState(1);
+	const [categoriaId, setCategoriaId] = useState(1);
 
 	if (loading) return 'Cargando...';
-	if (error) return 'No se ha podido establecer la conexión con el servidor, intentelo nuevamente';
+	if (error)
+		return 'No se ha podido establecer la conexión con el servidor, intentelo nuevamente';
 	return (
-		<div className='col-lg-7 mb-5' >
-			<div className='card  border-0'>
-				<div className='card-body pt-0' style={{
-					height: '30rem'
-				}}>
+		<div className='col-lg-7 mb-5'>
+			<div className='card border-0'>
+				<div className='card-body pt-0'>
 					<select
 						name='tipoProducto'
 						id='cboTipoProducto'
-						className='form-control   mb-2 ' 
-						onChange={(e)=>
-							setCateg(e.target.value)
-						}
-					>
+						className='form-control mb-2 '
+						onChange={(e) =>
+							setCategoriaId(parseInt(e.target.value))
+						}>
 						<ListaTiposProducto />
 					</select>
 
-					<div className='  buscar input-group d-flex justify-content-between flex-wrap '>
+					<div className='buscar input-group d-flex justify-content-between flex-wrap '>
 						<input
 							type='search'
 							className='form-control col-lg-9'
@@ -60,42 +57,30 @@ export default function ListaProductoPedido(props) {
 						<button
 							className='btnColor d-flex align-items-center border-0 justify-content-center
 							text-decoration-none'
-							type='button'
-						>
-							<span className='' >  <i className='fa fa-plus m-1' /> Buscar</span>
+							type='button'>
+							<span>
+								<i className='fa fa-plus m-1' />
+								Buscar
+							</span>
 						</button>
 					</div>
 
-
-					<div className='mt-3 '
-						style={{
-							height: '28rem',
-							overflowY: 'scroll',
-						}}
-					>
-						{data.listarTipoProducto.map((cat) => {
-							if (cat.id == categ){
+					<div className='mt-3' style={{ overflowY: 'scroll' }}>
+						{data.listarTipoProducto
+							.find((c) => parseInt(c.id) === categoriaId)
+							.productos.map((producto) => {
 								return (
-									cat.productos.map((producto) => {
-										return (
-											<ProductoCartaItem
-												producto={producto}
-												key={producto.id}
-												item={item}
-												update={update}
-            									initial = {initial}
-											/>
-										);
-									})
+									<ProductoCartaItem
+										producto={producto}
+										key={producto.id}
+									/>
 								);
-							}
-						})}
+							})}
 					</div>
 				</div>
 
-				<button className="btn btn-shift">Confirmar</button>
+				<button className='btn btn-shift'>Confirmar</button>
 			</div>
 		</div>
-
 	);
 }
