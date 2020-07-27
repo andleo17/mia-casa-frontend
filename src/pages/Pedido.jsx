@@ -10,7 +10,7 @@ export default function Pedido({ match }) {
 			<h1>Seleccionar productos</h1>
 
 			<div className='row p-3'>
-				<ListaProductoPedido />
+				<ListaProductoPedido mesa={numero} />
 
 				<div className='col-lg-5'>
 					<ListaPedido numero={numero} />

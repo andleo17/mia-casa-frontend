@@ -50,19 +50,25 @@ export default function ListaPedido({ numero }) {
 						height: '90%',
 						overflowY: 'scroll',
 					}}>
-					{pedidoActual.productos.map((producto) => {
-						return (
-							<ProductoPedidoItem
-								detallePedido={producto}
-								key={producto.producto.id}
-							/>
-						);
-					})}
+					{pedidoActual ? (
+						pedidoActual.productos.map((producto) => {
+							return (
+								<ProductoPedidoItem
+									detallePedido={producto}
+									key={producto.producto.id}
+								/>
+							);
+						})
+					) : (
+						<div className='text-center'>
+							<span>No se encuentran productos</span>
+						</div>
+					)}
 				</div>
 			</div>
 			<div>
 				<span className='row d-flex justify-content-end flex-wrap mr-3 mt-2'>
-					Total: S/ {pedidoActual.monto || 0}
+					Total: S/ {pedidoActual?.monto || 0}
 				</span>
 			</div>
 			<div className='row d-flex justify-content-end flex-wrap mt-3 mb-3'>

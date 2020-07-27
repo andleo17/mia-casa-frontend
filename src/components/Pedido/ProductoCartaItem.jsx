@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 
-export default function ProductoCartaItem({ producto }) {
+export default function ProductoCartaItem({ producto, agregar, eliminar }) {
 	const [cantidad, setCantidad] = useState(0);
 	const cambiarCantidad = (accion) => {
 		if (accion === '-') {
 			const cantidadNueva = cantidad - 1;
-			if (cantidadNueva >= 0) setCantidad(cantidadNueva);
+			if (cantidadNueva >= 0) {
+				setCantidad(cantidadNueva);
+				agregar({
+					producto: producto.id,
+					precio: producto.precio,
+					cantidad: cantidadNueva,
+				});
+			}
+			if (cantidadNueva === 0) eliminar(producto.id);
 		} else {
 			const cantidadNueva = cantidad + 1;
+			agregar({
+				producto: producto.id,
+				precio: producto.precio,
+				cantidad: cantidadNueva,
+			});
 			if (cantidadNueva <= producto.cantidad) setCantidad(cantidadNueva);
 		}
 	};
