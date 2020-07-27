@@ -40,7 +40,9 @@ export default function ItemReclamo({ reclamo, showData }) {
 						<button
 							type='button'
 							className=' btn border-0 rounded-circle p-2'
-							onClick={showData}
+							onClick={() => {
+								showData();
+							}}
 							style={{ background: '#BFE6E0', width: '43px' }}>
 							<i className='fa fa-pen m-0' />
 						</button>
